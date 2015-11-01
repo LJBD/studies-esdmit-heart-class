@@ -1,7 +1,5 @@
 __author__ = 'Krystian'
 
-# Static const table
-# TODO: Gdzie to umiescic?!
 svm_type_table = []
 svm_type_table.append("c_svc")
 svm_type_table.append("nu_svc")
@@ -9,7 +7,7 @@ svm_type_table.append("one_class")
 svm_type_table.append("epsilon_svr")
 svm_type_table.append("nu_svr")
 svm_type_table.append(None)
-# TODO: Gdzie to umiescic?!
+
 kernel_type_table = []
 kernel_type_table.append("linear")
 kernel_type_table.append("polynomial")
@@ -19,7 +17,6 @@ kernel_type_table.append("precomputed")
 kernel_type_table.append(None)
 
 
-from enum import Enum
 from Kernel import *
 
 
@@ -30,7 +27,7 @@ class SVMTypes(Enum):
     EPSILON_SVR = 3
     NU_SVR = 4
 
-# Cos co ma przypominac strukture. Nie wiem czy tak to sie robi
+
 class svm_parameter:
     weight_label = []  # int - for C_SVC
     weight = []  # double - for C_SVC
@@ -58,7 +55,6 @@ class svm_node:
         self.value = val
 
 
-# Cos co ma przypominac strukture. Nie wiem czy tak to sie robi
 class svm_model:
     rho = []  # double - constants in decision functions (rho[k*(k-1)/2])
     label = []  # int - label of each class (label[k])
@@ -232,6 +228,7 @@ def svm_load_model(model_file_name):
                 idx = int(k[0])
                 val = float(k[1])
                 model.SV[i][j - m] = svm_node(idx, val)
+            model.SV[i][max-m+1] = svm_node(-1, None)
 
         model.free_sv = 1
 
@@ -255,18 +252,83 @@ def readline(fp):
             line += c
     return line
 
+
 def svm_predict(model, x):
     dec_values = []
 
-    if model.param.svm_type == SVMTypes.ONE_CLASS or model.param.svm_type == SVMTypes.EPSILON_SVR or model.param.svm_type == SVMTypes.NU_SVR:
+    if SVMTypes(model.param.svm_type) == SVMTypes.ONE_CLASS or \
+       SVMTypes(model.param.svm_type) == SVMTypes.EPSILON_SVR or \
+       SVMTypes(model.param.svm_type) == SVMTypes.NU_SVR:
+
         sv_coef = model.sv_coef[0]
+        sum = 0
+
+        for i in range(0, model.l):
+            sum += sv_coef[i] * k_function(x, model.SV[i], model.param)
+
+        sum -= model.rho[0]
+        dec_values.append(sum)
+
+        if SVMTypes(model.param.svm_type) == SVMTypes.ONE_CLASS:
+            if sum > 0:
+                return 1
+            else:
+                return -1
+        else:
+            return sum
+
     else:
         nr_class = model.nr_class
         l = model.l
         kvalue = []
-        for i in range(0,l):
-            kvalue.append(k_function(x, model.SV[i], model.param))
 
-    return None ######NIE SKONCZONE########
+        for i in range(0,l):
+            res = float(k_function(x, model.SV[i], model.param))
+            kvalue.append(res)
+
+        start = []
+        start.append(0)
+        for i in range(1, nr_class):
+            start.append(start[i-1] + model.nSV[i-1])
+
+        vote = []
+        for i in range(0, nr_class):
+            vote.append(0)
+
+        p = 0
+        for i in range(0, nr_class):
+            for j in range(i+1, nr_class):
+                sum = 0
+                si = start[i]
+                sj = start[j]
+                ci = model.nSV[i]
+                cj = model.nSV[j]
+
+                coef1 = model.sv_coef[j - 1]
+                coef2 = model.sv_coef[i]
+
+                for k in range(0, ci):
+                    sum += coef1[si + k] * kvalue[si + k]
+                for k in range(0, cj):
+                    sum += coef2[sj + k] * kvalue[sj + k]
+                sum -= model.rho[p]
+                dec_values.append(sum)
+
+                if dec_values[p] > 0:
+                    vote[i] += 1
+                else:
+                    vote[j] += 1
+                p += 1
+
+        vote_max_idx = 0
+        for i in range(1, nr_class):
+            if vote[i] > vote[vote_max_idx]:
+                vote_max_idx = i
+
+        return model.label[vote_max_idx]
+
+    #Tu nie powinienem byl zajsc
+    print "ERROR: in svm_predict"
+    return None
 
 

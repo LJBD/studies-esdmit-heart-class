@@ -1,8 +1,6 @@
 __author__ = 'Krystian'
-def getKey(): raw_input("Press Enter to continue...")
 
 from svm import *
-from QRSData import *
 
 class SVMClassifier:
 
@@ -73,7 +71,11 @@ class SVMClassifier:
     def predict(self, qrs_complexes):
         it = qrs_complexes[0]
         for i in range(0, it.__len__()):
+            ##-- Convert data
             x = self.createSvmVector(it[i])
+            ##-- Classify
+            class_id = int(svm_predict(self.model, x))
+            ##-- Save results
+            it[i].class_id = class_id
 
-            class_id = svm_predict(self.model, x)
 
