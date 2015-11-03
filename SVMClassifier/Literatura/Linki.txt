@@ -1,0 +1,6 @@
+
+https://www.csie.ntu.edu.tw/~cjlin/libsvm/
+
+https://en.wikipedia.org/wiki/Support_vector_machine
+
+http://scikit-learn.org/stable/modules/svm.html
