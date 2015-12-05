@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.11.2)  5 DEC 2015 15:05
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.11.2)  5 DEC 2015 15:25
 entering extended mode
 **HeartClassReport.tex
 ("E:\GitHub\esdmit-heart-class\Raport\LaTeX Project\HeartClassReport.tex"
@@ -739,27 +739,27 @@ LaTeX Font Warning: Font shape `OMS/pplx/m/n' undefined
 ("E:\GitHub\esdmit-heart-class\Raport\LaTeX Project\rezultaty_i_wnioski.tex")
 ("E:\GitHub\esdmit-heart-class\Raport\LaTeX Project\podsumowanie.tex" [2])
 ("E:\GitHub\esdmit-heart-class\Raport\LaTeX Project\literatura.tex")
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 125.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 124.
  [3]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 125.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 124.
 
 ("E:\GitHub\esdmit-heart-class\Raport\LaTeX Project\HeartClassReport.aux")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 125.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 125.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 124.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 124.
 Package rerunfilecheck Info: File `HeartClassReport.out' has not changed.
 (rerunfilecheck)             Checksum: 1759BB1C5CDDF35DC52709E574E027BC;391.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 125.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 124.
  ) 
 Here is how much of TeX's memory you used:
- 9313 strings out of 493921
- 141903 string characters out of 3147680
+ 9326 strings out of 493921
+ 142044 string characters out of 3147680
  353587 words of memory out of 3000000
- 12316 multiletter control sequences out of 15000+200000
- 48542 words of font info for 157 fonts, out of 3000000 for 9000
+ 12321 multiletter control sequences out of 15000+200000
+ 48962 words of font info for 163 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  36i,10n,43p,490b,405s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX2_9/fonts/enc/dvips/fontname/8r.enc}<C:/Program Files
@@ -768,7 +768,7 @@ Here is how much of TeX's memory you used:
 pe1/public/fpl/fplrc8a.pfb><C:/Program Files/MiKTeX2_9/fonts/type1/urw/palatino
 /uplb8a.pfb><C:/Program Files/MiKTeX2_9/fonts/type1/urw/palatino/uplr8a.pfb><C:
 /Program Files/MiKTeX2_9/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on HeartClassReport.pdf (3 pages, 91158 bytes).
+Output written on HeartClassReport.pdf (3 pages, 96242 bytes).
 PDF statistics:
  85 PDF objects out of 1000 (max. 8388607)
  13 named destinations out of 1000 (max. 500000)
