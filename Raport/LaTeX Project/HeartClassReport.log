@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.11.2)  5 DEC 2015 15:25
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.11.2)  5 DEC 2015 15:33
 entering extended mode
 **HeartClassReport.tex
 ("E:\GitHub\esdmit-heart-class\Raport\LaTeX Project\HeartClassReport.tex"
@@ -567,6 +567,27 @@ Package: titlesec 2011/12/15 v2.10.0 Sectioning titles
 ("C:\Program Files\MiKTeX2_9\tex\latex\titlesec\block.tss"
 File: block.tss 2011/12/15
 )
+("C:\Program Files\MiKTeX2_9\tex\latex\graphics\graphicx.sty"
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files\MiKTeX2_9\tex\latex\graphics\graphics.sty"
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files\MiKTeX2_9\tex\latex\graphics\trig.sty"
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+("C:\Program Files\MiKTeX2_9\tex\latex\00miktex\graphics.cfg"
+File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
+)
+Package graphics Info: Driver file: pdftex.def on input line 91.
+
+("C:\Program Files\MiKTeX2_9\tex\latex\pdftex-def\pdftex.def"
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+\Gread@gobject=\count109
+))
+\Gin@req@height=\dimen146
+\Gin@req@width=\dimen147
+)
 ("C:\Program Files\MiKTeX2_9\tex\latex\fancyhdr\fancyhdr.sty"
 \fancy@headwidth=\skip56
 \f@ncyO@elh=\skip57
@@ -586,29 +607,29 @@ Package tocbibind Info: The document has section divisions on input line 50.
 Package tocbibind Note: Using section or other style headings.
 
 ) ("E:\GitHub\esdmit-heart-class\Raport\LaTeX Project\HeartClassReport.aux")
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 82.
-LaTeX Font Info:    ... okay on input line 82.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 82.
-LaTeX Font Info:    ... okay on input line 82.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 82.
-LaTeX Font Info:    ... okay on input line 82.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 82.
-LaTeX Font Info:    ... okay on input line 82.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 82.
-LaTeX Font Info:    ... okay on input line 82.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 82.
-LaTeX Font Info:    ... okay on input line 82.
-LaTeX Font Info:    Checking defaults for OT4/cmr/m/n on input line 82.
-LaTeX Font Info:    ... okay on input line 82.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 82.
-LaTeX Font Info:    ... okay on input line 82.
-LaTeX Font Info:    Try loading font information for T1+pplx on input line 82.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for OT4/cmr/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Try loading font information for T1+pplx on input line 85.
 
 ("C:\Program Files\MiKTeX2_9\tex\latex\psnfss\t1pplx.fd"
 File: t1pplx.fd 2004/09/06 font definitions for T1/pplx.
 )
-\big@size=\dimen146
-LaTeX Info: Redefining \microtypecontext on input line 82.
+\big@size=\dimen148
+LaTeX Info: Redefining \microtypecontext on input line 85.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -661,49 +682,63 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \AtBeginShipoutBox=\box27
-Package hyperref Info: Link coloring OFF on input line 82.
+Package hyperref Info: Link coloring OFF on input line 85.
 ("C:\Program Files\MiKTeX2_9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
 ("C:\Program Files\MiKTeX2_9\tex\generic\oberdiek\gettitlestring.sty"
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count109
+\c@section@level=\count110
 )
-LaTeX Info: Redefining \ref on input line 82.
-LaTeX Info: Redefining \pageref on input line 82.
-LaTeX Info: Redefining \nameref on input line 82.
+LaTeX Info: Redefining \ref on input line 85.
+LaTeX Info: Redefining \pageref on input line 85.
+LaTeX Info: Redefining \nameref on input line 85.
 
 ("E:\GitHub\esdmit-heart-class\Raport\LaTeX Project\HeartClassReport.out")
 ("E:\GitHub\esdmit-heart-class\Raport\LaTeX Project\HeartClassReport.out")
 \@outlinefile=\write3
+
+("C:\Program Files\MiKTeX2_9\tex\context\base\supp-pdf.mkii"
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count111
+\scratchdimen=\dimen149
+\scratchbox=\box28
+\nofMPsegments=\count112
+\nofMParguments=\count113
+\everyMPshowfont=\toks21
+\MPscratchCnt=\count114
+\MPscratchDim=\dimen150
+\MPnumerator=\count115
+\makeMPintoPDFobject=\count116
+\everyMPtoPDFconversion=\toks22
+)
 LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <24> not available
-(Font)              Font shape `T1/pplx/b/n' tried instead on input line 85.
-LaTeX Font Info:    Try loading font information for OT1+pplx on input line 85.
+(Font)              Font shape `T1/pplx/b/n' tried instead on input line 88.
+LaTeX Font Info:    Try loading font information for OT1+pplx on input line 88.
 
-
-("C:\Program Files\MiKTeX2_9\tex\latex\psnfss\ot1pplx.fd"
+ ("C:\Program Files\MiKTeX2_9\tex\latex\psnfss\ot1pplx.fd"
 File: ot1pplx.fd 2004/09/06 font definitions for OT1/pplx.
 )
-LaTeX Font Info:    Try loading font information for OML+zplm on input line 85.
+LaTeX Font Info:    Try loading font information for OML+zplm on input line 88.
 
 
 ("C:\Program Files\MiKTeX2_9\tex\latex\psnfss\omlzplm.fd"
 File: omlzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OML/zplm.
 )
-LaTeX Font Info:    Try loading font information for OMS+zplm on input line 85.
+LaTeX Font Info:    Try loading font information for OMS+zplm on input line 88.
 
 
 ("C:\Program Files\MiKTeX2_9\tex\latex\psnfss\omszplm.fd"
 File: omszplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMS/zplm.
 )
-LaTeX Font Info:    Try loading font information for OMX+zplm on input line 85.
+LaTeX Font Info:    Try loading font information for OMX+zplm on input line 88.
 
 
 ("C:\Program Files\MiKTeX2_9\tex\latex\psnfss\omxzplm.fd"
 File: omxzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMX/zplm.
 )
-LaTeX Font Info:    Try loading font information for OT1+zplm on input line 85.
+LaTeX Font Info:    Try loading font information for OT1+zplm on input line 88.
 
 
 ("C:\Program Files\MiKTeX2_9\tex\latex\psnfss\ot1zplm.fd"
@@ -739,26 +774,26 @@ LaTeX Font Warning: Font shape `OMS/pplx/m/n' undefined
 ("E:\GitHub\esdmit-heart-class\Raport\LaTeX Project\rezultaty_i_wnioski.tex")
 ("E:\GitHub\esdmit-heart-class\Raport\LaTeX Project\podsumowanie.tex" [2])
 ("E:\GitHub\esdmit-heart-class\Raport\LaTeX Project\literatura.tex")
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 124.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 127.
  [3]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 124.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 127.
 
 ("E:\GitHub\esdmit-heart-class\Raport\LaTeX Project\HeartClassReport.aux")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 124.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 124.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 127.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 127.
 Package rerunfilecheck Info: File `HeartClassReport.out' has not changed.
 (rerunfilecheck)             Checksum: 1759BB1C5CDDF35DC52709E574E027BC;391.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 124.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 127.
  ) 
 Here is how much of TeX's memory you used:
- 9326 strings out of 493921
- 142044 string characters out of 3147680
- 353587 words of memory out of 3000000
- 12321 multiletter control sequences out of 15000+200000
+ 10022 strings out of 493921
+ 151148 string characters out of 3147680
+ 363841 words of memory out of 3000000
+ 12997 multiletter control sequences out of 15000+200000
  48962 words of font info for 163 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  36i,10n,43p,490b,405s stack positions out of 5000i,500n,10000p,200000b,50000s
