@@ -1,6 +1,7 @@
 # from SVMClassifier.HeartBeatClassifier.QRSData import QRS_DATA
 from anderson_darling_test import AndersonDarlingTest
 from scipy.cluster.vq import kmeans2
+from scipy.stats import multivariate_normal
 import logging
 
 
@@ -25,6 +26,14 @@ class GMeans(object):
         # :TODO: This method might be used to prepare data for the kmeans implementation that we'll use.
         self.logger.debug('In qrsToGslVectors')
         return []
+
+    def get_normal_distribution(self, n):
+        """
+        This method is be used to determine a value of a multidimensional normal probability density function.
+        :param n: required dimension of the PDF
+        """
+        self.normal_var = multivariate_normal(mean=[0, 0], cov=[[1, 0], [0, 1]])
+        self.normal_var.pdf([1, 0])
 
 
 def main():

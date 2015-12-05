@@ -1,4 +1,5 @@
 *.xml
 */.idea/*
 */*.pyc
+*/*/*.pyc
 .idea/
