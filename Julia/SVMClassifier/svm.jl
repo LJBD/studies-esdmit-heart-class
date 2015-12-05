@@ -1,4 +1,4 @@
-workspace()
+include("Kernel.jl")
 
 type svm_node
     idx
@@ -30,10 +30,6 @@ type svm_model
 end
 
 
-type SVMClassifier
-  model::svm_model
-end
-
 svm_model() = svm_model(
     Float64[], #rho
     Int64[], #label
@@ -54,7 +50,7 @@ svm_model() = svm_model(
     -1,  #free_sv
     null #nr_class
   )
-SVMClassifier() = SVMClassifier(svm_model())
+
 
 
 function GetNextWord(fp)
@@ -178,7 +174,7 @@ function read_model_header(fp, model::svm_model)
 end
 
 
-function loadSvmModel(file_name::ASCIIString)
+function svm_load_model(file_name::ASCIIString)
   fp = open(file_name)
   # read parameters
   model = svm_model()
@@ -212,11 +208,12 @@ function loadSvmModel(file_name::ASCIIString)
         max = i-3
       end
   end
+  seek(fp, pos)
 
-  model.sv_coef = fill(float(0), (m,l))
-  model.SV = fill(svm_node(0,0), (l,max+1))
+  model.sv_coef = fill(float(0), (m,l+1))
+  model.SV = fill(svm_node(0,0), (l+1,max+1))
 
-  for i = 1:l
+  for i = 1:l+1
     line = readline(fp)
     p = split(line, ' ')
 
@@ -240,6 +237,76 @@ function loadSvmModel(file_name::ASCIIString)
   return model
 end
 
+
+function svm_predict(model, x)
+  dec_values = Float64[]
+
+  svmType = model.param.svm_type
+  #     ONE_CLASS     EPSILON_SVR          NU_SVR
+  if svmType == 3 || svmType == 4 || svmType == 5
+    error("Not implemented exception")
+  else
+    nr_class = model.nr_class
+    l = model.l
+
+    kvalue = Float64[]
+    for i = 1:l
+      res = float(k_function(x, model.SV[i,:], model.param))
+      push!(kvalue, res)
+    end
+
+    start = Int64[]
+    push!(start, 0)
+    for i = 2:nr_class
+      push!(start, start[i-1] + model.nSV[i-1])
+    end
+
+    vote = Int64[]
+    for i = 1:nr_class
+      push!(vote, 0)
+    end
+
+    p = 1
+    for i = 1:nr_class
+      for j = i+1:nr_class
+        sum = 0
+        si = start[i]
+        sj = start[j]
+        ci = model.nSV[i]
+        cj = model.nSV[j]
+
+        coef1 = model.sv_coef[j - 1, :]
+        coef2 = model.sv_coef[i, :]
+
+        for k = 1:ci
+          sum += coef1[si + k] * kvalue[si + k]
+        end
+        for k = 1:cj
+          sum += coef2[sj + k] * kvalue[sj + k]
+        end
+
+        sum -= model.rho[p]
+        push!(dec_values, sum)
+
+        if dec_values[p] > 0
+          vote[i] += 1
+        else
+          vote[j] += 1
+        end
+        p += 1
+      end
+    end
+    vote_max_idx = 1
+    for i = 2:nr_class
+      if vote[i] > vote[vote_max_idx]
+        vote_max_idx = i
+      end
+    end
+    return model.label[vote_max_idx]
+  end
+
+  return -1
+end
 
 
 
