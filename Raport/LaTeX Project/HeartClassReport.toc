@@ -1,0 +1,9 @@
+\select@language {polish}
+\select@language {polish}
+\contentsline {section}{\numberline {I}Wst\IeC {\k e}p}{1}{section.1}
+\contentsline {section}{\numberline {II}Koncepcja proponowanego rozwi\IeC {\k a}zania}{2}{section.2}
+\contentsline {section}{\numberline {III}Rezultaty i wnioski}{2}{section.3}
+\contentsline {section}{\numberline {IV}Podsumowanie}{2}{section.4}
+\contentsline {subsection}{\numberline {I}Subsection One}{2}{subsection.4.1}
+\contentsline {subsection}{\numberline {II}Subsection Two}{3}{subsection.4.2}
+\contentsline {section}{\numberline {V}Bibliografia}{3}{section.5}
