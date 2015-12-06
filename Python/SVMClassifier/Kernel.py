@@ -1,8 +1,5 @@
 __author__ = 'Krystian'
-
-
 from math import exp, tanh
-
 from enum import Enum
 
 
@@ -14,12 +11,12 @@ class KernelTypes(Enum):
     PRECOMPUTED = 4
 
 
-def dot(x,y):
+def dot(x, y):
     sum = 0
     ix = 0
     iy = 0
     while x[ix].index != -1 and y[iy].index != -1:
-        if(x[ix].index == y[iy].index):
+        if x[ix].index == y[iy].index:
             sum += x[ix].value * y[iy].value
             ix += 1
             iy += 1
@@ -36,7 +33,7 @@ def powi(base, times):
     ret = 1.0
     t = times
     while True:
-        if t%2==1:
+        if t % 2 == 1:
             ret *= tmp
         tmp *= tmp
         t /= 2
@@ -50,7 +47,7 @@ def k_function(x, y, param):
     kernel_type = KernelTypes(param.kernel_type)
 
     if kernel_type == KernelTypes.LINEAR:
-        return dot(x,y)
+        return dot(x, y)
 
     elif kernel_type == KernelTypes.POLY:
         return powi(param.gamma*dot(x, y) + param.coef0, param.degree)
@@ -85,7 +82,7 @@ def k_function(x, y, param):
 
     elif kernel_type == KernelTypes.PRECOMPUTED:
         # To nie ma prawa dzialac
-        #return x[int(y[0].value)].value
+        # return x[int(y[0].value)].value
         print "ERROR: PRECOMPUTED kernel_type\nin k_function"
         getKey()
         return None

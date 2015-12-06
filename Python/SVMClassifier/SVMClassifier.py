@@ -1,9 +1,8 @@
 __author__ = 'Krystian'
-
 from svm import *
 
-class SVMClassifier:
 
+class SVMClassifier(object):
     def __init__(self):
         self.model = svm_model()
         self.model.free_sv = -1
@@ -12,7 +11,6 @@ class SVMClassifier:
         self.model = svm_load_model(model_filename)
 
     def createSvmVector(self, qrs_complex):
-
         node_list = []
 
         node = svm_node(1, qrs_complex.p_onset)
@@ -66,16 +64,14 @@ class SVMClassifier:
         node = svm_node(-1, None)
         node_list.append(node)
 
-        return node_list;
+        return node_list
 
     def predict(self, qrs_complexes):
         it = qrs_complexes[0]
         for i in range(0, it.__len__()):
-            ##-- Convert data
+            # Convert data
             x = self.createSvmVector(it[i])
-            ##-- Classify
+            # Classify
             class_id = int(svm_predict(self.model, x))
-            ##-- Save results
+            # Save results
             it[i].class_id = class_id
-
-

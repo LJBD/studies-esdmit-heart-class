@@ -28,7 +28,7 @@ class SVMTypes(Enum):
     NU_SVR = 4
 
 
-class svm_parameter:
+class svm_parameter(object):
     weight_label = []  # int - for C_SVC
     weight = []  # double - for C_SVC
 
@@ -49,13 +49,13 @@ class svm_parameter:
         self.probability = 0  # int - do probability estimates
 
 
-class svm_node:
+class svm_node(object):
     def __init__(self, idx, val):
         self.index = idx
         self.value = val
 
 
-class svm_model:
+class svm_model(object):
     rho = []  # double - constants in decision functions (rho[k*(k-1)/2])
     label = []  # int - label of each class (label[k])
     nSV = []  # int - number of SVs for each class (nSV[k])
@@ -101,7 +101,7 @@ def read_model_header(fp, model):
                 if svm_type_table[i] == cmd:
                     model.param.svm_type = i
                     break
-                if svm_type_table[i] == None:
+                if svm_type_table[i] is None:
                     print "ERROR: unknown svm type - ", cmd
                     return False
 
@@ -111,7 +111,7 @@ def read_model_header(fp, model):
                 if kernel_type_table[i] == cmd:
                     model.param.kernel_type = i
                     break
-                if kernel_type_table[i] == None:
+                if kernel_type_table[i] is None:
                     print "ERROR: unknown kernel function."
                     return False
 
@@ -186,7 +186,7 @@ def svm_load_model(model_file_name):
         model = svm_model()
 
         # read header
-        if read_model_header(fp, model) == False:
+        if not read_model_header(fp, model):
             print "ERROR: fscanf failed to read model"
             # TODO: return None
 
@@ -195,7 +195,7 @@ def svm_load_model(model_file_name):
         pos = long(fp.tell())
 
         line = readline(fp)
-        while line != None:
+        while line is not None:
             p = line.split(':')
             elements += p.__len__() - 1
             line = readline(fp)
@@ -327,7 +327,7 @@ def svm_predict(model, x):
 
         return model.label[vote_max_idx]
 
-    #Tu nie powinienem byl zajsc
+    # Tu nie powinienem byl zajsc
     print "ERROR: in svm_predict"
     return None
 
