@@ -42,9 +42,9 @@ def adstatistic(X):
     return A2
 
 
-def AndersonDarlingTest(X, alpha=0.05):
-    alphas = [0.10, 0.05,  0.025, 0.01]
-    critvalue = [0.632, 0.751, 0.870, 1.029]
+def AndersonDarlingTest(X, alpha=0.0001):
+    alphas = [0.10, 0.05,  0.025, 0.01, 0.0001]
+    critvalue = [0.632, 0.751, 0.870, 1.029, 1.8692]
     try:
         for i, a in enumerate(alphas):
             if abs(alpha - a) < 1.0e-4:
@@ -60,7 +60,7 @@ def AndersonDarlingTest(X, alpha=0.05):
 if __name__ == "__main__":
     print pnorm(3.0)
     n = 10
-    X = [ stat.norm.rvs() for i in range(n)]
-    pyplot.plot(X, 'ro')
-    print AndersonDarlingTest(X, alpha=0.01)
+    data_x = [stat.norm.rvs() for i in range(n)]
+    pyplot.plot(data_x, 'ro')
+    print 'TEST VERDICT:', AndersonDarlingTest(data_x)
     pyplot.show()

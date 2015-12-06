@@ -1,4 +1,4 @@
-# from SVMClassifier.HeartBeatClassifier.QRSData import QRS_DATA
+from SVMClassifier.HeartBeatClassifier.QRSData import QRS_DATA
 from anderson_darling_test import AndersonDarlingTest
 from scipy.cluster.vq import kmeans2
 from scipy.stats import multivariate_normal
@@ -8,6 +8,7 @@ import logging
 class GMeans(object):
     def __init__(self):
         self.logger = logging.getLogger(__name__)
+        self.dummy_data = QRS_DATA()
 
     def cluster_data(self, qrs_complexes, max_k):
         self.logger.debug('In clusterData')
