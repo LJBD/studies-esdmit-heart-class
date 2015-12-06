@@ -3,6 +3,9 @@ from SVMClassifier.QRSData import QRSData
 import GMeans.gmeans as gm
 from sklearn.preprocessing import normalize
 import os
+import sys
+reload(sys)
+sys.setdefaultencoding("utf-8")
 
 
 class HeartBeatClassifier(object):
@@ -22,7 +25,8 @@ class HeartBeatClassifier(object):
         return normalized_data
         
     def getQrsComplexDataFromFile(self, path):
-        dir = os.path.dirname(__file__)
+        dir = os.path.dirname(os.path.dirname(__file__))
+        dir = os.path.join(dir, 'Sygnały z C++')
         filename = os.path.join(dir, path)
         print filename
         with open(filename, "r") as ins:
@@ -34,7 +38,8 @@ class HeartBeatClassifier(object):
 
 def main():
     hbc = HeartBeatClassifier()
-    hbc.run()
+    hbc.classify()
+    #hbc.run()
 
 if __name__ == '__main__':
     main()
