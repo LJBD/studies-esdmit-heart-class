@@ -1,12 +1,13 @@
 
-from SVMClassifier import *
+import SVMClassifier.SVMClassifier as svm
+import GMeans.gmeans as gm
 from sklearn.preprocessing import normalize
 import os
 
 class HeartBeatClassifier(object):
     def __init__(self):
-        self.svm_classifier = SVMClassifier()
-        self.g_means = GMeans()
+        self.svm_classifier = svm.SVMClassifier()
+        self.g_means = gm.GMeans()
 
     def classify(self):
         number_of_clusters = 2;
