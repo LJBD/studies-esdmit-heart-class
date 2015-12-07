@@ -43,3 +43,25 @@ class QRSData(object):
         self.t_peak_val = arg[15]
         self.t_end = arg[16]
         self.t_end_val = arg[17]
+        
+    def __str__(self):
+        return "Class_id " + str(self.class_id)\
+        +" r_peak " + str(self.r_peak)\
+        +" r_peak_value " + str(self.r_peak_value)\
+        +" rr_pre_interval " + str(self.rr_pre_interval)\
+        +" rr_post_interval " + str(self.rr_post_interval)\
+        +" p_onset " + str(self.p_onset)\
+        +" p_onset_val " + str(self.p_onset_val)\
+        +" p_peak " + str(self.p_peak)\
+        +" p_peak_val " + str(self.p_peak_val)\
+        +" p_end " + str(self.p_end)\
+        +" p_end_val " + str(self.p_end_val)\
+        +" qrs_onset " + str(self.qrs_onset)\
+        +" qrs_onset_val " + str(self.qrs_onset_val)\
+        +" qrs_end " + str(self.qrs_end)\
+        +" qrs_end_val " + str(self.qrs_end_val)\
+        +" t_peak " + str(self.t_peak)\
+        +" t_peak_val " + str(self.t_peak_val)\
+        +" t_end " + str(self.t_end)\
+        +" t_end_val " + str(self.t_end_val)
+        
