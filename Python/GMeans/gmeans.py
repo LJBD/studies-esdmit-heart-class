@@ -9,6 +9,9 @@ class GMeans(object):
     def __init__(self, log_level='INFO'):
         self.logger = logging.getLogger(__name__)
         self.logger.setLevel(log_level)
+        ch = logging.StreamHandler()
+        ch.setLevel(log_level)
+        self.logger.addHandler(ch)
         # self.dummy_data = QRSData()
 
     def cluster_data(self, qrs_complexes, max_k=50):
@@ -19,11 +22,12 @@ class GMeans(object):
         # Start the algorithm
         ########################################
         initial_centroid = calculate_mean(self.qrs_data)
+        print 'INITIAL CENTROID: ', initial_centroid
         k = 1
         # minit='matrix' daje to, ze moge podac macierz poczatkowych centroidow jako k
-        qrs_centroids, labels_for_data = kmeans2(self.qrs_data, k=[initial_centroid], minit='matrix', iter=100)
+        qrs_centroids, labels_for_data = kmeans2(self.qrs_data, k=numpy.array([initial_centroid]), minit='matrix', iter=100)
         # :TODO: Check how kmeans2 beahaves and what input data it requires.
-        self.logger.debug('First k-means resulted in centroids: %s\n\tlabels: %s' % (qrs_centroids, labels_for_data))
+        self.logger.debug('First k-means resulted in centroids: %s' % qrs_centroids)
 
         self.labels_dict = {}
         for i, centroid_number in enumerate(labels_for_data):
@@ -43,7 +47,7 @@ class GMeans(object):
                         index = new_labels_for_data
                     # :TODO: Add else, in which I will update the labels_for_centroid with the two new centros' indices!
 
-            if kept_centroids == qrs_centroids:
+            if numpy.array(kept_centroids).all() == qrs_centroids.all():
                 break
         # :TODO: Finish this method!
 
@@ -82,11 +86,11 @@ class GMeans(object):
         mean = calculate_mean(real_data)
         child_centroid_1 = [centroid[i] - mean[i]/100.0 for i in xrange(len(centroid))]
         child_centroid_2 = [centroid[i] + mean[i]/100.0 for i in xrange(len(centroid))]
-        return [child_centroid_1, child_centroid_2]
+        return numpy.array([child_centroid_1, child_centroid_2])
 
     def get_real_data_from_indices(self, dict_of_indices):
         self.logger.debug("In get_real_data_from_indices")
-        return [self.qrs_data[i] for i in dict_of_indices.keys()]
+        return numpy.array([self.qrs_data[i] for i in dict_of_indices.keys()])
 
     def qrs_conversion(self, qrs_complexes):
         # Ta metoda w tym momencie nie ma zadnego sensu
@@ -112,26 +116,29 @@ class GMeans(object):
 
 
 def calculate_mean(input_list):
-    return [sum(i)/float(len(i)) for i in input_list]
+    mean = []
+    for i in xrange(len(input_list[0])):
+        vector_for_one_coordinate = [vector[i] for vector in input_list]
+        mean.append(sum(vector_for_one_coordinate)/float(len(vector_for_one_coordinate)))
+    return mean
 
 
 def main():
-    mean = [4.56, 5.234]
-    cov = [[1, 0],
-           [2, 5]]
-    data = numpy.random.multivariate_normal(mean=mean, cov=cov, size=(50, 1))
-    for row in data:
-        print row
-    x = [i[0][0] for i in data]
-    y = [i[0][1] for i in data]
-    print 'X ', x
+    # mean = [4.56, 5.234]
+    # cov = [[1, 0],
+    #        [2, 5]]
+    # data = numpy.random.multivariate_normal(mean=mean, cov=cov, size=(50, 1))
+    # data generation
+    data = numpy.vstack((numpy.random.rand(150,2) + numpy.array([.5, .5]),
+                         numpy.random.rand(150,2) + numpy.array([1, 1]),
+                         numpy.random.rand(150,2)))
+    x = [i[0] for i in data]
+    y = [i[1] for i in data]
 
-    nd = numpy.ndim(data)
-    print 'SIZES OF DATA: ', nd
     pyplot.plot(x, y, 'ro')
     pyplot.show()
     g_means = GMeans(log_level='DEBUG')
-    g_means.cluster_data(data, max_k = 10)
+    g_means.cluster_data(data, max_k=10)
 
 
 if __name__ == '__main__':
