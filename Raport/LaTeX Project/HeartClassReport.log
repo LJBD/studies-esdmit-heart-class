@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.11.2)  7 DEC 2015 21:35
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.11.2)  7 DEC 2015 22:01
 entering extended mode
 **HeartClassReport.tex
 ("E:\GitHub\esdmit-heart-class\Raport\LaTeX Project\HeartClassReport.tex"
@@ -767,7 +767,7 @@ LaTeX Font Warning: Font shape `OMS/pplx/m/n' undefined
 (Font)              using `OMS/cmsy/m/n' instead
 (Font)              for symbol `textbullet' on input line 5.
 
-<Grafika/ZespolQRS.png, id=44, 587.19376pt x 455.7025pt>
+<Grafika/ZespolQRS.png, id=39, 587.19376pt x 455.7025pt>
 File: Grafika/ZespolQRS.png Graphic file (type png)
 
 <use Grafika/ZespolQRS.png>
@@ -782,19 +782,23 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 ) ("E:\GitHub\esdmit-heart-class\Raport\LaTeX Project\koncepcja_rozwiazania.tex
 " [1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
 
-] [2 <E:/GitHub/esdmit-heart-class/Raport/LaTeX Project/Grafika/ZespolQRS.png>]
+]
+Underfull \vbox (badness 7576) has occurred while \output is active []
 
-<Grafika/Svm_max_sep_hyperplane_with_margin.png, id=75, 803.0pt x 865.2325pt>
+ [2 <E:/GitHub/esdmit-heart-class/Raport/LaTeX Project/Grafika/ZespolQRS.png>]
+<Grafika/Svm_max_sep_hyperplane_with_margin.png, id=72, 803.0pt x 865.2325pt>
 File: Grafika/Svm_max_sep_hyperplane_with_margin.png Graphic file (type png)
 
 <use Grafika/Svm_max_sep_hyperplane_with_margin.png>
 Package pdftex.def Info: Grafika/Svm_max_sep_hyperplane_with_margin.png used on
- input line 25.
+ input line 27.
 (pdftex.def)             Requested size: 227.62204pt x 245.26039pt.
- [3 <E:/GitHub/esdmit-heart-class/Raport/LaTeX Project/Grafika/Svm_max_sep_hype
-rplane_with_margin.png>])
-("E:\GitHub\esdmit-heart-class\Raport\LaTeX Project\rezultaty_i_wnioski.tex")
-("E:\GitHub\esdmit-heart-class\Raport\LaTeX Project\podsumowanie.tex")
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+) ("E:\GitHub\esdmit-heart-class\Raport\LaTeX Project\rezultaty_i_wnioski.tex"
+[3]) ("E:\GitHub\esdmit-heart-class\Raport\LaTeX Project\podsumowanie.tex")
 ("E:\GitHub\esdmit-heart-class\Raport\LaTeX Project\literatura.tex"
 LaTeX Font Info:    Try loading font information for T1+cmtt on input line 12.
 
@@ -805,21 +809,34 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             `cmtt' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
+ [4 <E:/GitHub/esdmit-heart-class/Raport/LaTeX Project/Grafika/Svm_max_sep_hype
+rplane_with_margin.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 31--36
+[]\T1/pplx/m/n/10 (+20) U»ytkownik 'ashen-fad'.  \T1/pplx/m/it/10 (+20) Di-vi-n
+ing the 'K' in K-means Clu-ste-ring\T1/pplx/m/n/10 (+20) .
+ []
 
-Overfull \hbox (3.14757pt too wide) in paragraph at lines 36--39
+
+Underfull \hbox (badness 7963) in paragraph at lines 31--36
+\T1/cmtt/m/n/10 http://blog.bigml.com/2015/02/24/divining-the-k-in-k-means-clus
+tering/  \T1/pplx/m/n/10 (+20) Do-
+ []
+
+
+Overfull \hbox (3.14757pt too wide) in paragraph at lines 43--46
 []\T1/pplx/m/n/10 (-20) MIT-BIH Ar-r-hy-th-mia Da-ta-base,  \T1/cmtt/m/n/10 htt
 ps://www.physionet.org/physiobank/database/mitdb/
  []
 
 )
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 127.
- [4]
+ [5]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 127.
  ("E:\GitHub\esdmit-heart-class\Raport\LaTeX Project\HeartClassReport.aux")
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 127.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 127.
 Package rerunfilecheck Info: File `HeartClassReport.out' has not changed.
-(rerunfilecheck)             Checksum: 01C010C28828DDE0CF9CB2DEABD162C9;464.
+(rerunfilecheck)             Checksum: A4FD9BF1BE1A29B100B3827EC1DC8EF9;388.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -827,13 +844,13 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 127.
  ) 
 Here is how much of TeX's memory you used:
- 10153 strings out of 493921
- 153044 string characters out of 3147680
+ 10162 strings out of 493921
+ 153136 string characters out of 3147680
  364841 words of memory out of 3000000
  13037 multiletter control sequences out of 15000+200000
- 60328 words of font info for 225 fonts, out of 3000000 for 9000
+ 60768 words of font info for 232 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 36i,11n,43p,878b,392s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 36i,11n,43p,879b,503s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\Lukasz\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600
 \ectt1000.pk>{C:/Program Files/MiKTeX2_9/fonts/enc/dvips/fontname/8r.enc}<C:/Pr
 ogram Files/MiKTeX2_9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Fil
@@ -844,9 +861,9 @@ mathpazo/fplmri.pfb><C:/Program Files/MiKTeX2_9/fonts/type1/public/fpl/fplrc8a.
 pfb><C:/Program Files/MiKTeX2_9/fonts/type1/urw/palatino/uplb8a.pfb><C:/Program
  Files/MiKTeX2_9/fonts/type1/urw/palatino/uplr8a.pfb><C:/Program Files/MiKTeX2_
 9/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on HeartClassReport.pdf (4 pages, 217504 bytes).
+Output written on HeartClassReport.pdf (5 pages, 221103 bytes).
 PDF statistics:
- 165 PDF objects out of 1000 (max. 8388607)
- 23 named destinations out of 1000 (max. 500000)
- 46667 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 173 PDF objects out of 1000 (max. 8388607)
+ 24 named destinations out of 1000 (max. 500000)
+ 46659 words of extra memory for PDF output out of 51595 (max. 10000000)
 
