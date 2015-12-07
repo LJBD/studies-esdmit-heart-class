@@ -4,6 +4,18 @@
 
 \subsection{Poprzednie podrozdziały}
 
+\subsection{Klasteryzacja}
+
+\qquad Do grupowania danych w klastry (lub klasy) użyto algorytmu G-średnich (ang. "G-means"). Jest rozszerzeniem popularnego algorytmu k-średnich, który polega na dobraniu k klas w zbiorze danych tak, aby dla każdego punktu był on w klasie, do której środka ciężkości ma najbliżej \cite{KMeans}. Przyjęto, że dane, które należy pogrupować to $d$-wymiarowe wektory należące do zbioru $X$ o liczności $n$. $S$ to zbiór klas, a więc $S_{j} = \{x_{i} \in X | klasa(x_{i}) = j\}$. Zbiór środków ciężkości klas oznaczony został literą $C$ i zdefiniowany jako: $C = \{c_{j} = \frac{\sum_{x \in S_{j}} x}{|S_{j}|}\}$ dla $j = 1, 2, ..., k$.
+Cel algorytmu k-średnich to minimalizacja wyrażenia przedstawionego wzorem \ref{eq:kmeans} .
+\begin{equation}
+\label{eq:kmeans}
+\sum_{j=1}^{k}\sum_{x \in S_{j}} \|x - c_{j}\|
+\end{equation}
+
+Poważnym problemem tego algorytmu jest fakt, iż liczba klas musi być znana bądź przyjęta z góry, co oznacza jakąś wcześniejszą wiedzę na temat klasteryzowanego zbioru danych \cite{GMeans}. W przypadku, gdy takiej wiedzy się nie posiada, należy zastosować uogólnienie algorytmu k-średnich, które pozwoli dobrać optymalne k względem jakiegoś wskaźnika jakości.
+Algorytm, który został zastosowany w opisywanym module dobiera k tak, aby w każdej klasie rozkład punktów był możliwie bliski rozkładu normalnego. Stąd też wzięło się "G" w nazwie - od rozkładu Gaussa \cite{GMeans}.
+
 \subsection{Klasyfikacja}
 
 \qquad Aby sklasyfikować powstałe w poprzednim kroku klastry wykorzystano klasyfikator SVM (Support Vector Machine). W najprostszej postaci klasyfikator ten służy do wyznaczenia hiperpłaszczyzny rozdzielającej dwa liniowo separowalne zbiory. Hiperpłaszczyzna ta wyznaczana jest z maksymalnym marginesem, tzn. tak, aby suma jej odległości od najbliższych próbek z obu klas była jak największa (patrz rys. \ref{fig:SVM}).
