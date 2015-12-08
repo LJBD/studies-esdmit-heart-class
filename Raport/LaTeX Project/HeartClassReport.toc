@@ -1,9 +1,9 @@
 \select@language {polish}
 \select@language {polish}
 \contentsline {section}{\numberline {I}Wst\IeC {\k e}p}{1}{section.1}
-\contentsline {section}{\numberline {II}Koncepcja proponowanego rozwi\IeC {\k a}zania}{2}{section.2}
-\contentsline {subsection}{\numberline {I}Klasteryzacja}{2}{subsection.2.1}
-\contentsline {subsection}{\numberline {II}Klasyfikacja}{3}{subsection.2.2}
-\contentsline {section}{\numberline {III}Rezultaty i wnioski}{3}{section.3}
-\contentsline {section}{\numberline {IV}Podsumowanie}{4}{section.4}
-\contentsline {section}{\numberline {V}Bibliografia}{4}{section.5}
+\contentsline {section}{\numberline {II}Koncepcja proponowanego rozwi\IeC {\k a}zania}{3}{section.2}
+\contentsline {subsection}{\numberline {I}Klasteryzacja}{3}{subsection.2.1}
+\contentsline {subsection}{\numberline {II}Klasyfikacja}{4}{subsection.2.2}
+\contentsline {section}{\numberline {III}Rezultaty i wnioski}{5}{section.3}
+\contentsline {section}{\numberline {IV}Podsumowanie}{5}{section.4}
+\contentsline {section}{\numberline {V}Bibliografia}{5}{section.5}
