@@ -1,6 +1,6 @@
 \section{Koncepcja proponowanego rozwiązania}
 
-\qquad Algorytm klasyfikacji został podzielony na dwie części. W pierwszej następuje stworzenie obiektów przechowujących parametry niezbędnych wartości dla każdego z załamków QRS. Zakłada się jednocześnie, że wszystkie załamki zostały poprawnie wykryte przez poprzednie moduły. Dane wejściowe zostają znormalizowane i zkwantyzowane, następnie przeprowadzana jest procedura ekstrakcji cech. W drugiej części następuje klasyfikacja zespołów QRS. Polega on na  klasteryzacji każdego wykrytego zespołu QRS. Warto zaznaczyć, iż każdy współczynnik reprezentuje inną wielkość i z tego powodu wartość tolerancji jest dobierana dla każdego z nich indywidualnie. Do klasteryzacji wykorzystywany jest algorytm g-means clustering. Jego realizacją zajmują się klasy GMeans i SVMClassifier.
+\qquad Algorytm klasyfikacji załamków QRS został podzielony na trzy części. Najpierw dane wejściowe zostają znormalizowane i zkwantyzowane, następnie przeprowadzana jest procedura ekstrakcji cech. W drugiej części następuje klasyfikacja zespołów QRS. Polega on na  klasteryzacji danych, czyli grupowaniu ich w klasy, które mają najwięcej wspólnych cech. Warto zaznaczyć, iż każdy współczynnik reprezentuje inną wielkość i z tego powodu wartość tolerancji jest dobierana dla każdego z nich indywidualnie. Do klasteryzacji wykorzystywany jest algorytm g-means clustering. Jego realizacją zajmują się klasy GMeans i SVMClassifier.
 
 \subsection{Klasteryzacja}
 
