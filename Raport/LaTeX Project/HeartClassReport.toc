@@ -1,19 +1,10 @@
 \select@language {polish}
 \select@language {polish}
 \contentsline {section}{\numberline {I}Wst\IeC {\k e}p}{1}{section.1}
-<<<<<<< HEAD
-\contentsline {section}{\numberline {II}Koncepcja proponowanego rozwi\IeC {\k a}zania}{2}{section.2}
-\contentsline {subsection}{\numberline {I}Ekstrakcja cech}{3}{subsection.2.1}
-\contentsline {subsection}{\numberline {II}Klasteryzacja}{3}{subsection.2.2}
-\contentsline {subsection}{\numberline {III}Klasyfikacja}{5}{subsection.2.3}
-\contentsline {section}{\numberline {III}Rezultaty i wnioski}{5}{section.3}
-\contentsline {section}{\numberline {IV}Podsumowanie}{6}{section.4}
-\contentsline {section}{\numberline {V}Bibliografia}{6}{section.5}
-=======
 \contentsline {section}{\numberline {II}Koncepcja proponowanego rozwi\IeC {\k a}zania}{3}{section.2}
-\contentsline {subsection}{\numberline {I}Klasteryzacja}{3}{subsection.2.1}
-\contentsline {subsection}{\numberline {II}Klasyfikacja}{4}{subsection.2.2}
-\contentsline {section}{\numberline {III}Rezultaty i wnioski}{5}{section.3}
-\contentsline {section}{\numberline {IV}Podsumowanie}{5}{section.4}
-\contentsline {section}{\numberline {V}Bibliografia}{5}{section.5}
->>>>>>> 86ecfde18d903fbfc2c774c385d5647e1655c781
+\contentsline {subsection}{\numberline {I}Ekstrakcja cech}{3}{subsection.2.1}
+\contentsline {subsection}{\numberline {II}Klasteryzacja}{4}{subsection.2.2}
+\contentsline {subsection}{\numberline {III}Klasyfikacja}{6}{subsection.2.3}
+\contentsline {section}{\numberline {III}Rezultaty i wnioski}{7}{section.3}
+\contentsline {section}{\numberline {IV}Podsumowanie}{7}{section.4}
+\contentsline {section}{\numberline {V}Bibliografia}{7}{section.5}

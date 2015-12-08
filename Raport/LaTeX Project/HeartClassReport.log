@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.12.8)  9 DEC 2015 00:02
-=======
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.11.19)  8 DEC 2015 22:22
->>>>>>> 86ecfde18d903fbfc2c774c385d5647e1655c781
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.12.8)  9 DEC 2015 00:16
 entering extended mode
 **HeartClassReport.tex
 (HeartClassReport.tex
@@ -768,47 +764,26 @@ Package pdftex.def Info: Grafika/ZespolQRS.png used on input line 17.
 (pdftex.def)             Requested size: 344.005pt x 266.9708pt.
 LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <9> not available
 (Font)              Font shape `T1/pplx/b/n' tried instead on input line 18.
+ [1{C:/Users/user/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[1{C:/Users/user/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
-
-<<<<<<< HEAD
-])
-(koncepcja_rozwiazania.tex [2 <./Grafika/ZespolQRS.png>] [3]
-<Grafika/g-means-projection.png, id=94, 393.47pt x 316.382pt>
+] [2 <./Grafika/ZespolQRS.png>]) (koncepcja_rozwiazania.tex
+[3] [4] <Grafika/g-means-projection.png, id=110, 393.47pt x 316.382pt>
 File: Grafika/g-means-projection.png Graphic file (type png)
 
 <use Grafika/g-means-projection.png>
 Package pdftex.def Info: Grafika/g-means-projection.png used on input line 54.
 (pdftex.def)             Requested size: 301.00192pt x 242.02661pt.
- [4]
-<Grafika/Svm_max_sep_hyperplane_with_margin.png, id=117, 803.0pt x 865.2325pt>
-=======
-] [2 <./Grafika/ZespolQRS.png>]) (koncepcja_rozwiazania.tex [3]
-<Grafika/Svm_max_sep_hyperplane_with_margin.png, id=92, 803.0pt x 865.2325pt>
->>>>>>> 86ecfde18d903fbfc2c774c385d5647e1655c781
+ [5 <./Grafika/g-means-projection.png (PNG copy)>]
+<Grafika/Svm_max_sep_hyperplane_with_margin.png, id=128, 803.0pt x 865.2325pt>
 File: Grafika/Svm_max_sep_hyperplane_with_margin.png Graphic file (type png)
 
 <use Grafika/Svm_max_sep_hyperplane_with_margin.png>
 Package pdftex.def Info: Grafika/Svm_max_sep_hyperplane_with_margin.png used on
  input line 81.
 (pdftex.def)             Requested size: 227.62204pt x 245.26039pt.
-) (rezultaty_i_wnioski.tex
-Underfull \vbox (badness 6284) has occurred while \output is active []
-
-<<<<<<< HEAD
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-) (rezultaty_i_wnioski.tex [5 <./Grafika/g-means-projection.png (PNG copy)>])
-(podsumowanie.tex) (literatura.tex
-=======
- [4 <./Grafika/Svm_max_sep_hyperplane_with_margin.png>]) (podsumowanie.tex) (li
-teratura.tex
->>>>>>> 86ecfde18d903fbfc2c774c385d5647e1655c781
+) (rezultaty_i_wnioski.tex) (podsumowanie.tex) (literatura.tex
 LaTeX Font Info:    Try loading font information for T1+cmtt on input line 12.
+
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\t1cmtt.fd"
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
@@ -816,13 +791,8 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             `cmtt' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-<<<<<<< HEAD
  [6 <./Grafika/Svm_max_sep_hyperplane_with_margin.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 39--44
-=======
-
-Underfull \hbox (badness 10000) in paragraph at lines 33--38
->>>>>>> 86ecfde18d903fbfc2c774c385d5647e1655c781
 []\T1/pplx/m/n/10 (+20) U»ytkownik 'ashen-fad'.  \T1/pplx/m/it/10 (+20) Di-vi-n
 ing the 'K' in K-means Clu-ste-ring\T1/pplx/m/n/10 (+20) .
  []
@@ -839,13 +809,9 @@ Overfull \hbox (3.14757pt too wide) in paragraph at lines 51--54
 ps://www.physionet.org/physiobank/database/mitdb/
  []
 
-[5])
+)
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 127.
-<<<<<<< HEAD
  [7]
-=======
- [6]
->>>>>>> 86ecfde18d903fbfc2c774c385d5647e1655c781
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 127.
  (HeartClassReport.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 127.
@@ -859,23 +825,13 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 127.
  ) 
 Here is how much of TeX's memory you used:
-<<<<<<< HEAD
- 10325 strings out of 493673
- 155357 string characters out of 3141533
- 376857 words of memory out of 3000000
- 13215 multiletter control sequences out of 15000+200000
- 61614 words of font info for 244 fonts, out of 3000000 for 9000
+ 10343 strings out of 493673
+ 155578 string characters out of 3141533
+ 375000 words of memory out of 3000000
+ 13219 multiletter control sequences out of 15000+200000
+ 62179 words of font info for 252 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 36i,11n,43p,1015b,504s stack positions out of 5000i,500n,10000p,200000b,50000s
-=======
- 10308 strings out of 493673
- 155130 string characters out of 3141532
- 374771 words of memory out of 3000000
- 13211 multiletter control sequences out of 15000+200000
- 61660 words of font info for 244 fonts, out of 3000000 for 9000
- 1025 hyphenation exceptions out of 8191
- 36i,10n,43p,785b,503s stack positions out of 5000i,500n,10000p,200000b,50000s
->>>>>>> 86ecfde18d903fbfc2c774c385d5647e1655c781
+ 36i,11n,43p,1015b,508s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\user\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\e
 ctt1000.pk>{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<
 C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:
@@ -887,17 +843,9 @@ x86)/MiKTeX 2.9/fonts/type1/public/fpl/fplrc8a.pfb><C:/Program Files (x86)/MiKT
 eX 2.9/fonts/type1/urw/palatino/uplb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/f
 onts/type1/urw/palatino/uplr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/typ
 e1/urw/palatino/uplri8a.pfb>
-<<<<<<< HEAD
-Output written on HeartClassReport.pdf (7 pages, 279566 bytes).
+Output written on HeartClassReport.pdf (7 pages, 284539 bytes).
 PDF statistics:
- 222 PDF objects out of 1000 (max. 8388607)
- 45 named destinations out of 1000 (max. 500000)
+ 232 PDF objects out of 1000 (max. 8388607)
+ 49 named destinations out of 1000 (max. 500000)
  46672 words of extra memory for PDF output out of 51595 (max. 10000000)
-=======
-Output written on HeartClassReport.pdf (6 pages, 227923 bytes).
-PDF statistics:
- 192 PDF objects out of 1000 (max. 8388607)
- 33 named destinations out of 1000 (max. 500000)
- 46659 words of extra memory for PDF output out of 51595 (max. 10000000)
->>>>>>> 86ecfde18d903fbfc2c774c385d5647e1655c781
 
