@@ -19,6 +19,9 @@ Przykładowy (wyidealizowany) zespół QRS widoczny jest na rys. \ref{fig:QRSCom
 	\label{fig:QRSComplex}
 \end{figure}
 
+
+\qquad Klasyfikacja zespołu QRS ma na celu wyodrębnienie grup zespolów podobnych (w zadanym zakresie tolerancji). Odmienny kształt zespołu jest konsekwencją odmiennie przebiegającego pobudzenia. Klasyfikacja polega na stwierdzeniu przynależności klasyfikowanego zespołu do jednej z istniejących klas albo tworzeni nowych klas, jeżeli przynależności nie stwierdzono \cite{Augustyniak}.
+
 \qquad Celem opisywanego modułu jest wyliczenie liczby klas zespołów QRS, określenie reprezentantów każdej z nich oraz oznaczenie klas zespołów QRS na wykresie ECG. Wyodrębnienie klas QRS występujących w sygnale ECG pozwala na określenie prawidłowości rytmu pracy serca. Z reguły nieregularności mają charakter przejściowy, dlatego ich poprawne wyznaczenie wymaga przeprowadzenia 24-godzinnego badania pracy serca, czyli testu Holtera \cite{RaportKoncowy}.
 
 \qquad W literaturze można spotkać się z różnymi podejściami do klasyfikacji zespołów QRS. W \cite{SVMBasedArrhythmiaClassification} autorzy zaproponowali algorytm polegający na wykorzystaniu liniowej analizy dyskryminacyjnej (LDA) w celu zredukowania wymiaru przestrzeni cech. Do klasyfikacji zastosowano maszynę wektorów nośnych (SVM). Ponadto w pracy tej podjęto próbę klasyfiacji przy pomocy MLP (ang. Multilayer Perceptrons) oraz klasyfikatora FIS (ang. Fuzzy Inference System). Najlepsze rezultaty autorzy otrzymali wykorzystując SVM. Podobne podejście zastosowano w \cite{Abhishek}, gdzie dodatkowo w celu ograniczenia zakłóceń oraz ekstrakcji cech wykorzystano transformację falkową. 
