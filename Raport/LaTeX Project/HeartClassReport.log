@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.11.2)  7 DEC 2015 22:01
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.11.2)  8 DEC 2015 19:22
 entering extended mode
 **HeartClassReport.tex
 ("E:\GitHub\esdmit-heart-class\Raport\LaTeX Project\HeartClassReport.tex"
@@ -779,14 +779,12 @@ LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <9> not available
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-) ("E:\GitHub\esdmit-heart-class\Raport\LaTeX Project\koncepcja_rozwiazania.tex
-" [1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
+[1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
 
-]
-Underfull \vbox (badness 7576) has occurred while \output is active []
-
- [2 <E:/GitHub/esdmit-heart-class/Raport/LaTeX Project/Grafika/ZespolQRS.png>]
-<Grafika/Svm_max_sep_hyperplane_with_margin.png, id=72, 803.0pt x 865.2325pt>
+])
+("E:\GitHub\esdmit-heart-class\Raport\LaTeX Project\koncepcja_rozwiazania.tex"
+[2 <E:/GitHub/esdmit-heart-class/Raport/LaTeX Project/Grafika/ZespolQRS.png>]
+<Grafika/Svm_max_sep_hyperplane_with_margin.png, id=74, 803.0pt x 865.2325pt>
 File: Grafika/Svm_max_sep_hyperplane_with_margin.png Graphic file (type png)
 
 <use Grafika/Svm_max_sep_hyperplane_with_margin.png>
@@ -844,8 +842,8 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 127.
  ) 
 Here is how much of TeX's memory you used:
- 10162 strings out of 493921
- 153136 string characters out of 3147680
+ 10165 strings out of 493921
+ 153154 string characters out of 3147680
  364841 words of memory out of 3000000
  13037 multiletter control sequences out of 15000+200000
  60768 words of font info for 232 fonts, out of 3000000 for 9000
@@ -861,9 +859,9 @@ mathpazo/fplmri.pfb><C:/Program Files/MiKTeX2_9/fonts/type1/public/fpl/fplrc8a.
 pfb><C:/Program Files/MiKTeX2_9/fonts/type1/urw/palatino/uplb8a.pfb><C:/Program
  Files/MiKTeX2_9/fonts/type1/urw/palatino/uplr8a.pfb><C:/Program Files/MiKTeX2_
 9/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on HeartClassReport.pdf (5 pages, 221103 bytes).
+Output written on HeartClassReport.pdf (5 pages, 221633 bytes).
 PDF statistics:
- 173 PDF objects out of 1000 (max. 8388607)
- 24 named destinations out of 1000 (max. 500000)
+ 177 PDF objects out of 1000 (max. 8388607)
+ 27 named destinations out of 1000 (max. 500000)
  46659 words of extra memory for PDF output out of 51595 (max. 10000000)
 
