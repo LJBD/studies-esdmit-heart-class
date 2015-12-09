@@ -3,11 +3,11 @@
 \qquad Elektrokardiogram jest jednym z najefektywniejszych narzędzi diagnostycznych do wykrywania chorób serca. EKG dostarcza prawie wszystkich informacji o aktywności elektrycznej serca. Typowy sygnał EKG składa się z załamka P, zespołu QRS oraz załamków T i U. Spośród wszystkich tych elementów sygału elektrokardiograficznego najbardziej charakterystycznym i zarazem najbardziej znaczącym jest zespół QRS. Na podstawie jego kształtu można zdiagnozować różne dysfunkcje serca, dlatego jego automatyczna klasyfikacja jest ważnym zagadnieniem.
 
 Zespół QRS opisuje pobudzenie mięśni serca i składa się z jednego lub kilku załamków określanych jako Q, R i S.
-\begin{itemize}
-	\item Załamek R – każdy załamek dodatni w obrębie zespołu QRS
-	\item Załamek Q – pierwszy ujemny załamek widoczny przed załamkiem R
-	\item Załamek S – pierwszy ujemny załamek widoczny po załamku R
-\end{itemize}
+\begin{enumerate}
+	\item Załamek R – każdy załamek dodatni w obrębie zespołu QRS.
+	\item Załamek Q – pierwszy ujemny załamek widoczny przed załamkiem R.
+	\item Załamek S – pierwszy ujemny załamek widoczny po załamku R.
+\end{enumerate}
 
 Przykładowy (wyidealizowany) zespół QRS widoczny jest na rys. \ref{fig:QRSComplex}, przedstawiającym schematyczny fragment zapisu elektrokardiograficznego.
 
@@ -22,7 +22,7 @@ Przykładowy (wyidealizowany) zespół QRS widoczny jest na rys. \ref{fig:QRSCom
 
 Klasyfikacja zespołu QRS ma na celu wyodrębnienie grup zespołów podobnych (w zadanym zakresie tolerancji). Odmienny kształt zespołu jest konsekwencją odmiennie przebiegającego pobudzenia. Klasyfikacja polega na stwierdzeniu przynależności klasyfikowanego zespołu do jednej z istniejących klas albo tworzenie nowych klas, jeżeli przynależności nie stwierdzono \cite{Augustyniak}.
 
-Celem opisywanego modułu jest wyliczenie liczby klas zespołów QRS, określenie reprezentantów każdej z nich oraz oznaczenie klas zespołów QRS na wykresie EKG. Wyodrębnienie klas QRS występujących w sygnale EKG pozwala na określenie prawidłowości rytmu pracy serca. Z reguły nieregularności mają charakter przejściowy, dlatego ich poprawne wyznaczenie wymaga przeprowadzenia 24-godzinnego badania pracy serca, czyli testu Holtera \cite{RaportKoncowy}.
+Celem opisywanego modułu jest wyliczenie liczby klas zespołów QRS, określenie reprezentantów każdej z nich oraz oznaczenie klas zespołów QRS na wykresie EKG. Wyodrębnienie klas QRS występujących w sygnale EKG pozwala na określenie prawidłowości rytmu pracy serca. Z~reguły nieregularności mają charakter przejściowy, dlatego ich poprawne wyznaczenie wymaga przeprowadzenia 24-godzinnego badania pracy serca, czyli testu Holtera \cite{RaportKoncowy}.
 
 Rozwiązanie przyjęte w niniejszej pracy opiera się o ekstrakcję cech z sygnału EKG, klasteryzacji otrzymanych danych przy pomocy algorytmu G-średnich oraz klasyfikacji z wykorzystaniem maszyny wektorów nośnych. Dobór tych metod jest zgodny z wyborem poprzedniego zespołu projektowego, jako że celem niniejszej pracy jest porównanie działania jednego algorytmu realizowanego w różnych językach programowania.
 Założono, że dane wejściowe dostarczone przez poprzednie moduły są poprawne.

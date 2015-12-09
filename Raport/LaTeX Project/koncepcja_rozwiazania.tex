@@ -6,18 +6,18 @@ Dobór tych metod - w tym również wybór klasyfikacji na podstawie wektorów c
 
 \subsection{Ekstrakcja cech}
 \qquad Zadaniem tej części zastosowanego algorytmu jest wyliczenie pewnych istotnych wskaźników charakteryzujących zespół QRS na podstawie znormalizowanych danych wejściowych. Bazując na implementacji poprzedniego zespołu projektowego, stosowane są współczynniki wymienione poniżej \cite{RaportKoncowy}.
-\begin{itemize}
-	\item początek i koniec całego zespołu QRS
-	\item wartość szczytowa załamka R
-	\item interwał między poprzednim a rozważanym załamkiem R
-	\item interwał między rozważanym a kolejnym załamkiem R
-	\item wartość szczytowa oraz koniec załamka T
-	\item początek, wartość szczytowa i koniec załamka P
-\end{itemize}
+\begin{enumerate}
+	\item Początek i koniec całego zespołu QRS,
+	\item Wartość szczytowa załamka R,
+	\item Interwał między poprzednim a rozważanym załamkiem R,
+	\item Interwał między rozważanym a kolejnym załamkiem R,
+	\item Wartość szczytowa oraz koniec załamka T,
+	\item Początek, wartość szczytowa i koniec załamka P.
+\end{enumerate}
 Wszystkie te współczynniki powinny być zapisywane po synchronizacji wszystkich wykrytych zespołów, na przykład względem pozycji załamka R \cite{Augustyniak}.
 
 \subsection{Klasteryzacja}
-\quad Jak już zostało wspomniane, do grupowania danych w klastry (klasy) użyto algorytmu G-średnich. Jest rozszerzeniem popularnej metody k-średnich, która polega na dobraniu $k$ klas w zbiorze danych tak, aby każdy punkt należał do klasy, do której środka ciężkości ma najbliżej \cite{KMeans}.
+\quad Jak już zostało wspomniane, do grupowania danych w klastry (klasy) użyto algorytmu G-średnich. Jest rozszerzeniem popularnej metody k-średnich, która polega na dobraniu $k$ klas w~zbiorze danych tak, aby każdy punkt należał do klasy, do której środka ciężkości ma najbliżej \cite{KMeans}.
 
 Przyjęto, że dane, które należy pogrupować to $d$-wymiarowe wektory należące do zbioru $X$ o liczności $n$. $S$ to zbiór klas, a więc $S_{j} = \{x_{i} \in X | klasa(x_{i}) = j\}$ dla $i = 1, 2, ..., n$. Zbiór środków ciężkości klas oznaczony został literą $C$ i zdefiniowany jako: $C = \{c_{j} = \frac{\sum_{x \in S_{j}} x}{|S_{j}|}\}$ dla $j = 1, 2, ..., k$.
 Cel algorytmu k-średnich to minimalizacja wyrażenia przedstawionego wzorem \ref{eq:kmeans} .
@@ -43,9 +43,9 @@ Gdy wartość średnia i odchylenie standardowe w testowanym zbiorze danych są 
 	A^{2*} = A^{2}(1 + \frac{4}{n} + \frac{25}{n^{2}})
 \end{equation}
 
-Parametrem wejściowym dla tego testu jest poziom ufności $\alpha$. Jest on zwykle wyrażony w procentach, bądź w ułamku dziesiętnym. Zależy od niego tzw. wartość krytyczna, czyli próg wartości statystyki, ponad którym odrzucana jest hipoteza o rozkładzie normalnym danych. Wzorem autorów algorytmu G-średnich, użyto $\alpha=0.0001$ \cite{GMeans}.
+Parametrem wejściowym dla tego testu jest poziom ufności $\alpha$. Jest on zwykle wyrażony w~procentach, bądź w ułamku dziesiętnym. Zależy od niego tzw. wartość krytyczna, czyli próg wartości statystyki, ponad którym odrzucana jest hipoteza o rozkładzie normalnym danych. Wzorem autorów algorytmu G-średnich, użyto $\alpha=0.0001$ \cite{GMeans}.
 
-Test Andersona - Darlinga można stosować tylko do jednowymiarowych danych, a więc należy sprowadzić wyjściowy zbiór (o wymiarze $d$) do przestrzeni liczb rzeczywistych. W tym celu algorytm G-średnich dla każdej klasy używa metody k-średnich z $k=2$ oraz dwoma środkami $c^{1,2}_j = c_j \pm m$, gdzie $m$ jest wektorem o normie niewielkiej w porównaniu z odległościami między punktami w klasie. Niech otrzymane w wyniku tej operacji środki to $c^1$ oraz $c^2$, a wektor $u$ opisuje odległość między nimi: $u = c^1 - c^2$. Cała klasa $S_j$ jest rzutowana prostopadle na wektor $u$, w wyniku czego otrzymuje się jednowymiarową przestrzeń $S_j '$, dla której po normalizacji stosuje się test Andersona - Darlinga. W przypadku gdy wartość statystki jest mniejsza niż wartość krytyczna dla danej ufności, nowe środki są odrzucane. W przeciwnym razie zachowuje się je, dzieląc klasę $S_j$ na dwie.
+Test Andersona - Darlinga można stosować tylko do jednowymiarowych danych, a więc należy sprowadzić wyjściowy zbiór (o wymiarze $d$) do przestrzeni liczb rzeczywistych. W tym celu algorytm G-średnich dla każdej klasy używa metody k-średnich z $k=2$ oraz dwoma środkami $c^{1,2}_j = c_j \pm m$, gdzie $m$ jest wektorem o normie niewielkiej w porównaniu z odległościami między punktami w klasie. Niech otrzymane w wyniku tej operacji środki to $c^1$ oraz $c^2$, a wektor $u$ opisuje odległość między nimi: $u = c^1 - c^2$. Cała klasa $S_j$ jest rzutowana prostopadle na wektor $u$, w~wyniku czego otrzymuje się jednowymiarową przestrzeń $S_j '$, dla której po normalizacji stosuje się test Andersona - Darlinga. W przypadku gdy wartość statystki jest mniejsza niż wartość krytyczna dla danej ufności, nowe środki są odrzucane. W przeciwnym razie zachowuje się je, dzieląc klasę $S_j$ na dwie.
 
 Rysunek \ref{fig:g-means-projection} przedstawia przykład takiego rzutowania. Widać na nim dwa nowe środki znalezione przez metodę k-średnich dla danej klasy oraz rzutowanie prostopadłe punktów tej klasy na prostą wyznaczaną przez wektor między tymi dwoma środkami. Jak można się spodziewać, rozkład takiego zbioru danych jest bimodalny, a nie normalny, tak więc te dwa widoczne na rysunku środki zostaną przyjęte.
 
@@ -96,10 +96,8 @@ z ograniczeniem:
 
 \begin{equation}
 \label{eq:SVMOptProbCond}
-% Uwaga! Achtung! Pozor!
-% Powinno być >= (w obu przypadkach) ale ani \geq ani \eg nie działają
 \begin{array}{l}
-y_i\left(w^T\phi\left(x_i\right)+b\right) > 1-\xi_i,\\
+y_i\left(w^T\phi\left(x_i\right)+b\right) \geqslant 1-\xi_i,\\
 \xi_i > 0
 \end{array}
 \end{equation}
@@ -109,13 +107,13 @@ W wielu przypadkach nie można zagwarantować liniowej separowalności zbiorów.
 
 W zdefiniowanym wzorami (\ref{eq:SVMOptProb}) oraz (\ref{eq:SVMOptProbCond}) problemie optymalizacji wektor uczacy $x_i$ przekształcany jest do przestrzeni o większym wymiarze dzięki funkcji $\phi$. Parametr $C>0$ jest karą za niespełnienie warunków zadania. Ponadto, funkcja $K(x_i,x_j)=\phi(x_i)^T\phi(x_j)$ jest nazywana funkcją jądra (ang. kernel function). Poniżej wypisano cztery przykładowe funkcje jądra, jakie można spotkać w literaturze poświęconej SVM.
 
-\begin{itemize}
-	\item liniowa: $K\left(x_i,y_j\right)=x_i^Tx_j$
-	\item wielomianowa: $K\left(x_i,y_j\right)=\left(\gamma x_i^Tx^j+r\right)^d, \gamma > 0$
-	\item radialna funkcja bazwa (RBF): $K\left(x_i,y_j\right)=\exp{\left(-\gamma \|x_i-x_j\|^2\right)}, \gamma > 0$
-	\item sigmoida: $K\left(x_i,y_j\right)=\tanh{\left(\gamma x_i^Tx_j+r\right)}$
-\end{itemize}
+\begin{enumerate}
+	\item Liniowa: $K\left(x_i,y_j\right)=x_i^Tx_j$
+	\item Wielomianowa: $K\left(x_i,y_j\right)=\left(\gamma x_i^Tx^j+r\right)^d, \gamma > 0$
+	\item Radialna funkcja bazwa (RBF): $K\left(x_i,y_j\right)=\exp{\left(-\gamma \|x_i-x_j\|^2\right)}, \gamma > 0$
+	\item Sigmoida: $K\left(x_i,y_j\right)=\tanh{\left(\gamma x_i^Tx_j+r\right)}$
+\end{enumerate}
 
-W opisywanym module wykorzystana została funkcja RBF (ang. Radial Basis Function).\\
+W opisywanym module wykorzystana została funkcja RBF (ang. Radial Basis Function).
 
 Aby klasyfikator mógł działać wcześniej należy go wytrenować. Polega to na podaniu mu ciągu wektorów uczących. Opisywany klasyfikator został wytrenowany za pomocą bazy danych MIT-BIH Arrhythmia Database \cite{MITDB}. Gotowy model klasyfikatora wczytywany jest z pliku, w którym zapisane są różne parametry oraz zestaw wektorów nośnych, na których opiera się działanie metody SVM.
