@@ -3,7 +3,7 @@
 \contentsline {section}{\numberline {I}Wst\IeC {\k e}p}{1}{section.1}
 \contentsline {section}{\numberline {II}Koncepcja proponowanego rozwi\IeC {\k a}zania}{3}{section.2}
 \contentsline {subsection}{\numberline {I}Ekstrakcja cech}{3}{subsection.2.1}
-\contentsline {subsection}{\numberline {II}Klasteryzacja}{4}{subsection.2.2}
+\contentsline {subsection}{\numberline {II}Klasteryzacja}{3}{subsection.2.2}
 \contentsline {subsection}{\numberline {III}Klasyfikacja}{6}{subsection.2.3}
 \contentsline {section}{\numberline {III}Rezultaty i wnioski}{7}{section.3}
 \contentsline {section}{\numberline {IV}Podsumowanie}{7}{section.4}
