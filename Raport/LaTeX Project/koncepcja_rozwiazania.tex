@@ -1,6 +1,6 @@
 \section{Koncepcja proponowanego rozwiązania}
 
-\qquad Algorytm klasyfikacji załamków QRS został podzielony na trzy części. Najpierw dane wejściowe zostają znormalizowane i zkwantyzowane, następnie przeprowadzana jest procedura ekstrakcji cech. W drugiej części następuje klasteryzacja wektorów cech zespołów QRS. Polega on na grupowaniu tych danych w klasy, które mają najwięcej wspólnego - leżą najbliżej siebie w przestrzeni o wymiarze równym liczbie porównywanych cech (stosowana jest tutaj metryka Euklidesowa). Warto zaznaczyć, iż każdy współczynnik reprezentuje inną wielkość i z tego powodu wartość tolerancji jest dobierana dla każdego z nich indywidualnie. Do klasteryzacji wykorzystywany jest algorytm G-średnich (ang. "G-means"). W ostatnim kroku następuje klasyfikacja, czyli przyporządkowanie każdego zespołu QRS do jednej z klas. W tym celu wykorzystywana jest metoda wektorów nośnych (ang. "Support Vector Machine", w skrócie SVM).
+\quad Algorytm klasyfikacji załamków QRS został podzielony na trzy części. Najpierw dane wejściowe zostają znormalizowane i skwantyzowane, następnie przeprowadzana jest procedura ekstrakcji cech. W drugiej części następuje klasteryzacja wektorów cech zespołów QRS. Polega to na grupowaniu tych danych w klasy, które mają najwięcej wspólnego - leżą najbliżej siebie w przestrzeni o wymiarze równym liczbie porównywanych cech (stosowana jest tutaj metryka Euklidesowa). Warto zaznaczyć, iż każdy współczynnik reprezentuje inną wielkość i z tego powodu wartość tolerancji jest dobierana dla każdego z nich indywidualnie. Do klasteryzacji wykorzystywany jest algorytm G-średnich (ang. "G-means"). W ostatnim kroku następuje klasyfikacja, czyli przyporządkowanie każdego zespołu QRS do jednej z klas. W tym celu wykorzystywana jest metoda wektorów nośnych (ang. "Support Vector Machine", w skrócie SVM).
 
 Dobór tych metod - w tym również wybór klasyfikacji na podstawie wektorów cech, a nie sygnałów - został dokonany przez poprzedni zespół projektowy, a zadaniem autorów niniejszego raportu było przeprowadzenie porównania funkcjonowania tych metod w trzech innych językach programowania niż oryginalny język implementacji.
 
@@ -17,7 +17,7 @@ Dobór tych metod - w tym również wybór klasyfikacji na podstawie wektorów c
 Wszystkie te współczynniki powinny być zapisywane po synchronizacji wszystkich wykrytych zespołów, na przykład względem pozycji załamka R \cite{Augustyniak}.
 
 \subsection{Klasteryzacja}
-\qquad Jak już zostało wspomniane, do grupowania danych w klastry (klasy) użyto algorytmu G-średnich. Jest rozszerzeniem popularnej metody k-średnich, która polega na dobraniu $k$ klas w zbiorze danych tak, aby każdy punkt należał do klasy, do której środka ciężkości ma najbliżej \cite{KMeans}.
+\quad Jak już zostało wspomniane, do grupowania danych w klastry (klasy) użyto algorytmu G-średnich. Jest rozszerzeniem popularnej metody k-średnich, która polega na dobraniu $k$ klas w zbiorze danych tak, aby każdy punkt należał do klasy, do której środka ciężkości ma najbliżej \cite{KMeans}.
 
 Przyjęto, że dane, które należy pogrupować to $d$-wymiarowe wektory należące do zbioru $X$ o liczności $n$. $S$ to zbiór klas, a więc $S_{j} = \{x_{i} \in X | klasa(x_{i}) = j\}$ dla $i = 1, 2, ..., n$. Zbiór środków ciężkości klas oznaczony został literą $C$ i zdefiniowany jako: $C = \{c_{j} = \frac{\sum_{x \in S_{j}} x}{|S_{j}|}\}$ dla $j = 1, 2, ..., k$.
 Cel algorytmu k-średnich to minimalizacja wyrażenia przedstawionego wzorem \ref{eq:kmeans} .
@@ -74,7 +74,9 @@ Cały zastosowany algorytm klasteryzacji może być przedstawiony w następując
 \end{enumerate}
 
 \subsection{Klasyfikacja}
-\qquad Aby sklasyfikować powstałe w poprzednim kroku klastry wykorzystano klasyfikator SVM (Support Vector Machine). W najprostszej postaci klasyfikator ten służy do wyznaczenia hiperpłaszczyzny rozdzielającej dwa liniowo separowalne zbiory. Hiperpłaszczyzna ta wyznaczana jest z maksymalnym marginesem, tzn. tak, aby suma jej odległości od najbliższych próbek z obu klas była jak największa (patrz rys. \ref{fig:SVM}).
+\quad Aby sklasyfikować powstałe w poprzednim kroku klastry wykorzystano klasyfikator SVM (Support Vector Machine). Problem klasyfikacji wymaga podziału zbioru danych wejściowych na zbiór uczący oraz zbiór testowy. Każdy z elementów zbioru uczącego zawiera wartość oczekiwaną (np. etykieta klasy) oraz jakąś ilość atrybutów (np. wektor cech). Celem SVM jest stworzenie modelu (bazujcego na danych uczących), który przewiduje nieznaną wartość oczekiwaną (etykietę) dla podanego na wejściu elementu zbioru testowego. 
+
+W najprostszej postaci klasyfikator SVM służy do wyznaczenia hiperpłaszczyzny rozdzielającej dwa liniowo separowalne zbiory. Hiperpłaszczyzna ta wyznaczana jest z maksymalnym marginesem, tzn. tak, aby suma jej odległości od najbliższych próbek z obu klas była jak największa (patrz rys. \ref{fig:SVM}).
 
 \begin{figure}[h]
 	\centering
@@ -83,11 +85,37 @@ Cały zastosowany algorytm klasteryzacji może być przedstawiony w następując
 	\label{fig:SVM}
 \end{figure}
 
-\qquad W wielu przypadkach nie można zagwarantować liniowej separowalności zbiorów.  W takich sytuacjach stosuje się tzw. Kernel trick. Polega on na zwiększeniu wymiaru przestrzeni danych wejściowych, aby w nowej przestrzeni istniała własność liniowej separowalności zbiorów. W tym celu wykorzystuje się różne funkcje jądra (kernel functions). W opisywanym module wykorzystana została funkcja RBF (Radial Basis Function) określona wzorem:
+Mając dany zbiór uczący, będący zbirem par składających się z wektora cech oraz etykiety $(x_i, y_i)$, $i = 1,...,l$, gdzie $x_i \in \mathbb{R}^n$ i $y_i \in \{1,-1\}$, maszyna wektorów nośnych (SVM) wymaga rozwiązania następującego problemu optymalizacji \cite{csie}:
 
 \begin{equation}
-\label{eq:RBF}
-K(x,x') = \exp{\left(-\frac{{\|x-x'\|}^{2}}{2\sigma^2}\right)}
+\label{eq:SVMOptProb}
+\min\limits_{w,b,\xi} \frac{1}{2}w^Tw+C\sum_{i=1}^{l}\xi_i
 \end{equation}
 
-\qquad Aby klasyfikator mógł działać wcześniej należy go wytrenować. Polega to na podaniu mu ciągu wektorów uczących. Opisywany klasyfikator został wytrenowany za pomocą bazy danych MIT-BIH Arrhythmia Database \cite{MITDB}. Gotowy model klasyfikatora wczytywany jest z pliku, w którym zapisane są różne parametry oraz zestaw wektorów nośnych, na których opiera się działanie metody SVM.
+z ograniczeniem:
+
+\begin{equation}
+\label{eq:SVMOptProbCond}
+% Uwaga! Achtung! Pozor!
+% Powinno być >= (w obu przypadkach) ale ani \geq ani \eg nie działają
+\begin{array}{l}
+y_i\left(w^T\phi\left(x_i\right)+b\right) > 1-\xi_i,\\
+\xi_i > 0
+\end{array}
+\end{equation}
+
+
+W wielu przypadkach nie można zagwarantować liniowej separowalności zbiorów.  W takich sytuacjach stosuje się tzw. Kernel Trick. Polega to na zwiększeniu wymiaru przestrzeni danych wejściowych, aby w nowej przestrzeni istniała własność liniowej separowalności zbiorów.
+
+W zdefiniowanym wzorami (\ref{eq:SVMOptProb}) oraz (\ref{eq:SVMOptProbCond}) problemie optymalizacji wektor uczacy $x_i$ przekształcany jest do przestrzeni o większym wymiarze dzięki funkcji $\phi$. Parametr $C>0$ jest karą za niespełnienie warunków zadania. Ponadto, funkcja $K(x_i,x_j)=\phi(x_i)^T\phi(x_j)$ jest nazywana funkcją jądra (ang. kernel function). Poniżej wypisano cztery przykładowe funkcje jądra, jakie można spotkać w literaturze poświęconej SVM.
+
+\begin{itemize}
+	\item liniowa: $K\left(x_i,y_j\right)=x_i^Tx_j$
+	\item wielomianowa: $K\left(x_i,y_j\right)=\left(\gamma x_i^Tx^j+r\right)^d, \gamma > 0$
+	\item radialna funkcja bazwa (RBF): $K\left(x_i,y_j\right)=\exp{\left(-\gamma \|x_i-x_j\|^2\right)}, \gamma > 0$
+	\item sigmoida: $K\left(x_i,y_j\right)=\tanh{\left(\gamma x_i^Tx_j+r\right)}$
+\end{itemize}
+
+W opisywanym module wykorzystana została funkcja RBF (ang. Radial Basis Function).\\
+
+Aby klasyfikator mógł działać wcześniej należy go wytrenować. Polega to na podaniu mu ciągu wektorów uczących. Opisywany klasyfikator został wytrenowany za pomocą bazy danych MIT-BIH Arrhythmia Database \cite{MITDB}. Gotowy model klasyfikatora wczytywany jest z pliku, w którym zapisane są różne parametry oraz zestaw wektorów nośnych, na których opiera się działanie metody SVM.
