@@ -5,7 +5,7 @@ load('SVMModels_libsvm.mat');
 path('libsvm/', path); 
 % 119, 201 - super
 % 104 - zle
-[X,Y] = record2data(220);
+[X,Y] = record2data(201);
 
 %% Grouping
 [groups, C, ad] = gmeans(X, length(X)*0.0005);
