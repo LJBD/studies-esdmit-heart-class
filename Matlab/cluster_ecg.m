@@ -23,13 +23,13 @@ hist(c_idx);
 % hist(Y);
 
 %% Classifing groups
-[result, accu, ~] = svmpredict(C(:,1), C, model);
+[result, accu, ~] = svmpredict((1:length(groups))', C, model);
 for i = 1:size(C,1)
     c_idx(c_idx == i) = result(i);
 end
 
 figure(2);
-hist([[Y;1;2;3;4], [c_idx;1;2;3;4]],4);
+hist([[Y;1;2;3;4], [c_idx;1;2;3;4]], 4);
 
 
 model_size = model.nr_class;

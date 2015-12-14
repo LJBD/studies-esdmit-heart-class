@@ -1,6 +1,7 @@
 %{
 THIS IS TEMPORARY MAIN FILE
 %}
+path('libsvm-windows-dlls/', path); 
 fullPath = pwd;
 directory = fileparts(fullPath);
 QRSDataPath = fullfile(directory, '\ReferencyjneDane\101\ConvertedQRSRawData.txt');
@@ -32,7 +33,7 @@ subplot(2,1,2);  histogram(c_idx);
 % hist(Y);
 
 %% Classifing groups
-[result, accu, ~] = svmpredict(C(:,1), C, model);
+[result, accu, ~] = svmpredict((1:length(groups))', C, model);
 
 for i = 1:size(C,1)
     c_idx(c_idx == i) = result(i);
