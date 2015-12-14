@@ -2,7 +2,7 @@
 
 clear variables;
 load('SVMModels_libsvm.mat');
-path('libsvm/', path); 
+path('libsvm-windows-dlls/', path); 
 % 119, 201 - super
 % 104 - zle
 [X,Y] = record2data(201);
