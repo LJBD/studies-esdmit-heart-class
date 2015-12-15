@@ -53,7 +53,7 @@ end
 
 figure(2);
 hist([c_idx, Y], linspace(1,10,10));
-xlim([0,referenceModel.nr_class+3]);
+xlim([0,length(unique(Y))+2]);
 ax = gca;
 ax.XTick = linspace(1,10,10);
 legend('Wyniki przewidywania SVM','Wyniki referencyjne');
@@ -74,7 +74,7 @@ display(f1_scores);
 
 figure(3);
 hist([result, Y], linspace(1,10,10));
-xlim([0,referenceModel.nr_class+3]);
+xlim([0,length(unique(Y))+2]);
 ax = gca;
 ax.XTick = linspace(1,10,10);
 legend('Wyniki przewidywania SVM','Wyniki referencyjne');
