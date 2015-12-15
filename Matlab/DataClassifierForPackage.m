@@ -35,7 +35,9 @@ end
 
 % Show results
 figure(1);
-hist(c_idx); 
+hist(c_idx, linspace(1,10,10)); 
+axis([0.5,10.5,0,1000]);
+title('Liczba wektorów cech w poszczególnych klastrach');
 
 %% Classifing groups
 [result, accu, ~] = svmpredict(getClassesFromGroupsMembers(groups, C, X, Y), C, referenceModel);
@@ -50,8 +52,10 @@ for i = 1:size(C,1)
 end
 
 figure(2);
-%hist([[Y;1;2;3;4], [c_idx;1;2;3;4]],4);
-hist([Y,c_idx]);
+hist([c_idx, Y], linspace(1,10,10));
+axis([0,4,0,2000]);
+ax = gca;
+ax.XTick = linspace(1,10,10);
 
 model_size = referenceModel.nr_class;
 f1_scores = zeros(model_size,1);
@@ -66,7 +70,10 @@ display(f1_scores);
 %% Classifing each qrs
 [result, accu, ~] = svmpredict(Y, X, referenceModel);
 figure(3);
-hist([result, Y]);
+hist([result, Y], linspace(1,10,10));
+axis([0,4,0,2000]);
+ax = gca;
+ax.XTick = linspace(1,10,10);
 
 model_size = referenceModel.nr_class;
 f1_scores = zeros(model_size,1);
