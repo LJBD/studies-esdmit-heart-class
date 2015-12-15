@@ -35,8 +35,8 @@ end
 
 % Show results
 figure(1);
-hist(c_idx, linspace(1,10,10)); 
-axis([0.5,10.5,0,1000]);
+hist(c_idx, linspace(1,length(groups),length(groups))); 
+xlim([0.5 length(groups)+0.5]);
 title('Liczba wektorów cech w poszczególnych klastrach');
 
 %% Classifing groups
@@ -53,9 +53,11 @@ end
 
 figure(2);
 hist([c_idx, Y], linspace(1,10,10));
-axis([0,4,0,2000]);
+xlim([0,referenceModel.nr_class+1]);
 ax = gca;
 ax.XTick = linspace(1,10,10);
+legend('Wyniki przewidywania SVM','Wyniki referencyjne');
+title ('Klasyfikacja reprezentantów klas');
 
 model_size = referenceModel.nr_class;
 f1_scores = zeros(model_size,1);
@@ -69,11 +71,14 @@ display(f1_scores);
 
 %% Classifing each qrs
 [result, accu, ~] = svmpredict(Y, X, referenceModel);
+
 figure(3);
 hist([result, Y], linspace(1,10,10));
-axis([0,4,0,2000]);
+xlim([0,referenceModel.nr_class+1]);
 ax = gca;
 ax.XTick = linspace(1,10,10);
+legend('Wyniki przewidywania SVM','Wyniki referencyjne');
+title ('Klasyfikacja zespo³ów QRS');
 
 model_size = referenceModel.nr_class;
 f1_scores = zeros(model_size,1);
