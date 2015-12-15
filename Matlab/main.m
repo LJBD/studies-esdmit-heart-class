@@ -2,19 +2,25 @@
 THIS IS TEMPORARY MAIN FILE
 %}
 path('libsvm-windows-dlls/', path); 
-% fullPath = pwd;
-% directory = fileparts(fullPath);
-% QRSDataPath = fullfile(directory, '\ReferencyjneDane\101\ConvertedQRSRawData.txt');
-% formatSpec = '%f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f';
-% QRSSize = [18 inf];
-% QRSDataMatrix = GetQRSFromFile(QRSDataPath, formatSpec, QRSSize);
-% normalizedQRSComplexes = ConvertToNormalizedQRSComplexes(QRSDataMatrix);
-% 
+fullPath = pwd;
+directory = fileparts(fullPath);
+QRSDataPath = fullfile(directory, '\ReferencyjneDane\101\ConvertedQRSRawData.txt');
+QRSClassIdPath = fullfile(directory, '\ReferencyjneDane\101\Class_IDs.txt');
+formatSpec = '%f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f';
+QRSSize = [18 inf];
+QRSDataMatrix = GetQRSFromFile(QRSDataPath, formatSpec, QRSSize);
+QRSClassIdVector = GetQRSFromFile(QRSClassIdPath, '%f', [inf]);
+normalizedQRSComplexes = ConvertToNormalizedQRSComplexesWithId(QRSDataMatrix, QRSClassIdVector);
+
 % % create matrix of featrures X and vector of corresponding labels Y
 % [X,Y] = getFeaturesMatrixAndLabelsVector(normalizedQRSComplexes);
+Y = zeros(length(normalizedQRSComplexes));
 
-[X,Y] = record2data(201);
-
+X = zeros(length(normalizedQRSComplexes),16);
+for i = 1:length(normalizedQRSComplexes)
+Y(i) = normalizedQRSComplexes(i).class_id;
+X(i,:) = FromRecordToData(normalizedQRSComplexes(i));
+end
 % Load svm model - REMEMBER TO CREATE APPROPRIATE MODEL
 load('models/modelNorm20.mat');
 

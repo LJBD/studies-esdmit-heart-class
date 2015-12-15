@@ -1,4 +1,4 @@
-function [ QRSComplxes ] = ConvertToNormalizedQRSComplexes( raw_data )
+function [ QRSComplexs ] = ConvertToNormalizedQRSComplexesWithId( raw_data , classId)
 
 [rowsLength, columnsLength] = size(raw_data);
 normalizedData = zeros(rowsLength, columnsLength);
@@ -10,6 +10,6 @@ end
 normalizedData = normalizedData';
 
 for i = 1 : columnsLength % i know that this is low-efficiency solution
-    QRSComplxes(i) = QRSComplex(normalizedData(i,:)) ;
+    QRSComplexs(i) = QRSComplex([classId(i) normalizedData(i,:)]);
 end
 end
