@@ -1,4 +1,5 @@
 function [] = main(dataId)
+
 folder = num2str(dataId)
 path('libsvm-windows-dlls/', path); 
 
@@ -20,8 +21,9 @@ for i = 1:length(normalizedQRSComplexes)
 Y(i) = normalizedQRSComplexes(i).class_id;
 X(i,:) = FromRecordToData(normalizedQRSComplexes(i));
 end
+
 % Load svm model - REMEMBER TO CREATE APPROPRIATE MODEL
-load('models/modelNorm20.mat');
+load('models/models.mat');
 
 %% Grouping
 [groups, C, ad] = gmeans(X, length(X)*0.0005);
