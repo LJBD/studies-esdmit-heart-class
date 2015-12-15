@@ -1,5 +1,5 @@
 function [ model ] = TrainModel()
-dataId = [101 119 201];
+dataId = [111];
 directory = fileparts(pwd);
 QRSDataMatrix = [];
 QRSClassIdVector = [];
@@ -22,7 +22,23 @@ Y(i) = normalizedQRSComplexes(i).class_id;
 X(i,:) = FromRecordToData(normalizedQRSComplexes(i));
 end
 
-[model, Xtest, Ytest] = trainSVM(X,Y,85);
+% Tutaj mozna poprobowac z roznymi proporcjami wektorow cech
+% Pamietac zeby w trainSVM zmienic X i Y na newX i new Y
+% newX = [];
+% newY = [];
+% len = length(Y(Y==3));
+% 
+% for i=1:len*1.25
+%     if Y(i) == 1
+%         newX = [newX; X(i,:)];
+%         newY = [newY; Y(i)];
+%     end
+% end
+% a = 2;
+% newX = [newX; X(Y==3,:)];
+% newY = [newY; Y(Y==3)];
+%                                   A moze 100%?
+[model, Xtest, Ytest] = trainSVM(X, Y, 85);
 
 %% Test
 [result, accu, ~] = svmpredict(Ytest, Xtest, model);

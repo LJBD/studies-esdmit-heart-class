@@ -52,6 +52,7 @@ for i = 1:size(C,1)
 end
 
 figure(2);
+subplot(2,1,1);
 hist([c_idx, Y], linspace(1,10,10));
 xlim([0,length(unique(Y))+2]);
 ax = gca;
@@ -72,7 +73,8 @@ display(f1_scores);
 %% Classifing each qrs
 [result, accu, ~] = svmpredict(Y, X, referenceModel);
 
-figure(3);
+%figure(2);
+subplot(2,1,2);
 hist([result, Y], linspace(1,10,10));
 xlim([0,length(unique(Y))+2]);
 ax = gca;
