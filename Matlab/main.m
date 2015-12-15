@@ -1,11 +1,10 @@
-%{
-THIS IS TEMPORARY MAIN FILE
-%}
+function [] = main(dataId)
+folder = num2str(dataId)
 path('libsvm-windows-dlls/', path); 
-fullPath = pwd;
-directory = fileparts(fullPath);
-QRSDataPath = fullfile(directory, '\ReferencyjneDane\101\ConvertedQRSRawData.txt');
-QRSClassIdPath = fullfile(directory, '\ReferencyjneDane\101\Class_IDs.txt');
+
+directory = fileparts(pwd);
+QRSDataPath = fullfile(directory, 'ReferencyjneDane' , folder , 'ConvertedQRSRawData.txt')
+QRSClassIdPath = fullfile(directory, 'ReferencyjneDane' , folder , 'Class_IDs.txt')
 formatSpec = '%f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f';
 QRSSize = [18 inf];
 QRSDataMatrix = GetQRSFromFile(QRSDataPath, formatSpec, QRSSize);
@@ -14,7 +13,7 @@ normalizedQRSComplexes = ConvertToNormalizedQRSComplexesWithId(QRSDataMatrix, QR
 
 % % create matrix of featrures X and vector of corresponding labels Y
 % [X,Y] = getFeaturesMatrixAndLabelsVector(normalizedQRSComplexes);
-Y = zeros(length(normalizedQRSComplexes));
+Y = zeros(length(normalizedQRSComplexes),1);
 
 X = zeros(length(normalizedQRSComplexes),16);
 for i = 1:length(normalizedQRSComplexes)
@@ -77,3 +76,4 @@ for i = 1:model_size
     f1_scores(i) = 2 * precision*recall/(precision+recall);
 end
 display(f1_scores);
+end
