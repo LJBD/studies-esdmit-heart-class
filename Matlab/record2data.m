@@ -41,12 +41,12 @@ X(:,15) = [qrs.rr_pre_interval];
 X(:,16) = [qrs.rr_post_interval];
 
 % Normalize
-% for i = 1:feature_number
-%     vec = X(:,i);
-%     vec = vec - mean(vec);
-%     vec = vec/std(vec);
-%     X(:,i) = vec;
-% end
+for i = 1:feature_number
+    vec = X(:,i);
+    vec = vec - mean(vec);
+    vec = vec/std(vec);
+    X(:,i) = vec;
+end
 
 Y = zeros(number_of_elements,1);
 for i = 1:number_of_elements
