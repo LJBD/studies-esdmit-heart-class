@@ -1,4 +1,4 @@
-
+function [ model ] = TrainModel()
 dataId = 101;
 
 folder = num2str(dataId)
@@ -25,10 +25,6 @@ end
 
 [model, Xtest, Ytest] = trainSVM(X,Y,85);
 
-%% Save SVM
-save('model.mat', 'model');
-
-
 %% Test
 [result, accu, ~] = svmpredict(Ytest, Xtest, model);
 accu
@@ -45,3 +41,4 @@ display(f1_scores);
 
 figure(2)
 hist([Ytest, result],4);
+end
