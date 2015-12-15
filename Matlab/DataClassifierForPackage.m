@@ -53,7 +53,7 @@ figure(2);
 %hist([[Y;1;2;3;4], [c_idx;1;2;3;4]],4);
 hist([Y,c_idx]);
 
-model_size = model.nr_class;
+model_size = referenceModel.nr_class;
 f1_scores = zeros(model_size,1);
 % F1 scores for each group
 for i = 1:model_size
@@ -64,11 +64,11 @@ end
 display(f1_scores);
 
 %% Classifing each qrs
-[result, accu, ~] = svmpredict(Y, X, model);
+[result, accu, ~] = svmpredict(Y, X, referenceModel);
 figure(3);
 hist([result, Y]);
 
-model_size = model.nr_class;
+model_size = referenceModel.nr_class;
 f1_scores = zeros(model_size,1);
 % F1 scores for each group
 for i = 1:model_size
