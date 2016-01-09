@@ -65,7 +65,7 @@ function [ model ] = ReadModel( filename )
     model.sv_indices = [];
     model.ProbA = [];
     model.ProbB = [];
-    model. nSV = nSV;
+    model.nSV = nSV;
     model.sv_coef = sv_coef;
     model.SVs = SVs;
     

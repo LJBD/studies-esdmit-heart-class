@@ -66,12 +66,13 @@ class SVMClassifier(object):
 
         return node_list
 
+
     def predict(self, qrs_complexes):
-        it = qrs_complexes[0]
-        for i in range(0, it.__len__()):
+        #it = qrs_complexes[0]
+        for i in range(0, qrs_complexes.__len__()):
             # Convert data
-            x = self.createSvmVector(it[i])
+            x = self.createSvmVector(qrs_complexes[i])
             # Classify
             class_id = int(svm_predict(self.model, x))
             # Save results
-            it[i].class_id = class_id
+            qrs_complexes[i].class_id = class_id

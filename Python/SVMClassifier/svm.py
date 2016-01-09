@@ -80,7 +80,7 @@ def GetNextWord(fp):
     c = fp.read(1)
     while c == '\n' or c == ' ': c = fp.read(1)
     while True:
-        word += c
+        word += c.__str__()
         c = fp.read(1)
         if c == '\n' or c == ' ' or c == '':
             break
@@ -102,7 +102,7 @@ def read_model_header(fp, model):
                     model.param.svm_type = i
                     break
                 if svm_type_table[i] is None:
-                    print "ERROR: unknown svm type - ", cmd
+                    print("ERROR: unknown svm type - ", cmd)
                     return False
 
         elif cmd == "kernel_type":
@@ -112,7 +112,7 @@ def read_model_header(fp, model):
                     model.param.kernel_type = i
                     break
                 if kernel_type_table[i] is None:
-                    print "ERROR: unknown kernel function."
+                    print("ERROR: unknown kernel function.")
                     return False
 
         elif cmd == "degree":
@@ -137,7 +137,7 @@ def read_model_header(fp, model):
 
         elif cmd == "rho":
             n = model.nr_class * (model.nr_class - 1) / 2
-            for i in range(0, n):
+            for i in range(0, n.__int__()):
                 cmd = GetNextWord(fp)
                 model.rho.append(float(cmd))  # Nie ma double?
 
@@ -172,7 +172,7 @@ def read_model_header(fp, model):
             break
 
         else:
-            print "ERROR: Unknown text in model file:", cmd
+            print("ERROR: Unknown text in model file:", cmd)
             return False
 
     return True
@@ -180,19 +180,19 @@ def read_model_header(fp, model):
 
 def svm_load_model(model_file_name):
     try:
-        fp = open(model_file_name, "rb")
+        fp = open(model_file_name, "r")
 
         # read parameters
         model = svm_model()
 
         # read header
         if not read_model_header(fp, model):
-            print "ERROR: fscanf failed to read model"
+            print("ERROR: fscanf failed to read model")
             # TODO: return None
 
         # read sv_coef and SV
         elements = 0
-        pos = long(fp.tell())
+        pos = fp.tell()
 
         line = readline(fp)
         while line is not None:
@@ -235,8 +235,8 @@ def svm_load_model(model_file_name):
         return model
 
     except IOError:
-        print "Could not open", model_file_name
-        raw_input("Press Enter to continue...")
+        print("Could not open", model_file_name)
+        input("Press Enter to continue...")
         # TODO: return None
 
 
@@ -328,7 +328,7 @@ def svm_predict(model, x):
         return model.label[vote_max_idx]
 
     # Tu nie powinienem byl zajsc
-    print "ERROR: in svm_predict"
+    print("ERROR: in svm_predict")
     return None
 
 

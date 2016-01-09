@@ -83,10 +83,10 @@ def k_function(x, y, param):
     elif kernel_type == KernelTypes.PRECOMPUTED:
         # To nie ma prawa dzialac
         # return x[int(y[0].value)].value
-        print "ERROR: PRECOMPUTED kernel_type\nin k_function"
-        getKey()
+        print("ERROR: PRECOMPUTED kernel_type\nin k_function")
+        input("Press any key to continue...")
         return None
 
     else:
-        print "ERROR: Unreachable\nin k_function"
+        print("ERROR: Unreachable\nin k_function")
         return 0
