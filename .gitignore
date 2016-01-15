@@ -5,3 +5,4 @@
 .idea/
 *.asv
 *.ipynb
+*/*/__pycache__/
