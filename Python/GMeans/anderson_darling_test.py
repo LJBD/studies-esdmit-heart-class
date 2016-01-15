@@ -46,7 +46,7 @@ def AndersonDarlingTest(X, alpha=0.0001):
             if abs(alpha - a) < 1.0e-4:
                 crit = critical_value[i]
                 teststat = adstatistic(X)
-                print 'Anderson-Darling test stat: %s, crit: %s' % (teststat, crit)
+                print('Anderson-Darling test stat: %s, crit: %s' % (teststat, crit))
                 return teststat < crit
     except:
         raise Exception("Significance level not in range")
@@ -54,9 +54,9 @@ def AndersonDarlingTest(X, alpha=0.0001):
 
 
 if __name__ == "__main__":
-    print stats.norm.cdf(3.0)
+    print(stats.norm.cdf(3.0))
     n = 10
     data_x = [stats.norm.rvs() for i in range(n)]
     pyplot.plot(data_x, 'ro')
-    print 'ANDERSON-DARLING TEST VERDICT:', AndersonDarlingTest(data_x)
+    print('ANDERSON-DARLING TEST VERDICT:', AndersonDarlingTest(data_x))
     pyplot.show()

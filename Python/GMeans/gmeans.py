@@ -22,7 +22,7 @@ class GMeans(object):
         # Start the algorithm
         ########################################
         initial_centroid = calculate_mean(self.qrs_data)
-        print 'INITIAL CENTROID: ', initial_centroid
+        print('INITIAL CENTROID: ', initial_centroid)
         k = 1
         # minit='matrix' daje to, ze moge podac macierz poczatkowych centroidow jako k
         qrs_centroids, labels_for_data = kmeans2(self.qrs_data, k=numpy.array([initial_centroid]), minit='matrix', iter=100)
@@ -63,7 +63,7 @@ class GMeans(object):
         real_data = self.get_real_data_from_indices(data_for_centroid)
         new_centroids, labels_for_data = kmeans2(real_data, k=child_centroids, iter=100, minit='matrix')
         if len(new_centroids) == 2:
-            v = [new_centroids[0][i] - new_centroids[1][i] for i in xrange(len(new_centroids[0]))]
+            v = [new_centroids[0][i] - new_centroids[1][i] for i in range(len(new_centroids[0]))]
             projected_data = self.project_data_on_v(data_for_centroid, v)
             test_outcome = self.anderson_darling_test(projected_data)
             return test_outcome, new_centroids, labels_for_data
@@ -84,8 +84,8 @@ class GMeans(object):
         self.logger.debug("In get_child_centroids")
         real_data = self.get_real_data_from_indices(data_for_centroid)
         mean = calculate_mean(real_data)
-        child_centroid_1 = [centroid[i] - mean[i]/100.0 for i in xrange(len(centroid))]
-        child_centroid_2 = [centroid[i] + mean[i]/100.0 for i in xrange(len(centroid))]
+        child_centroid_1 = [centroid[i] - mean[i]/100.0 for i in range(len(centroid))]
+        child_centroid_2 = [centroid[i] + mean[i]/100.0 for i in range(len(centroid))]
         return numpy.array([child_centroid_1, child_centroid_2])
 
     def get_real_data_from_indices(self, dict_of_indices):
@@ -95,7 +95,7 @@ class GMeans(object):
     def qrs_conversion(self, qrs_complexes):
         # Ta metoda w tym momencie nie ma zadnego sensu
         # :TODO: This method might be used to prepare data for the kmeans implementation that we'll use.
-        self.logger.debug('In qrsToGslVectors')
+        self.logger.debug('In qrs_conversion')
         return qrs_complexes
 
     def get_data_for_centroid(self, centroid_index):
@@ -117,7 +117,7 @@ class GMeans(object):
 
 def calculate_mean(input_list):
     mean = []
-    for i in xrange(len(input_list[0])):
+    for i in range(len(input_list[0])):
         vector_for_one_coordinate = [vector[i] for vector in input_list]
         mean.append(sum(vector_for_one_coordinate)/float(len(vector_for_one_coordinate)))
     return mean
@@ -129,9 +129,9 @@ def main():
     #        [2, 5]]
     # data = numpy.random.multivariate_normal(mean=mean, cov=cov, size=(50, 1))
     # data generation
-    data = numpy.vstack((numpy.random.rand(150,2) + numpy.array([.5, .5]),
-                         numpy.random.rand(150,2) + numpy.array([1, 1]),
-                         numpy.random.rand(150,2)))
+    data = numpy.vstack((numpy.random.rand(150, 2) + numpy.array([.5, .5]),
+                         numpy.random.rand(150, 2) + numpy.array([1, 1]),
+                         numpy.random.rand(150, 2)))
     x = [i[0] for i in data]
     y = [i[1] for i in data]
 
