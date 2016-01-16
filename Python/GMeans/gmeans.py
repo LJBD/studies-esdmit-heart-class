@@ -12,6 +12,8 @@ class GMeans(object):
         ch = logging.StreamHandler()
         ch.setLevel(log_level)
         self.logger.addHandler(ch)
+        self.labels_dict = {}
+        self.qrs_data = None
         # self.dummy_data = QRSData()
 
     def cluster_data(self, qrs_complexes, max_k=50):
@@ -25,11 +27,11 @@ class GMeans(object):
         print('INITIAL CENTROID: ', initial_centroid)
         k = 1
         # minit='matrix' daje to, ze moge podac macierz poczatkowych centroidow jako k
-        qrs_centroids, labels_for_data = kmeans2(self.qrs_data, k=numpy.array([initial_centroid]), minit='matrix', iter=100)
+        qrs_centroids, labels_for_data = kmeans2(self.qrs_data, k=numpy.array([initial_centroid]),
+                                                 minit='matrix', iter=100)
         # :TODO: Check how kmeans2 beahaves and what input data it requires.
         self.logger.debug('First k-means resulted in centroids: %s' % qrs_centroids)
 
-        self.labels_dict = {}
         for i, centroid_number in enumerate(labels_for_data):
             self.labels_dict[i] = centroid_number
 
