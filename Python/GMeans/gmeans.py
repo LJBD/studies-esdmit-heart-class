@@ -21,7 +21,6 @@ class GMeans(object):
         self.logger.debug('In clusterData')
         self.qrs_data = self.qrs_conversion(qrs_complexes)
         initial_centroid = self.calculate_mean(self.qrs_data)
-        print('INITIAL CENTROID: ', initial_centroid)
         self.centroids = numpy.array([initial_centroid])
         self.k = len(self.centroids)
 
@@ -29,8 +28,6 @@ class GMeans(object):
             added_to_centroids_flag = False
             self.centroids, labels_for_data = kmeans2(self.qrs_data, k=numpy.array(self.centroids),
                                                       minit='matrix', iter=100)
-            self.k = len(self.centroids)
-            # :TODO: Check how kmeans2 beahaves and what input data it requires.
             self.logger.debug('k-means resulted in centroids: %s' % self.centroids)
             self.set_proper_labels(labels_for_data)
 
@@ -43,16 +40,14 @@ class GMeans(object):
                 else:
                     self.logger.debug('The test was negative: new centroids will be added.')
                     added_to_centroids_flag = True
-                    # :TODO: Add else, in which I will update the labels_for_centroid with the two new centros' indices!
                     self.update_after_centroid_addition(centroid_index, data_for_centroid, new_centroids,
                                                         new_labels_for_data)
-
+            self.k = len(self.centroids)
             if added_to_centroids_flag is False:
                 self.logger.info('GMEANS: I\'ve added nothing, so I\' stopping the algorithm. K = %d' % self.k)
                 break
             else:
                 pass
-        # :TODO: Finish this method!
 
         return self.centroids, self.labels_dict
 
@@ -141,11 +136,10 @@ class GMeans(object):
 
     @staticmethod
     def calculate_mean(input_list):
-        # :TODO: Refactor this method so that it works on numpy arrays.
         mean = []
         for i in range(len(input_list[0])):
             vector_for_one_coordinate = [vector[i] for vector in input_list]
-            mean.append(sum(vector_for_one_coordinate)/float(len(vector_for_one_coordinate)))
+            mean.append(sum(vector_for_one_coordinate)/len(vector_for_one_coordinate))
         return mean
 
 
@@ -155,9 +149,9 @@ def main():
     #        [2, 5]]
     # data = numpy.random.multivariate_normal(mean=mean, cov=cov, size=(50, 1))
     # data generation
-    data_a = numpy.random.rand(150, 2) + numpy.array([.5, .5])
-    data_b = numpy.random.rand(150, 2) + numpy.array([1, 1])
-    data_c = numpy.random.rand(150, 2)
+    data_a = numpy.random.rand(700, 2) + numpy.array([.5, .5])
+    data_b = numpy.random.rand(700, 2) + numpy.array([1, 1])
+    data_c = numpy.random.rand(700, 2)
     data = numpy.vstack((data_a, data_b, data_c))
 
     # fig = pyplot.figure()
@@ -168,9 +162,12 @@ def main():
     #     y = [item[1] for item in d]
     #     axis.plot(x, y, 'o')
     # pyplot.show()
-    g_means = GMeans(log_level='DEBUG')
-    centroids, labels = g_means.cluster_data(data, max_k=10, alpha=0.0001)
-    print('I GOT:')
+    g_means = GMeans(log_level='INFO')
+    t1 = datetime.datetime.now()
+    centroids, labels = g_means.cluster_data(data, max_k=30, alpha=0.01)
+    t2 = datetime.datetime.now()
+    print('EXECUTION TOOK:', (t2-t1).total_seconds())
+    print('I GOT: k = ', len(centroids))
     print('CENTROIDS', centroids)
     print('LABELS:', labels)
     colors = ['r', 'g', 'b', 'c', 'm', 'k', 'y']
@@ -183,7 +180,7 @@ def main():
         big_data_list.append([])
     for key in labels.keys():
         big_data_list[labels[key]].append(data[key])
-
+    axis.set_prop_cycle(cycler('color', colors))
     for list_for_one_centroid in big_data_list:
         x = [item[0] for item in list_for_one_centroid]
         y = [item[1] for item in list_for_one_centroid]
@@ -194,4 +191,5 @@ def main():
 
 if __name__ == '__main__':
     from matplotlib import pyplot, cycler
+    import datetime
     main()

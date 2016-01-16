@@ -46,7 +46,7 @@ def AndersonDarlingTest(X, alpha=0.0001):
             if abs(alpha - a) < 1.0e-4:
                 crit = critical_value[i]
                 teststat = adstatistic(X)
-                print('Anderson-Darling test stat: %s, crit: %s' % (teststat, crit))
+                # print('Anderson-Darling test stat: %s, crit: %s' % (teststat, crit))
                 return teststat < crit
     except:
         raise Exception("Significance level not in range")
