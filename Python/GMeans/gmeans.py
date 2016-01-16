@@ -160,14 +160,14 @@ def main():
     data_c = numpy.random.rand(150, 2)
     data = numpy.vstack((data_a, data_b, data_c))
 
-    fig = pyplot.figure()
-    axis = fig.add_subplot(111)
-    data_list = [data_a, data_b, data_c]
-    for i, d in enumerate(data_list):
-        x = [item[0] for item in d]
-        y = [item[1] for item in d]
-        axis.plot(x, y, 'o')
-    pyplot.show()
+    # fig = pyplot.figure()
+    # axis = fig.add_subplot(111)
+    # data_list = [data_a, data_b, data_c]
+    # for i, d in enumerate(data_list):
+    #     x = [item[0] for item in d]
+    #     y = [item[1] for item in d]
+    #     axis.plot(x, y, 'o')
+    # pyplot.show()
     g_means = GMeans(log_level='DEBUG')
     centroids, labels = g_means.cluster_data(data, max_k=10, alpha=0.0001)
     print('I GOT:')
@@ -182,12 +182,12 @@ def main():
         axis.plot(centroid[0], centroid[1], 'o')
         big_data_list.append([])
     for key in labels.keys():
-        big_data_list[labels[key]].append(data[i])
+        big_data_list[labels[key]].append(data[key])
 
     for list_for_one_centroid in big_data_list:
         x = [item[0] for item in list_for_one_centroid]
         y = [item[1] for item in list_for_one_centroid]
-        axis.plot(x, y)
+        axis.plot(x, y, 'x')
 
     pyplot.show()
 
