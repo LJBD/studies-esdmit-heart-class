@@ -1,4 +1,9 @@
-  #####################TEST###########################
+#Clear workspace
+workspace()
+include("SVMClassifier.jl")  
+include("QRSData.jl") 
+
+#####################TEST###########################
   #Tylko do testowania
   function createRandomQRSData()
       qrs_data = QRS_DATA()
@@ -38,13 +43,11 @@
 
 
 
-  #Clear workspace
-  workspace()
-  include("SVMClassifier.jl")
 
 
   #Read model
-  file_name = "path\\model_copy"
+  #file_name = "C:\\Users\\user\\Desktop\\JunoWorkspace\\model_copy"
+  file_name = string(pwd(),"\\model_copy")
   svm = SVMClassifier()
   svm.model = loadSvmModel(file_name)
 
