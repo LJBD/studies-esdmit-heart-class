@@ -1,30 +1,30 @@
-import SVMClassifier.SVMClassifier as svm
+from SVMClassifier.SVMClassifier import SVMClassifier
 from SVMClassifier.QRSData import QRSData
 import GMeans.gmeans as gm
 from sklearn.preprocessing import MinMaxScaler
 import os
-import sys
-reload(sys)
-sys.setdefaultencoding("utf-8")
+#import sys
+#reload(sys)
+#sys.setdefaultencoding("utf-8")
 
 
 class HeartBeatClassifier(object):
     def __init__(self):
-        self.svm_classifier = svm.SVMClassifier()
+        self.svm_classifier = SVMClassifier.SVMClassifier()
         self.g_means = gm.GMeans()
 
     def classify(self):
-        number_of_clusters = 2
-        normalizeddata = self.getQrsComplexDataFromFile('ConvertedQRSRawData.txt')
-        print normalizeddata[0]
-        print 'dupa'
-        gmeans = self.g_means.cluster_data(normalizeddata)
+        # number_of_clusters = 2
+        normalized_data = self.getQrsComplexDataFromFile('ConvertedQRSRawData.txt')
+        print(normalized_data[0])
+        print('dupa')
+        gmeans = self.g_means.cluster_data(normalized_data)
         self.svm_classifier.predict(gmeans)
         
     def getQrsComplexDataFromFile(self, path):
-        dir = os.path.dirname(os.path.dirname(__file__))
-        dir = os.path.join(dir, 'Sygnały z C++')
-        filename = os.path.join(dir, path)
+        dir_to_cpp_signals = os.path.dirname(os.path.dirname(__file__))
+        dir_to_cpp_signals = os.path.join(dir_to_cpp_signals, 'Sygnały z C++')
+        filename = os.path.join(dir_to_cpp_signals, path)
         with open(filename, "r") as ins:
             qrs_data_list = [QRSData([float(x) for x in line.split()]) for line in ins]
             
@@ -46,26 +46,26 @@ class HeartBeatClassifier(object):
         scaled_t_peak_values = min_max_scaler.fit_transform(t_peak_values)
         scaled_t_end_values = min_max_scaler.fit_transform(t_end_values)
         data = []
-        for i in xrange(len(qrs_data_list)):
-            tmp = QRSData([qrs_data_list[i].r_peak,\
-                        scaled_r_peak_values[i],\
-                        qrs_data_list[i].rr_pre_interval,\
-                        qrs_data_list[i].rr_post_interval,\
-                        qrs_data_list[i].p_onset,\
-                        scaled_p_onset_values[i],\
-                        qrs_data_list[i].p_peak,\
-                        scaled_p_peak_values[i],\
-                        qrs_data_list[i].p_end,\
-                        scaled_p_end_values[i],\
-                        qrs_data_list[i].qrs_onset,\
-                        scaled_qrs_onset_values[i],\
-                        qrs_data_list[i].qrs_end,\
-                        scaled_qrs_end_values[i],\
-                        qrs_data_list[i].t_peak,\
-                        scaled_t_peak_values[i],\
-                        qrs_data_list[i].t_end,\
-                        scaled_t_end_values[i]\
-                        ])
+        for i in range(len(qrs_data_list)):
+            tmp = QRSData([qrs_data_list[i].r_peak,
+                           scaled_r_peak_values[i],
+                           qrs_data_list[i].rr_pre_interval,
+                           qrs_data_list[i].rr_post_interval,
+                           qrs_data_list[i].p_onset,
+                           scaled_p_onset_values[i],
+                           qrs_data_list[i].p_peak,
+                           scaled_p_peak_values[i],
+                           qrs_data_list[i].p_end,
+                           scaled_p_end_values[i],
+                           qrs_data_list[i].qrs_onset,
+                           scaled_qrs_onset_values[i],
+                           qrs_data_list[i].qrs_end,
+                           scaled_qrs_end_values[i],
+                           qrs_data_list[i].t_peak,
+                           scaled_t_peak_values[i],
+                           qrs_data_list[i].t_end,
+                           scaled_t_end_values[i]
+                           ])
             data.append(tmp)
         return data
 
@@ -76,7 +76,7 @@ class HeartBeatClassifier(object):
 def main():
     hbc = HeartBeatClassifier()
     hbc.classify()
-    #hbc.run()
+    # hbc.run()
 
 if __name__ == '__main__':
     main()

@@ -18,6 +18,16 @@ class GMeans(object):
         # self.dummy_data = QRSData()
 
     def cluster_data(self, qrs_complexes, max_k=50, alpha=0.0001):
+        """
+        The main method of the GMeans class. It is used to cluster data with the G-means algorithm.
+        :param qrs_complexes: numpy.array of input data
+        :param max_k: maximal number of classes; surpassing this number will cause the algorithm to stop
+        :param alpha: significance level of the Anderson-Darling test
+        :return centroids: numpy.ndarray of centroids found in the algorithm
+        :return labels_dict: dictionary, which keys are indices in the input list of data (qrs_complexes) and values
+                            are indices of clusters to which the data point belongs
+        :rtype: (numpy.ndarray, numpy.ndarray)
+        """
         self.logger.debug('In clusterData')
         self.qrs_data = self.qrs_conversion(qrs_complexes)
         initial_centroid = self.calculate_mean(self.qrs_data)
