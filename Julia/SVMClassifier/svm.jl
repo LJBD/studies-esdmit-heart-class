@@ -68,7 +68,7 @@ function GetNextWord(fp)
     end
   end
   seek(fp, position(fp)-1)
-  return word
+  return strip(word)
 end
 
 svm_type_table = ["c_svc", "nu_svc", "one_class", "epsilon_svr", "nu_svr", null]
