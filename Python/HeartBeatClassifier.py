@@ -1,29 +1,40 @@
-from SVMClassifier.SVMClassifier import SVMClassifier
-from SVMClassifier.QRSData import QRSData
-import GMeans.gmeans as gm
-from sklearn.preprocessing import MinMaxScaler
 import os
-#import sys
-#reload(sys)
-#sys.setdefaultencoding("utf-8")
+from sklearn.preprocessing import MinMaxScaler
+import GMeans.gmeans as gm
+from QRSData import QRSData
+from SVMClassifier.SVMClassifier import SVMClassifier
+# import sys
+# reload(sys)
+# sys.setdefaultencoding("utf-8")
 
 
 class HeartBeatClassifier(object):
     def __init__(self):
-        self.svm_classifier = SVMClassifier.SVMClassifier()
+        self.svm_classifier = SVMClassifier()
         self.g_means = gm.GMeans()
 
     def classify(self):
         # number_of_clusters = 2
         normalized_data = self.getQrsComplexDataFromFile('ConvertedQRSRawData.txt')
-        print(normalized_data[0])
-        print('dupa')
-        gmeans = self.g_means.cluster_data(normalized_data)
-        self.svm_classifier.predict(gmeans)
+        print('TEST OF IMPORT:', normalized_data[0])
+        print('TEST OF TO_NDARRAY CONVERSION:', normalized_data[0].to_ndarray())
+
+        centroids, labels_dict = self.g_means.cluster_data(normalized_data)
+        gmeans_data = self.array_to_qrs_data(normalized_data, labels_dict)
+        self.svm_classifier.predict(gmeans_data)
+
+    @staticmethod
+    def array_to_qrs_data(data_array, labels_dict):
+        qrs_data_list = []
+        for i, element in enumerate(data_array):
+            qrs = QRSData(element)
+            qrs.class_id = labels_dict[i]
+            qrs_data_list.append(qrs)
+        return qrs_data_list
         
     def getQrsComplexDataFromFile(self, path):
         dir_to_cpp_signals = os.path.dirname(os.path.dirname(__file__))
-        dir_to_cpp_signals = os.path.join(dir_to_cpp_signals, 'Sygnały z C++')
+        dir_to_cpp_signals = os.path.join(dir_to_cpp_signals, 'ReferencyjneDane', '101')
         filename = os.path.join(dir_to_cpp_signals, path)
         with open(filename, "r") as ins:
             qrs_data_list = [QRSData([float(x) for x in line.split()]) for line in ins]

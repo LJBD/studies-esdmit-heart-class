@@ -1,7 +1,8 @@
-from anderson_darling_test import AndersonDarlingTest
-from scipy.cluster.vq import kmeans2
-import numpy
 import logging
+import numpy
+from scipy.cluster.vq import kmeans2
+from QRSData import QRSData
+from anderson_darling_test import AndersonDarlingTest
 
 
 class GMeans(object):
@@ -124,6 +125,10 @@ class GMeans(object):
         self.logger.debug('In qrs_conversion')
         if isinstance(qrs_complexes, numpy.ndarray):
             return qrs_complexes
+        elif isinstance(qrs_complexes[0], QRSData):
+            self.logger.debug('I got QRSData, conversion in progress.')
+            qrs_list = [item.to_ndarray() for item in qrs_complexes]
+            return numpy.array(qrs_list)
         else:
             return numpy.array(qrs_complexes)
 
