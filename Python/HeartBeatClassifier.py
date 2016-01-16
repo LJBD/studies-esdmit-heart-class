@@ -20,11 +20,17 @@ class HeartBeatClassifier(object):
         print('TEST OF TO_NDARRAY CONVERSION:', normalized_data[0].to_ndarray())
 
         centroids, labels_dict = self.g_means.cluster_data(normalized_data)
-        gmeans_data = self.array_to_qrs_data(normalized_data, labels_dict)
-        self.svm_classifier.predict(gmeans_data)
+        self.update_data_list(normalized_data, labels_dict)
+        self.svm_classifier.predict(normalized_data)
+
+    @staticmethod
+    def update_data_list(data_list, labels_dict):
+        for i, element in enumerate(data_list):
+            element.class_id = labels_dict[i]
 
     @staticmethod
     def array_to_qrs_data(data_array, labels_dict):
+        # THIS METHOD IS DEPRECATED. I thought that we'll pass data in numpy.ndarrays but it's not the case.
         qrs_data_list = []
         for i, element in enumerate(data_array):
             qrs = QRSData(element)

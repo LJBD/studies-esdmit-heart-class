@@ -68,23 +68,23 @@ class QRSData(object):
         + " t_end_val " + str(self.t_end_val)
 
     def to_ndarray(self):
-        output_array = numpy.zeros((1, 18))
-        output_array[0][0] = self.r_peak
-        output_array[0][1] = self.r_peak_value
-        output_array[0][2] = self.rr_pre_interval
-        output_array[0][3] = self.rr_post_interval
-        output_array[0][4] = self.p_onset
-        output_array[0][5] = self.p_onset_val
-        output_array[0][6] = self.p_peak
-        output_array[0][7] = self.p_peak_val
-        output_array[0][8] = self.p_end
-        output_array[0][9] = self.p_end_val
-        output_array[0][10] = self.qrs_onset
-        output_array[0][11] = self.qrs_onset_val
-        output_array[0][12] = self.qrs_end
-        output_array[0][13] = self.qrs_end_val
-        output_array[0][14] = self.t_peak
-        output_array[0][15] = self.t_peak_val
-        output_array[0][16] = self.t_end
-        output_array[0][17] = self.t_end_val
+        output_array = numpy.zeros(18)
+        output_array[0] = self.r_peak
+        output_array[1] = self.r_peak_value
+        output_array[2] = self.rr_pre_interval
+        output_array[3] = self.rr_post_interval
+        output_array[4] = self.p_onset
+        output_array[5] = self.p_onset_val
+        output_array[6] = self.p_peak
+        output_array[7] = self.p_peak_val
+        output_array[8] = self.p_end
+        output_array[9] = self.p_end_val
+        output_array[10] = self.qrs_onset
+        output_array[11] = self.qrs_onset_val
+        output_array[12] = self.qrs_end
+        output_array[13] = self.qrs_end_val
+        output_array[14] = self.t_peak
+        output_array[15] = self.t_peak_val
+        output_array[16] = self.t_end
+        output_array[17] = self.t_end_val
         return output_array

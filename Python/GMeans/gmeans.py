@@ -127,8 +127,14 @@ class GMeans(object):
             return qrs_complexes
         elif isinstance(qrs_complexes[0], QRSData):
             self.logger.debug('I got QRSData, conversion in progress.')
-            qrs_list = [item.to_ndarray() for item in qrs_complexes]
-            return numpy.array(qrs_list)
+            number_of_data_vectors = len(qrs_complexes)
+            length_of_one_vector = len(qrs_complexes[0].to_ndarray())
+            # print('GMEANS: length of one qrs_data vector', length_of_one_vector)
+            qrs_array = numpy.zeros((number_of_data_vectors, length_of_one_vector))
+            for i, qrs_item in enumerate(qrs_complexes):
+                qrs_array[i] = qrs_item.to_ndarray()
+            # print('GMEANS: SOME OF THE ARRAY:', qrs_array[:4])
+            return qrs_array
         else:
             return numpy.array(qrs_complexes)
 
@@ -159,15 +165,14 @@ class GMeans(object):
 
 
 def main():
-    # mean = [4.56, 5.234]
-    # cov = [[1, 0],
-    #        [2, 5]]
-    # data = numpy.random.multivariate_normal(mean=mean, cov=cov, size=(50, 1))
-    # data generation
-    data_a = numpy.random.rand(700, 2) + numpy.array([.5, .5])
-    data_b = numpy.random.rand(700, 2) + numpy.array([1, 1])
-    data_c = numpy.random.rand(700, 2)
-    data = numpy.vstack((data_a, data_b, data_c))
+    # data_a = numpy.random.rand(700, 2) + numpy.array([.5, .5])
+    # data_b = numpy.random.rand(700, 2) + numpy.array([1, 1])
+    # data_c = numpy.random.rand(700, 2)
+    # data = numpy.vstack((data_a, data_b, data_c))
+    data = numpy.vstack((numpy.random.rand(1000, 18),
+                         numpy.random.rand(1000, 18) + numpy.ones((1, 18))))
+
+    print(data[:2])
 
     # fig = pyplot.figure()
     # axis = fig.add_subplot(111)
@@ -185,23 +190,23 @@ def main():
     print('I GOT: k = ', len(centroids))
     print('CENTROIDS', centroids)
     print('LABELS:', labels)
-    colors = ['r', 'g', 'b', 'c', 'm', 'k', 'y']
-    fig = pyplot.figure()
-    axis = fig.add_subplot(111)
-    axis.set_prop_cycle(cycler('color', colors))
-    big_data_list = []
-    for i, centroid in enumerate(centroids):
-        axis.plot(centroid[0], centroid[1], 'o')
-        big_data_list.append([])
-    for key in labels.keys():
-        big_data_list[labels[key]].append(data[key])
-    axis.set_prop_cycle(cycler('color', colors))
-    for list_for_one_centroid in big_data_list:
-        x = [item[0] for item in list_for_one_centroid]
-        y = [item[1] for item in list_for_one_centroid]
-        axis.plot(x, y, 'x')
-
-    pyplot.show()
+    # colors = ['r', 'g', 'b', 'c', 'm', 'k', 'y']
+    # fig = pyplot.figure()
+    # axis = fig.add_subplot(111)
+    # axis.set_prop_cycle(cycler('color', colors))
+    # big_data_list = []
+    # for i, centroid in enumerate(centroids):
+    #     axis.plot(centroid[0], centroid[1], 'o')
+    #     big_data_list.append([])
+    # for key in labels.keys():
+    #     big_data_list[labels[key]].append(data[key])
+    # axis.set_prop_cycle(cycler('color', colors))
+    # for list_for_one_centroid in big_data_list:
+    #     x = [item[0] for item in list_for_one_centroid]
+    #     y = [item[1] for item in list_for_one_centroid]
+    #     axis.plot(x, y, 'x')
+    #
+    # pyplot.show()
 
 
 if __name__ == '__main__':
