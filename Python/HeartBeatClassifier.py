@@ -11,6 +11,7 @@ from SVMClassifier.SVMClassifier import SVMClassifier
 class HeartBeatClassifier(object):
     def __init__(self):
         self.svm_classifier = SVMClassifier()
+        self.svm_classifier.loadSvmModel("SVMClassifier\\model_copy")
         self.g_means = gm.GMeans()
 
     def classify(self):
