@@ -1,9 +1,5 @@
 include("Kernel.jl")
 
-type svm_node
-    idx
-    val
-end
 
 type svm_parameter
   svm_type
@@ -105,7 +101,7 @@ function read_model_header(fp, model::svm_model)
       end
     elseif(cmd == "degree")
       cmd = GetNextWord(fp)
-      model.param.degree = int(cmd)
+      model.param.degree = Int(cmd)
 
     elseif(cmd == "gamma")
       cmd = GetNextWord(fp)
@@ -198,7 +194,7 @@ function svm_load_model(file_name::ASCIIString)
   seek(fp, pos)
 
   m = model.nr_class - 1
-  l = model.l - 1
+  l = model.l# - 1
 
   line = readline(fp)
   p = split(line, ' ')
@@ -210,10 +206,10 @@ function svm_load_model(file_name::ASCIIString)
   end
   seek(fp, pos)
 
-  model.sv_coef = fill(float(0), (m,l+1))
-  model.SV = fill(svm_node(0,0), (l+1,max+1))
+  model.sv_coef = fill(float(0), (m,l))
+  model.SV = fill(float(0), (l+1,max))
 
-  for i = 1:l+1
+  for i = 1:l
     line = readline(fp)
     p = split(line, ' ')
 
@@ -225,9 +221,8 @@ function svm_load_model(file_name::ASCIIString)
       k = split(p[j],':')
       idx = parse(Int, k[1])
       val = float(k[2])
-      model.SV[i, j - m] = svm_node(idx, val)
+      model.SV[i, j - m] = val
     end
-    model.SV[i, max + 4 - m] = svm_node(-1, null)
 
   end
 
@@ -242,10 +237,9 @@ function svm_predict(model, x)
   dec_values = Float64[]
 
   svmType = model.param.svm_type
-  #     ONE_CLASS     EPSILON_SVR          NU_SVR
-  if svmType == 3 || svmType == 4 || svmType == 5
-    error("Not implemented exception")
-  else
+
+  #C_SVC
+  if svmType == 1
     nr_class = model.nr_class
     l = model.l
 
@@ -303,6 +297,8 @@ function svm_predict(model, x)
       end
     end
     return model.label[vote_max_idx]
+  else
+    error("ERROR: This type of SVM is not supported yet")
   end
 
   return -1
