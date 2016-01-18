@@ -1,6 +1,6 @@
 __author__ = 'Krystian'
 
-from svm import *
+from SVMClassifier.svm import *
 
 
 class SVMClassifier:

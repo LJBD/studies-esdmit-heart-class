@@ -17,7 +17,7 @@ kernel_type_table.append("precomputed")
 kernel_type_table.append(None)
 
 
-from Kernel import *
+from SVMClassifier.Kernel import *
 
 
 class SVMTypes(Enum):
