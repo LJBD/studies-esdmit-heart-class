@@ -16,7 +16,7 @@ class GMeans(object):
         self.qrs_data = None
         self.centroids = None
         self.k = 0
-        # self.dummy_data = QRSData()
+        self.centroids_to_be_deleted = []
 
     def cluster_data(self, qrs_complexes, max_k=50, alpha=0.0001):
         """
@@ -44,15 +44,20 @@ class GMeans(object):
 
             for centroid_index, centroid in enumerate(self.centroids):
                 data_for_centroid = self.get_data_dict_for_centroid(centroid_index)
-                test_outcome, new_centroids, new_labels_for_data = self.run_test(centroid, data_for_centroid, alpha)
-                if test_outcome:
-                    self.logger.debug('The test was positive: the old centroid stays.')
-                    pass
+                if len(list(data_for_centroid.values())) == 0:
+                    # if a centroid does not have any points assigned to it, we have to mark it for deletion
+                    self.centroids_to_be_deleted.append(centroid_index)
                 else:
-                    self.logger.debug('The test was negative: new centroids will be added.')
-                    added_to_centroids_flag = True
-                    self.update_after_centroid_addition(centroid_index, data_for_centroid, new_centroids,
-                                                        new_labels_for_data)
+                    test_outcome, new_centroids, new_labels_for_data = self.run_test(centroid, data_for_centroid, alpha)
+                    if test_outcome:
+                        self.logger.debug('The test was positive: the old centroid stays.')
+                        pass
+                    else:
+                        self.logger.debug('The test was negative: new centroids will be added.')
+                        added_to_centroids_flag = True
+                        self.update_after_centroid_addition(centroid_index, data_for_centroid, new_centroids,
+                                                            new_labels_for_data)
+            self.delete_centroids_with_no_data()
             self.k = len(self.centroids)
             if added_to_centroids_flag is False:
                 self.logger.info('GMEANS: I\'ve added nothing, so I\' stopping the algorithm. K = %d' % self.k)
@@ -61,6 +66,14 @@ class GMeans(object):
                 pass
 
         return self.centroids, self.labels_dict
+
+    def delete_centroids_with_no_data(self):
+        for index_to_be_deleted in self.centroids_to_be_deleted:
+            self.centroids = numpy.delete(self.centroids, index_to_be_deleted, axis=0)
+            for key in self.labels_dict.keys():
+                if self.labels_dict[key] >= index_to_be_deleted:
+                    self.labels_dict[key] -= 1
+        self.centroids_to_be_deleted = []
 
     def update_after_centroid_addition(self, centroid_index, data_for_centroid, new_centroids, new_labels_for_data):
         self.logger.debug('In update_after_centroid_addition')
