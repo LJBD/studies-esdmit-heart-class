@@ -1,21 +1,8 @@
 __author__ = 'Krystian'
 
-svm_type_table = []
-svm_type_table.append("c_svc")
-svm_type_table.append("nu_svc")
-svm_type_table.append("one_class")
-svm_type_table.append("epsilon_svr")
-svm_type_table.append("nu_svr")
-svm_type_table.append(None)
+svm_type_table = ["c_svc", "nu_svc", "one_class", "epsilon_svr", "nu_svr", None]
 
-kernel_type_table = []
-kernel_type_table.append("linear")
-kernel_type_table.append("polynomial")
-kernel_type_table.append("rbf")
-kernel_type_table.append("sigmoid")
-kernel_type_table.append("precomputed")
-kernel_type_table.append(None)
-
+kernel_type_table = ["linear", "polynomial", "rbf", "sigmoid", "precomputed", None]
 
 from SVMClassifier.Kernel import *
 
@@ -183,7 +170,7 @@ def svm_load_model(model_file_name):
 
         # read header
         if not read_model_header(fp, model):
-            print ("ERROR: fscanf failed to read model")
+            print("ERROR: fscanf failed to read model")
             # TODO: return None
 
         # read sv_coef and SV
@@ -201,7 +188,6 @@ def svm_load_model(model_file_name):
         m = model.nr_class - 1
         l = model.l
 
-
         # Policz ile tych zestawow wartosci jest w pliku
         # bo nie wiem czy zawsze jest 16
         line = readline(fp)
@@ -209,7 +195,7 @@ def svm_load_model(model_file_name):
         for i in range(0, p.__len__()):
             if p[i].__contains__(':'): max = i
         fp.seek(pos)
-        max = max-2
+        max = max - 2
         model.sv_coef = [[None for i in range(l)] for j in range(m)]
         model.SV = [[None for i in range(max)] for j in range(l)]
 
@@ -224,15 +210,15 @@ def svm_load_model(model_file_name):
                 k = p[j].split(':')
                 idx = int(k[0])
                 val = float(k[1])
-                model.SV[i][j - m] = val #svm_node(idx, val)
-            #model.SV[i][max-m+2] = svm_node(-1, None)
+                model.SV[i][j - m] = val  # svm_node(idx, val)
+                # model.SV[i][max-m+2] = svm_node(-1, None)
 
         model.free_sv = 1
 
         return model
 
     except IOError:
-        print ("Could not open", model_file_name)
+        print("Could not open", model_file_name)
         raw_input("Press Enter to continue...")
         # TODO: return None
 
@@ -251,24 +237,21 @@ def readline(fp):
 
 
 def svm_predict(model, x):
-
     dec_values = []
 
-    if(SVMTypes(model.param.svm_type) == SVMTypes.C_SVC):
+    if SVMTypes(model.param.svm_type) == SVMTypes.C_SVC:
 
         nr_class = model.nr_class
         l = model.l
 
         kvalue = []
-        for i in range(0,l):
+        for i in range(0, l):
             res = float(k_function(x, model.SV[i], model.param))
             kvalue.append(res)
 
-
-        start = []
-        start.append(0)
+        start = [0]
         for i in range(1, nr_class):
-            start.append(start[i-1] + model.nSV[i-1])
+            start.append(start[i - 1] + model.nSV[i - 1])
 
         vote = []
         for i in range(0, nr_class):
@@ -277,7 +260,7 @@ def svm_predict(model, x):
         p = 0
         cnt = 0
         for i in range(0, nr_class):
-            for j in range(i+1, nr_class):
+            for j in range(i + 1, nr_class):
                 sum = 0
                 si = start[i]
                 sj = start[j]
@@ -307,10 +290,8 @@ def svm_predict(model, x):
 
         return model.label[vote_max_idx]
     else:
-        print ("ERROR: This type of SVM is not supported yet")
+        print("ERROR: This type of SVM is not supported yet")
 
-    #Tu nie powinienem byl zajsc
-    print ("ERROR: in svm_predict")
+    # Tu nie powinienem byl zajsc
+    print("ERROR: in svm_predict")
     return None
-
-

@@ -102,11 +102,11 @@ class GMeans(object):
 
     def project_data_on_v(self, data_list, v):
         self.logger.debug('In project_data_on_v')
-        projected_data = []
+        projected_data = numpy.zeros((len(data_list), 1))
         norm_of_v = numpy.linalg.norm(v)
-        for data_vector in data_list:
+        for i, data_vector in enumerate(data_list):
             dot_product = numpy.dot(v, data_vector)
-            projected_data.append(dot_product/norm_of_v)
+            projected_data[i] = dot_product/norm_of_v
         return projected_data
 
     def get_child_centroids(self, centroid, data_list):
@@ -172,8 +172,6 @@ def main():
     data = numpy.vstack((numpy.random.rand(1000, 18),
                          numpy.random.rand(1000, 18) + numpy.ones((1, 18))))
 
-    print(data[:2])
-
     # fig = pyplot.figure()
     # axis = fig.add_subplot(111)
     # data_list = [data_a, data_b, data_c]
@@ -188,8 +186,9 @@ def main():
     t2 = datetime.datetime.now()
     print('EXECUTION TOOK:', (t2-t1).total_seconds())
     print('I GOT: k = ', len(centroids))
-    print('CENTROIDS', centroids)
-    print('LABELS:', labels)
+    # print('CENTROIDS', centroids)
+    # print('LABELS:', labels)
+
     # colors = ['r', 'g', 'b', 'c', 'm', 'k', 'y']
     # fig = pyplot.figure()
     # axis = fig.add_subplot(111)
