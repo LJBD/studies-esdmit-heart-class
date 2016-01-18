@@ -36,14 +36,7 @@ function DataClassifierForPackage(dataId, referenceModel)
     end
     
     # Grouping TODO
-    magicNumber =  0.0005
-    groups, centers = dummyGmeans(X, length(X) * magicNumber)
-    
-    c_idx = [];
-    numberOfGroups = length(groups)
-    for i = 1:numberOfGroups
-       c_idx = [c_idx;i * ones(size(groups[i],1))];
-    end
+    centroids, lablesOrdered = Gmeans(X)
 
     p = plot(x=c_idx, Geom.histogram(bincount=numberOfGroups), Guide.title("Liczba wektorów cech w poszczególnych klastrach"))
 
