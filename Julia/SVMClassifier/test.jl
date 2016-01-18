@@ -1,7 +1,7 @@
 #Clear workspace
 workspace()
-include("SVMClassifier.jl")  
-include("QRSData.jl") 
+include("SVMClassifier.jl")
+include("QRSData.jl")
 
 #####################TEST###########################
   #Tylko do testowania
@@ -38,11 +38,13 @@ include("QRSData.jl")
       end
       return vector
   end
+
+  function printQRSVector(qrs)
+    for i=1:length(qrs)
+      println(qrs[i],2)
+    end
+  end
   ###########################################################
-
-
-
-
 
 
   #Read model
@@ -54,7 +56,9 @@ include("QRSData.jl")
   #Random data
   qrs_vector  = createRandomQRSVector(10)
 
+  tic()
   #Classify
   predict(svm, qrs_vector)
+  toc()
 
 

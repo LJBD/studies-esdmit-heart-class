@@ -49,12 +49,6 @@ class svm_parameter(object):
         self.probability = 0  # int - do probability estimates
 
 
-class svm_node(object):
-    def __init__(self, idx, val):
-        self.index = idx
-        self.value = val
-
-
 class svm_model(object):
     rho = []  # double - constants in decision functions (rho[k*(k-1)/2])
     label = []  # int - label of each class (label[k])
@@ -68,8 +62,9 @@ class svm_model(object):
         self.l = None
         self.sv_indices = None
         self.sv_coef = None  # Matrix (double) - coefficients for SVs in decision functions (sv_coef[k-1][l])
-        self.SV = None  # Matric (svm_node) - SVs (SV[l])
+        self.SV = None  # Matrix (svm_node) - SVs (SV[l])
         self.free_sv = None  # (int) 1 if svm_model is created by svm_load_model
+        self.nr_class = None
         # 0 if svm_model is created by svm_train
 
 
@@ -127,6 +122,7 @@ def read_model_header(fp, model):
             cmd = GetNextWord(fp)
             model.param.coef0 = float(cmd)
 
+
         elif cmd == "nr_class":
             cmd = GetNextWord(fp)
             model.nr_class = int(cmd)
@@ -139,7 +135,7 @@ def read_model_header(fp, model):
             n = model.nr_class * (model.nr_class - 1) / 2
             for i in range(0, n.__int__()):
                 cmd = GetNextWord(fp)
-                model.rho.append(float(cmd))  # Nie ma double?
+                model.rho.append(float(cmd))
 
         elif cmd == "label":
             n = model.nr_class
@@ -187,7 +183,7 @@ def svm_load_model(model_file_name):
 
         # read header
         if not read_model_header(fp, model):
-            print("ERROR: fscanf failed to read model")
+            print ("ERROR: fscanf failed to read model")
             # TODO: return None
 
         # read sv_coef and SV
@@ -205,6 +201,7 @@ def svm_load_model(model_file_name):
         m = model.nr_class - 1
         l = model.l
 
+
         # Policz ile tych zestawow wartosci jest w pliku
         # bo nie wiem czy zawsze jest 16
         line = readline(fp)
@@ -212,7 +209,7 @@ def svm_load_model(model_file_name):
         for i in range(0, p.__len__()):
             if p[i].__contains__(':'): max = i
         fp.seek(pos)
-
+        max = max-2
         model.sv_coef = [[None for i in range(l)] for j in range(m)]
         model.SV = [[None for i in range(max)] for j in range(l)]
 
@@ -223,20 +220,20 @@ def svm_load_model(model_file_name):
             for k in range(0, m):
                 model.sv_coef[k][i] = round(float(p[k]), 6)
 
-            for j in range(m, max + 1):
+            for j in range(m, max + 3):
                 k = p[j].split(':')
                 idx = int(k[0])
                 val = float(k[1])
-                model.SV[i][j - m] = svm_node(idx, val)
-            model.SV[i][max-m+1] = svm_node(-1, None)
+                model.SV[i][j - m] = val #svm_node(idx, val)
+            #model.SV[i][max-m+2] = svm_node(-1, None)
 
         model.free_sv = 1
 
         return model
 
     except IOError:
-        print("Could not open", model_file_name)
-        input("Press Enter to continue...")
+        print ("Could not open", model_file_name)
+        raw_input("Press Enter to continue...")
         # TODO: return None
 
 
@@ -254,37 +251,19 @@ def readline(fp):
 
 
 def svm_predict(model, x):
+
     dec_values = []
 
-    if SVMTypes(model.param.svm_type) == SVMTypes.ONE_CLASS or \
-       SVMTypes(model.param.svm_type) == SVMTypes.EPSILON_SVR or \
-       SVMTypes(model.param.svm_type) == SVMTypes.NU_SVR:
+    if(SVMTypes(model.param.svm_type) == SVMTypes.C_SVC):
 
-        sv_coef = model.sv_coef[0]
-        sum = 0
-
-        for i in range(0, model.l):
-            sum += sv_coef[i] * k_function(x, model.SV[i], model.param)
-
-        sum -= model.rho[0]
-        dec_values.append(sum)
-
-        if SVMTypes(model.param.svm_type) == SVMTypes.ONE_CLASS:
-            if sum > 0:
-                return 1
-            else:
-                return -1
-        else:
-            return sum
-
-    else:
         nr_class = model.nr_class
         l = model.l
-        kvalue = []
 
+        kvalue = []
         for i in range(0,l):
             res = float(k_function(x, model.SV[i], model.param))
             kvalue.append(res)
+
 
         start = []
         start.append(0)
@@ -296,6 +275,7 @@ def svm_predict(model, x):
             vote.append(0)
 
         p = 0
+        cnt = 0
         for i in range(0, nr_class):
             for j in range(i+1, nr_class):
                 sum = 0
@@ -326,9 +306,11 @@ def svm_predict(model, x):
                 vote_max_idx = i
 
         return model.label[vote_max_idx]
+    else:
+        print ("ERROR: This type of SVM is not supported yet")
 
-    # Tu nie powinienem byl zajsc
-    print("ERROR: in svm_predict")
+    #Tu nie powinienem byl zajsc
+    print ("ERROR: in svm_predict")
     return None
 
 
