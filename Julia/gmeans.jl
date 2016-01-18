@@ -7,7 +7,7 @@ function Gmeans(normalizedQRSComplexes)
     
     qrs_vector =  qrs.QRSData(normalizedQRSComplexes[2:19,1])
     for i = 2: size(normalizedQRSComplexes,2)
-        qrs_vector=[qrs_item; qrs.QRSData(normalizedQRSComplexes[2:19,i])]
+        qrs_vector=[qrs_vector; qrs.QRSData(normalizedQRSComplexes[2:19,i])]
     end
 
     gMeans = gmeans_base.GMeans()
