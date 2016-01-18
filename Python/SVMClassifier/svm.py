@@ -214,7 +214,7 @@ def svm_load_model(model_file_name):
 
     except IOError:
         print("Could not open", model_file_name)
-        raw_input("Press Enter to continue...")
+        input("Press Enter to continue...")
         # TODO: return None
 
 
