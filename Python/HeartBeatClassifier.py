@@ -1,3 +1,4 @@
+import datetime
 import os
 from sklearn.preprocessing import MinMaxScaler
 import GMeans.gmeans as gm
@@ -93,7 +94,11 @@ class HeartBeatClassifier(object):
 
 def main():
     hbc = HeartBeatClassifier()
+    t1 = datetime.datetime.now()
     hbc.classify()
+    t2 = datetime.datetime.now()
+    exec_time = (t2 - t1).total_seconds()
+    print('EXECUTION TIME: ', exec_time)
     # hbc.run()
 
 if __name__ == '__main__':
