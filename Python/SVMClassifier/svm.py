@@ -4,6 +4,7 @@ svm_type_table = ["c_svc", "nu_svc", "one_class", "epsilon_svr", "nu_svr", None]
 
 kernel_type_table = ["linear", "polynomial", "rbf", "sigmoid", "precomputed", None]
 
+
 from SVMClassifier.Kernel import *
 
 
@@ -76,6 +77,7 @@ def read_model_header(fp, model):
     while cmd != None:
 
         cmd = GetNextWord(fp)
+
 
         if cmd == "svm_type":
             cmd = GetNextWord(fp)
@@ -188,14 +190,8 @@ def svm_load_model(model_file_name):
         m = model.nr_class - 1
         l = model.l
 
-        # Policz ile tych zestawow wartosci jest w pliku
-        # bo nie wiem czy zawsze jest 16
-        line = readline(fp)
-        p = line.split(' ')
-        for i in range(0, p.__len__()):
-            if p[i].__contains__(':'): max = i
-        fp.seek(pos)
-        max = max - 2
+
+        max = 16
         model.sv_coef = [[None for i in range(l)] for j in range(m)]
         model.SV = [[None for i in range(max)] for j in range(l)]
 
@@ -206,12 +202,11 @@ def svm_load_model(model_file_name):
             for k in range(0, m):
                 model.sv_coef[k][i] = round(float(p[k]), 6)
 
-            for j in range(m, max + 3):
+            for j in range(m, max + m):
                 k = p[j].split(':')
                 idx = int(k[0])
                 val = float(k[1])
-                model.SV[i][j - m] = val  # svm_node(idx, val)
-                # model.SV[i][max-m+2] = svm_node(-1, None)
+                model.SV[i][j - m] = val
 
         model.free_sv = 1
 
@@ -237,6 +232,7 @@ def readline(fp):
 
 
 def svm_predict(model, x):
+
     dec_values = []
 
     if SVMTypes(model.param.svm_type) == SVMTypes.C_SVC:
@@ -248,6 +244,7 @@ def svm_predict(model, x):
         for i in range(0, l):
             res = float(k_function(x, model.SV[i], model.param))
             kvalue.append(res)
+
 
         start = [0]
         for i in range(1, nr_class):
@@ -295,3 +292,5 @@ def svm_predict(model, x):
     # Tu nie powinienem byl zajsc
     print("ERROR: in svm_predict")
     return None
+
+
