@@ -1,11 +1,11 @@
-function [] = DataClassifierForPackage(dataId, referenceModel)
+function [] = DataClassifierForPackage(dataId, referenceModel, displayResults)
 
-folder = num2str(dataId)
+folder = num2str(dataId);
 path('libsvm-windows-dlls/', path); 
 
 directory = fileparts(pwd);
-QRSDataPath = fullfile(directory, 'ReferencyjneDane' , folder , 'ConvertedQRSRawData.txt')
-QRSClassIdPath = fullfile(directory, 'ReferencyjneDane' , folder , 'Class_IDs.txt')
+QRSDataPath = fullfile(directory, 'ReferencyjneDane' , folder , 'ConvertedQRSRawData.txt');
+QRSClassIdPath = fullfile(directory, 'ReferencyjneDane' , folder , 'Class_IDs.txt');
 formatSpec = '%f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f';
 QRSSize = [18 inf];
 QRSDataMatrix = GetQRSFromFile(QRSDataPath, formatSpec, QRSSize);
@@ -33,14 +33,21 @@ for i = 1:length(groups)
     c_idx = [c_idx;i *ones(size(groups{i},1),1)];
 end
 
-% Show results
-figure(1);
-hist(c_idx, linspace(1,length(groups),length(groups))); 
-xlim([0.5 length(groups)+0.5]);
-title('Liczba wektorów cech w poszczególnych klastrach');
+if displayResults
+    % Show results
+    figure(1);
+    hist(c_idx, linspace(1,length(groups),length(groups))); 
+    xlim([0.5 length(groups)+0.5]);
+    title('Liczba wektorów cech w poszczególnych klastrach');
+end
 
+if displayResults
+    svmOptions = '';
+else
+    svmOptions = '-q';
+end
 %% Classifing groups
-[result, accu, ~] = svmpredict(getClassesFromGroupsMembers(groups, C, X, Y), C, referenceModel);
+[result, accu, ~] = svmpredict(getClassesFromGroupsMembers(groups, C, X, Y), C, referenceModel, svmOptions);
 
 for i = 1:size(C,1)
     % W result s¹ nowe etykiety klas ('przewidziane' przez SVM). 
@@ -51,14 +58,16 @@ for i = 1:size(C,1)
     c_idx(c_idx == i) = result(i);
 end
 
-figure(2);
-subplot(2,1,1);
-hist([c_idx, Y], linspace(1,10,10));
-xlim([0,length(unique(Y))+2]);
-ax = gca;
-ax.XTick = linspace(1,10,10);
-legend('Wyniki przewidywania SVM','Wyniki referencyjne');
-title ('Klasyfikacja reprezentantów klas');
+if displayResults
+    figure(2);
+    subplot(2,1,1);
+    hist([c_idx, Y], linspace(1,10,10));
+    xlim([0,length(unique(Y))+2]);
+    ax = gca;
+    ax.XTick = linspace(1,10,10);
+    legend('Wyniki przewidywania SVM','Wyniki referencyjne');
+    title ('Klasyfikacja reprezentantów klas');
+end
 
 model_size = referenceModel.nr_class;
 f1_scores = zeros(model_size,1);
@@ -68,19 +77,23 @@ for i = 1:model_size
     recall =    sum(c_idx(Y == i) == i)/sum(Y == i);
     f1_scores(i) = 2 * precision*recall/(precision+recall);
 end
-display(f1_scores);
+if displayResults
+    display(f1_scores);
+end
 
 %% Classifing each qrs
-[result, accu, ~] = svmpredict(Y, X, referenceModel);
+[result, accu, ~] = svmpredict(Y, X, referenceModel, svmOptions);
 
-%figure(2);
-subplot(2,1,2);
-hist([result, Y], linspace(1,10,10));
-xlim([0,length(unique(Y))+2]);
-ax = gca;
-ax.XTick = linspace(1,10,10);
-legend('Wyniki przewidywania SVM','Wyniki referencyjne');
-title ('Klasyfikacja zespo³ów QRS');
+if displayResults
+    %figure(2);
+    subplot(2,1,2);
+    hist([result, Y], linspace(1,10,10));
+    xlim([0,length(unique(Y))+2]);
+    ax = gca;
+    ax.XTick = linspace(1,10,10);
+    legend('Wyniki przewidywania SVM','Wyniki referencyjne');
+    title ('Klasyfikacja zespo³ów QRS');
+end
 
 model_size = referenceModel.nr_class;
 f1_scores = zeros(model_size,1);
@@ -90,5 +103,8 @@ for i = 1:model_size
     recall = sum(result(Y == i) == i)/sum(Y == i);
     f1_scores(i) = 2 * precision*recall/(precision+recall);
 end
-display(f1_scores);
+
+if displayResults
+    display(f1_scores);
+end
 end
