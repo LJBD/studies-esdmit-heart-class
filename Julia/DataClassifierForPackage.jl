@@ -27,14 +27,13 @@ function DataClassifierForPackage(dataId, referenceModel)
     QRSDataMatrix = GetQRSFromFile(QRSDataPath, formatSpec) #TODO Try to figure how to use formatSpec
     QRSClassIdVector = GetQRSFromFile(QRSClassIdPath, Float64);
     normalizedQRSComplexes = ConvertToNormalizedQRSComplexesWithId(QRSDataMatrix, QRSClassIdVector); #TODO THIS IS NOT A CLASS ONE QRS IS 19x1 ARRAY
-
     #create matrix of featrures X and vector of corresponding labels Y
 
     Y = QRSClassIdVector
-    X = normalizedQRSComplexes[:,3:18] #THIS IS WRONG Class in file
+    X = normalizedQRSComplexes[2:19,:]
     qrs_vector = QRS_DATA[]
     for i = 1: size(normalizedQRSComplexes,2)
-    push!(qrs_vector, QRS_DATA(normalizedQRSComplexes[2:19,i]))
+        push!(qrs_vector, QRS_DATA(normalizedQRSComplexes[2:19,i]))
     end
     
     # Grouping TODO

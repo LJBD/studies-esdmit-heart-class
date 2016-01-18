@@ -5,11 +5,11 @@ using PyCall
 @pyimport GMeans.gmeans as gmeans_base
 
 function Gmeans(normalizedQRSComplexes)    
-    qrs_vector =  qrs.QRSData(normalizedQRSComplexes[2:19,1])
+    qrs_vector =  qrs.QRSData(normalizedQRSComplexes[:,1])
     for i = 2: size(normalizedQRSComplexes,2)
-        qrs_vector=[qrs_vector; qrs.QRSData(normalizedQRSComplexes[2:19,i])]
+        qrs_vector=[qrs_vector; qrs.QRSData(normalizedQRSComplexes[:,i])]
     end
-
+    qrs_vector
     gMeans = gmeans_base.GMeans()
     centroids, lables = gMeans[:cluster_data](qrs_vector)
     c_idx = [];
