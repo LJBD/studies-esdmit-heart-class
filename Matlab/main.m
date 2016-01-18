@@ -1,6 +1,6 @@
 
 clear
 %model = TrainModel()
-%model = ReadModel('model_svm');
-load modelFromFile
+model = ReadModel('../SVM_models/model111');
+%load modelFromFile
 DataClassifierForPackage(101, model)
