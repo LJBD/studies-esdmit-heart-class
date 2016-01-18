@@ -1,10 +1,10 @@
-function Gmeans(normalizedQRSComplexes)
-    ENV["PYTHONPATH"] = "../Python"
-    using PyCall
-    @pyimport QRSData as qrs
-    @pyimport GMeans.anderson_darling_test as anderson_darling_test
-    @pyimport GMeans.gmeans as gmeans_base
-    
+ENV["PYTHONPATH"] = "../Python"
+using PyCall
+@pyimport QRSData as qrs
+@pyimport GMeans.anderson_darling_test as anderson_darling_test
+@pyimport GMeans.gmeans as gmeans_base
+
+function Gmeans(normalizedQRSComplexes)    
     qrs_vector =  qrs.QRSData(normalizedQRSComplexes[2:19,1])
     for i = 2: size(normalizedQRSComplexes,2)
         qrs_vector=[qrs_vector; qrs.QRSData(normalizedQRSComplexes[2:19,i])]

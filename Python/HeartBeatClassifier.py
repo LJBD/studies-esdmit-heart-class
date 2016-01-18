@@ -15,9 +15,9 @@ class HeartBeatClassifier(object):
         self.svm_classifier.loadSvmModel("..\\SVM_models\\model111")
         self.g_means = gm.GMeans()
 
-    def classify(self):
+    def classify(self, package_number=101):
         # number_of_clusters = 2
-        normalized_data = self.getQrsComplexDataFromFile('ConvertedQRSRawData.txt')
+        normalized_data = self.getQrsComplexDataFromFile(package_number, 'ConvertedQRSRawData.txt')
         print('TEST OF IMPORT:', normalized_data[0])
         print('TEST OF TO_NDARRAY CONVERSION:', normalized_data[0].to_ndarray())
 
@@ -40,10 +40,10 @@ class HeartBeatClassifier(object):
             qrs_data_list.append(qrs)
         return qrs_data_list
         
-    def getQrsComplexDataFromFile(self, path):
+    def getQrsComplexDataFromFile(self, package_number, filename):
         dir_to_cpp_signals = os.path.dirname(os.path.dirname(__file__))
-        dir_to_cpp_signals = os.path.join(dir_to_cpp_signals, 'ReferencyjneDane', '101')
-        filename = os.path.join(dir_to_cpp_signals, path)
+        dir_to_cpp_signals = os.path.join(dir_to_cpp_signals, 'ReferencyjneDane', str(package_number))
+        filename = os.path.join(dir_to_cpp_signals, filename)
         with open(filename, "r") as ins:
             qrs_data_list = [QRSData([float(x) for x in line.split()]) for line in ins]
             

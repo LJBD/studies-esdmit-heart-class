@@ -1,14 +1,15 @@
+using Gadfly
+include("GetQRSFromFile.jl")
+include("ConvertToNormalizedQRSComplexesWithId.jl")
+#include("dummyGmeans.jl")
+include("gmeans.jl")
+include("SVMClassifier\\SVMClassifier.jl")
+
 function DataClassifierForPackage(dataId, referenceModel)
-    if Pkg.installed("Gadfly") == nothing
-        Pkg.add("Gadfly")
-        Pkg.update()
-    end    
-    using Gadfly
-    include("GetQRSFromFile.jl")
-    include("ConvertToNormalizedQRSComplexesWithId.jl")
-    #include("dummyGmeans.jl")
-    include("gmeans.jl")
-    include("SVMClassifier\\SVMClassifier.jl")
+    #if Pkg.installed("Gadfly") == nothing
+    #    Pkg.add("Gadfly")
+    #    Pkg.update()
+    #end    
     #GetNormalizedDataFromFile
     
 
