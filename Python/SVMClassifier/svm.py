@@ -255,7 +255,6 @@ def svm_predict(model, x):
             vote.append(0)
 
         p = 0
-        cnt = 0
         for i in range(0, nr_class):
             for j in range(i + 1, nr_class):
                 sum = 0

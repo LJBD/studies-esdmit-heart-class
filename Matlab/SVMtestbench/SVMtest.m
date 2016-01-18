@@ -1,4 +1,4 @@
-path('libsvm-windows-dlls/', path); 
+path('../libsvm-windows-dlls/', path); 
 
 X = [];
 Y = [];
@@ -43,6 +43,7 @@ axis([-7,7,-7,7]);
 
 %% train
 gamma = 5 / size(X,2);
+
 model = svmtrain(Ytrain, Xtrain, ['-s 0 -c 5 -t 2 -g ', num2str(gamma)]);
 
 %% Test
