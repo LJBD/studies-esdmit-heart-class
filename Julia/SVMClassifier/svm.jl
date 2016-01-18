@@ -101,7 +101,7 @@ function read_model_header(fp, model::svm_model)
       end
     elseif(cmd == "degree")
       cmd = GetNextWord(fp)
-      model.param.degree = Int(cmd)
+      model.param.degree = int(cmd)
 
     elseif(cmd == "gamma")
       cmd = GetNextWord(fp)
@@ -113,11 +113,11 @@ function read_model_header(fp, model::svm_model)
 
     elseif(cmd == "nr_class")
       cmd = GetNextWord(fp)
-      model.nr_class = parse(Int, cmd)
+      model.nr_class = int(cmd)
 
     elseif(cmd == "total_sv")
       cmd = GetNextWord(fp)
-      model.l = parse(Int, cmd)
+      model.l = int(cmd)
 
     elseif(cmd == "rho")
       n = model.nr_class*(model.nr_class-1)/2
@@ -130,7 +130,7 @@ function read_model_header(fp, model::svm_model)
       n = model.nr_class
       for i=1:n
         cmd = GetNextWord(fp)
-        push!(model.label, parse(Int, cmd))
+        push!(model.label, int(cmd))
       end
 
     elseif(cmd == "probA")
@@ -148,9 +148,9 @@ function read_model_header(fp, model::svm_model)
       end
 
     elseif(cmd == "nr_sv")
-      for i = 1:Int(model.nr_class)
+      for i = 1:int(model.nr_class)
         cmd = GetNextWord(fp)
-        push!(model.nSV, parse(Int,cmd))
+        push!(model.nSV, int(cmd))
       end
 
     elseif(cmd=="SV")
@@ -194,17 +194,9 @@ function svm_load_model(file_name::ASCIIString)
   seek(fp, pos)
 
   m = model.nr_class - 1
-  l = model.l# - 1
+  l = model.l
 
-  line = readline(fp)
-  p = split(line, ' ')
-  max = 0
-  for i = 1:length(p)
-      if contains(p[i],":")
-        max = i-3
-      end
-  end
-  seek(fp, pos)
+  max = 16
 
   model.sv_coef = fill(float(0), (m,l))
   model.SV = fill(float(0), (l+1,max))
@@ -217,9 +209,9 @@ function svm_load_model(file_name::ASCIIString)
       model.sv_coef[k,i] = round(float(p[k]), 6)
     end
 
-    for j = m+1:max+3
+    for j = m+1:max+m
       k = split(p[j],':')
-      idx = parse(Int, k[1])
+      idx = int(k[1])
       val = float(k[2])
       model.SV[i, j - m] = val
     end

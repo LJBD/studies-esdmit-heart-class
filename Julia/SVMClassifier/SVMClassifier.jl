@@ -51,11 +51,10 @@ function predict(svm, qrs_complexes)
   for i = 1:length(qrs_complexes)
     ##-- Convert data
     x = createSvmVector(qrs_complexes[i])
-    #Tylko w celach testowych - wektory wziete ze zbioru wektorow nosnych
-    #x = TESTcreateSvmVector(svm.model.SV[svm.model.nSV[1]+i-5, :])
     ##-- Classify
-    class_id = Int(svm_predict(svm.model, x))
+    class_id = int(svm_predict(svm.model, x))
     ##-- Save results
     qrs_complexes[i].class_id = class_id
+    println(class_id)
   end
 end

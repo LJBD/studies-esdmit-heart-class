@@ -47,11 +47,11 @@ include("QRSData.jl")
   ###########################################################
 
 
-  #Read model
-  #file_name = "C:\\Users\\user\\Desktop\\JunoWorkspace\\model_copy"
-  file_name = string(pwd(),"\\model_copy")
+
   svm = SVMClassifier()
-  svm.model = loadSvmModel(file_name)
+
+  #Read model
+  svm.model = loadSvmModel("..\\..\\SVM_models\\model111")
 
   #Random data
   qrs_vector  = createRandomQRSVector(10)
