@@ -6,15 +6,16 @@ function DataClassifierForPackage(dataId, referenceModel)
     using Gadfly
     include("GetQRSFromFile.jl")
     include("ConvertToNormalizedQRSComplexesWithId.jl")
-    include("dummyGmeans.jl")
+    #include("dummyGmeans.jl")
+    include("gmeans.jl")
     include("SVMClassifier\\SVMClassifier.jl")
     #GetNormalizedDataFromFile
     
 
     #TODO TemporaryDate until modulw will be completed
-    dataId = 101
-    path = string(pwd(),"\\SVMClassifier\\model_copy")
-    referenceModel = loadSvmModel("D:\\repo_heart\\Julia\\SVMClassifier\\model_copy") #TODO Have problems in svm.jl line 197
+    #dataId = 101
+    #path = string(dirname(pwd()),"\\SVM_models\\model101")
+    #referenceModel = loadSvmModel(path) #TODO Have problems in svm.jl line 197
     #
     
     folder = string(dataId)
