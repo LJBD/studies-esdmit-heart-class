@@ -42,4 +42,3 @@ class SVMClassifier:
             class_id = int(svm_predict(self.model, x))
             # Save results
             qrs_complexes[i].class_id = class_id
-            print (class_id)
