@@ -2,7 +2,7 @@ import logging
 import numpy
 from scipy.cluster.vq import kmeans2
 from QRSData import QRSData
-from anderson_darling_test import AndersonDarlingTest
+from GMeans import anderson_darling_test
 
 
 class GMeans(object):
@@ -85,7 +85,7 @@ class GMeans(object):
 
     def anderson_darling_test(self, data, alpha=0.0001):
         self.logger.debug("In anderson_darling_test")
-        return AndersonDarlingTest(data, alpha)
+        return anderson_darling_test.AndersonDarlingTest(data, alpha)
 
     def run_test(self, centroid, data_for_centroid, alpha=0.0001):
         self.logger.debug("In run_test")
