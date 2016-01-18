@@ -10,9 +10,9 @@ from SVMClassifier.SVMClassifier import SVMClassifier
 
 
 class HeartBeatClassifier(object):
-    def __init__(self):
+    def __init__(self, modelname):
         self.svm_classifier = SVMClassifier()
-        self.svm_classifier.loadSvmModel("..\\SVM_models\\model111")
+        self.svm_classifier.loadSvmModel("..\\SVM_models\\"+modelname)
         self.g_means = gm.GMeans()
 
     def classify(self, package_number=101):
@@ -93,13 +93,21 @@ class HeartBeatClassifier(object):
 
 
 def main():
-    hbc = HeartBeatClassifier()
-    t1 = datetime.datetime.now()
-    hbc.classify()
-    t2 = datetime.datetime.now()
-    exec_time = (t2 - t1).total_seconds()
-    print('EXECUTION TIME: ', exec_time)
-    # hbc.run()
+    fid = open('log', 'a')
+    fid.write(str(datetime.datetime.now()))
+    fid.write('\n----------------------------------\n')
+    packages = [101, 201, 117] ##TODO: W tej kolejnosci nie dziala: "data_for_centroid[data_index] = self.qrs_data[data_index] IndexError: index 1677 is out of bounds for axis 0 with size 1677"
+
+    hbc = HeartBeatClassifier("model111")
+
+    for i in range(0, packages.__len__()):
+        t1 = datetime.datetime.now()
+        hbc.classify(packages[i])
+        t2 = datetime.datetime.now()
+        exec_time = (t2 - t1).total_seconds()
+        fid.write('Package: ' + str(packages[i]) + ', execution time: ' + str(exec_time) + '\n')
+    #hbc.run()
+    fid.close()
 
 if __name__ == '__main__':
     main()
