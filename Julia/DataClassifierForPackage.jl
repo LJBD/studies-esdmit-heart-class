@@ -38,9 +38,8 @@ function DataClassifierForPackage(dataId, referenceModel)
     end
     
     # Grouping TODO
-    centroids, lablesOrdered = Gmeans(X)
-
-    p = plot(x=c_idx, Geom.histogram(bincount=numberOfGroups), Guide.title("Liczba wektorów cech w poszczególnych klastrach"))
+    lablesOrdered = Gmeans(X)
+    p = plot(x=lablesOrdered, Geom.histogram(bincount=size(lablesOrdered,1)), Guide.title("Liczba wektorów cech w poszczególnych klastrach"))
 
     svm = SVMClassifier()
     svm.model = referenceModel
