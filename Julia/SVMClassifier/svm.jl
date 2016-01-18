@@ -101,7 +101,7 @@ function read_model_header(fp, model::svm_model)
       end
     elseif(cmd == "degree")
       cmd = GetNextWord(fp)
-      model.param.degree = int(cmd)
+      model.param.degree = parse(Int,cmd)
 
     elseif(cmd == "gamma")
       cmd = GetNextWord(fp)
@@ -113,11 +113,11 @@ function read_model_header(fp, model::svm_model)
 
     elseif(cmd == "nr_class")
       cmd = GetNextWord(fp)
-      model.nr_class = int(cmd)
+      model.nr_class = parse(Int,cmd)
 
     elseif(cmd == "total_sv")
       cmd = GetNextWord(fp)
-      model.l = int(cmd)
+      model.l = parse(Int,cmd)
 
     elseif(cmd == "rho")
       n = model.nr_class*(model.nr_class-1)/2
@@ -130,7 +130,7 @@ function read_model_header(fp, model::svm_model)
       n = model.nr_class
       for i=1:n
         cmd = GetNextWord(fp)
-        push!(model.label, int(cmd))
+        push!(model.label, parse(Int,cmd))
       end
 
     elseif(cmd == "probA")
@@ -148,9 +148,9 @@ function read_model_header(fp, model::svm_model)
       end
 
     elseif(cmd == "nr_sv")
-      for i = 1:int(model.nr_class)
+      for i = 1:Int(model.nr_class)
         cmd = GetNextWord(fp)
-        push!(model.nSV, int(cmd))
+        push!(model.nSV, parse(Int,cmd))
       end
 
     elseif(cmd=="SV")
@@ -211,7 +211,7 @@ function svm_load_model(file_name::ASCIIString)
 
     for j = m+1:max+m
       k = split(p[j],':')
-      idx = int(k[1])
+      idx = parse(Int,k[1])
       val = float(k[2])
       model.SV[i, j - m] = val
     end
