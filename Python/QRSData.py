@@ -68,9 +68,9 @@ class QRSData(object):
         + " t_end_val " + str(self.t_end_val)
 
     def to_ndarray(self):
-        output_array = numpy.zeros(18)
-        output_array[0] = self.r_peak
-        output_array[1] = self.r_peak_value
+        output_array = numpy.zeros(16)
+        # output_array[0] = self.r_peak
+        # output_array[1] = self.r_peak_value
         output_array[2] = self.rr_pre_interval
         output_array[3] = self.rr_post_interval
         output_array[4] = self.p_onset
