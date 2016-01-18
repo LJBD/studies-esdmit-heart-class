@@ -29,6 +29,7 @@ class GMeans(object):
                             are indices of clusters to which the data point belongs
         :rtype: (numpy.ndarray, numpy.ndarray)
         """
+        self.labels_dict = {}
         self.logger.debug('In clusterData')
         self.logger.info('Started G-means algorithm. Parameters: max_k = %f, alpha = %f' % (max_k, alpha))
         self.qrs_data = self.qrs_conversion(qrs_complexes)

@@ -18,8 +18,8 @@ class HeartBeatClassifier(object):
     def classify(self, package_number=101):
         # number_of_clusters = 2
         normalized_data = self.getQrsComplexDataFromFile(package_number, 'ConvertedQRSRawData.txt')
-        print('TEST OF IMPORT:', normalized_data[0])
-        print('TEST OF TO_NDARRAY CONVERSION:', normalized_data[0].to_ndarray())
+        # print('TEST OF IMPORT:', normalized_data[0])
+        # print('TEST OF TO_NDARRAY CONVERSION:', normalized_data[0].to_ndarray())
 
         centroids, labels_dict = self.g_means.cluster_data(normalized_data)
         self.update_data_list(normalized_data, labels_dict)
@@ -96,7 +96,7 @@ def main():
     fid = open('log', 'a')
     fid.write(str(datetime.datetime.now()))
     fid.write('\n----------------------------------\n')
-    packages = [101, 201, 117] ##TODO: W tej kolejnosci nie dziala: "data_for_centroid[data_index] = self.qrs_data[data_index] IndexError: index 1677 is out of bounds for axis 0 with size 1677"
+    packages = [100, 101, 102, 201, 117]
 
     hbc = HeartBeatClassifier("model111")
 
@@ -106,7 +106,6 @@ def main():
         t2 = datetime.datetime.now()
         exec_time = (t2 - t1).total_seconds()
         fid.write('Package: ' + str(packages[i]) + ', execution time: ' + str(exec_time) + '\n')
-    #hbc.run()
     fid.close()
 
 if __name__ == '__main__':
