@@ -31,7 +31,10 @@ def adstatistic(X):
         j = i+1
         p = stats.norm.cdf(y)
         q = 1 - p
-        S += (j+j - 1)*log(p)+ (2 *(n-j)+1)* log(q)
+        try:
+            S += (j+j - 1)*log(p)+ (2 *(n-j)+1)* log(q)
+        except ValueError:
+            print('VALUE ERROR: y = %f, p = %f, q = %f' % (y, p, q))
     A2 -= S/n
 
     A2 *= (1.0 + 4.0/n - 25.0/n**2)
@@ -48,8 +51,8 @@ def AndersonDarlingTest(X, alpha=0.0001):
                 teststat = adstatistic(X)
                 # print('Anderson-Darling test stat: %s, crit: %s' % (teststat, crit))
                 return teststat < crit
-    except:
-        raise Exception("Significance level not in range")
+    except IndexError:
+        raise Exception("Significance level not in range. Got %s as alpha, type of alpha: %s." % (alpha, alpha.__class__.__name__))
     return None
 
 
