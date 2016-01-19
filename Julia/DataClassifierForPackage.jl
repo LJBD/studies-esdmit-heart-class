@@ -1,7 +1,7 @@
 using Gadfly
 using Logging
 include("GetQRSFromFile.jl")
-include("ConvertToNormalizedQRSComplexesWithId.jl")
+include("NormalizeMatrix.jl")
 #include("dummyGmeans.jl")
 include("gmeans.jl")
 include("SVMClassifier\\SVMClassifier.jl")
@@ -27,15 +27,15 @@ function DataClassifierForPackage(dataId, referenceModel)
     formatSpec = (repmat([Float64], 18)) 
     QRSDataMatrix = GetQRSFromFile(QRSDataPath, formatSpec)
     QRSClassIdVector = GetQRSFromFile(QRSClassIdPath, Float64);
-    normalizedQRSComplexes = ConvertToNormalizedQRSComplexesWithId(QRSDataMatrix, QRSClassIdVector);
+    normalizedQRSComplexes = NormalizeMatrix(QRSDataMatrix);
 
     
     debug("Creating Y, X matrixes")
     Y = QRSClassIdVector
-    X = normalizedQRSComplexes[2:19,:]
+    X = normalizedQRSComplexes[:,:]
     qrs_vector = QRS_DATA[]
     for i = 1: size(normalizedQRSComplexes,2)
-        push!(qrs_vector, QRS_DATA(normalizedQRSComplexes[2:19,i]))
+        push!(qrs_vector, QRS_DATA(normalizedQRSComplexes[:,i]))
     end
     info(string("Created necessary matrixes, and vector: X size: ", size(X), " Y size: ", size(Y), "qrsVector size: ", size(qrs_vector)))
     # Grouping TODO
