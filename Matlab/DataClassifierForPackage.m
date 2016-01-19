@@ -13,7 +13,6 @@ QRSClassIdVector = GetQRSFromFile(QRSClassIdPath, '%f', [inf]);
 normalizedQRSComplexes = ConvertToNormalizedQRSComplexesWithId(QRSDataMatrix, QRSClassIdVector);
 
 % % create matrix of featrures X and vector of corresponding labels Y
-[X,Y] = getFeaturesMatrixAndLabelsVector(normalizedQRSComplexes);
 Y = zeros(length(normalizedQRSComplexes),1);
 
 X = zeros(length(normalizedQRSComplexes),16);
@@ -30,7 +29,12 @@ K = size(C,1);
 for i = 1:length(groups)
     c_idx = [c_idx;i *ones(size(groups{i},1),1)];
 end
-
+fp = fopen( 'Ciszq', 'w' );
+for i =1 : length(c_idx)
+    fprintf( fp, num2str(c_idx(i)));
+    fprintf( fp, '\n');
+end
+fclose(fp);
 if displayResults
     % Show results
     figure(1);
