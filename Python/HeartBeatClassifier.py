@@ -22,8 +22,11 @@ class HeartBeatClassifier(object):
         # print('TEST OF TO_NDARRAY CONVERSION:', normalized_data[0].to_ndarray())
 
         centroids, labels_dict = self.g_means.cluster_data(normalized_data)
+        K = max(labels_dict.values()) + 1
         self.update_data_list(normalized_data, labels_dict)
         self.svm_classifier.predict(normalized_data)
+
+        return K
 
     @staticmethod
     def update_data_list(data_list, labels_dict):
@@ -94,20 +97,24 @@ class HeartBeatClassifier(object):
 
 def main():
     fid = open('log', 'a')
+    fid.write('\n\n')
     fid.write(str(datetime.datetime.now()))
     fid.write('\n----------------------------------\n')
-    packages = [117, 119, 121, 122, 123, 124, 200, 201, 202, 203, 205, 208, 209, 221, 222,
-                223, 230, 231, 232, 233, 234]
+    fid.write('Package\tTime\t\t\tClusters\n')
+
+    #packages = [100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 111, 112, 113, 114, 115, 116, 117, 119, 121, 122, 123, 124, 200, 201, 202, 203, 205, 208, 209, 210, 212, 213, 214, 215, 217, 219, 220, 221, 222, 223, 230, 231, 232, 233, 234];
+    #packages = [210, 212, 213, 214, 215, 217, 219, 220]
+    packages = [100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 111, 112, 113, 114, 115, 116, 117, 119, 121, 122, 123, 124, 200, 201, 202, 203, 205, 208, 209, 221, 222, 223, 230, 231, 232, 233, 234];
 
     hbc = HeartBeatClassifier("model111")
 
     for i in range(0, len(packages)):
         print('PROCESSING PACKAGE %s' % packages[i])
         t1 = datetime.datetime.now()
-        hbc.classify(packages[i])
+        K = hbc.classify(packages[i])
         t2 = datetime.datetime.now()
         exec_time = (t2 - t1).total_seconds()
-        fid.write('Package: ' + str(packages[i]) + ', execution time: ' + str(exec_time) + '\n')
+        fid.write(str(packages[i]) + '\t\t' + str(exec_time) + '\t\t'+str(K) +'\n')
     fid.close()
 
 if __name__ == '__main__':
