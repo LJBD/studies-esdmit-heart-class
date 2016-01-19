@@ -10,7 +10,7 @@ dataId = [100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 111, 112, 113, 114, 
 
 path = string(dirname(pwd()),"/SVM_models/model101")
 include("DataClassifierForPackage.jl")
-referenceModel = loadSvmModel(path) #TODO Have problems in svm.jl line 197
+referenceModel = loadSvmModel(path)
 
 fid = open("log", "a")
 write(fid, "\n\n")
@@ -19,7 +19,7 @@ write(fid, "\n--------------------------------------\n")
 write(fid, "Package\tTime\t\t\tClusters\n")
 for i = 1:length(dataId)
   tic()
-  classId, K = DataClassifierForPackage(dataId[i], referenceModel)
+  K = DataClassifierForPackage(dataId[i], referenceModel)
   time = toc()
   write(fid, string(dataId[i]), "\t\t", string(time),"\t",string(length(K)),"\n")
 end
