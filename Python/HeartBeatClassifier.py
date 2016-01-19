@@ -12,7 +12,7 @@ from SVMClassifier.SVMClassifier import SVMClassifier
 class HeartBeatClassifier(object):
     def __init__(self, modelname):
         self.svm_classifier = SVMClassifier()
-        self.svm_classifier.loadSvmModel("..\\SVM_models\\"+modelname)
+        self.svm_classifier.loadSvmModel("../SVM_models/"+modelname)
         self.g_means = gm.GMeans()
 
     def classify(self, package_number=101):
@@ -42,7 +42,7 @@ class HeartBeatClassifier(object):
         
     def getQrsComplexDataFromFile(self, package_number, filename):
         dir_to_cpp_signals = os.path.dirname(os.path.dirname(__file__))
-        dir_to_cpp_signals = os.path.join(dir_to_cpp_signals, 'ReferencyjneDane', str(package_number))
+        dir_to_cpp_signals = os.path.join('..', 'ReferencyjneDane', str(package_number))
         filename = os.path.join(dir_to_cpp_signals, filename)
         with open(filename, "r") as ins:
             qrs_data_list = [QRSData([float(x) for x in line.split()]) for line in ins]
@@ -96,11 +96,13 @@ def main():
     fid = open('log', 'a')
     fid.write(str(datetime.datetime.now()))
     fid.write('\n----------------------------------\n')
-    packages = [100, 101, 102, 201, 117]
+    packages = [117, 119, 121, 122, 123, 124, 200, 201, 202, 203, 205, 208, 209, 221, 222,
+                223, 230, 231, 232, 233, 234]
 
     hbc = HeartBeatClassifier("model111")
 
-    for i in range(0, packages.__len__()):
+    for i in range(0, len(packages)):
+        print('PROCESSING PACKAGE %s' % packages[i])
         t1 = datetime.datetime.now()
         hbc.classify(packages[i])
         t2 = datetime.datetime.now()
