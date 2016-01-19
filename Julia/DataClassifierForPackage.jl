@@ -1,4 +1,4 @@
-using Gadfly
+﻿using Gadfly
 using Logging
 include("GetQRSFromFile.jl")
 include("NormalizeMatrix.jl")
@@ -23,10 +23,10 @@ function DataClassifierForPackage(dataId, referenceModel)
     folder = string(dataId)
     directory = dirname(pwd())
     QRSDataPath = joinpath(directory, "ReferencyjneDane", folder, "ConvertedQRSRawData.txt")
-    #QRSClassIdPath = joinpath(directory, "ReferencyjneDane" , folder , "Class_IDs.txt")
+    QRSClassIdPath = joinpath(directory, "ReferencyjneDane" , folder , "Class_IDs.txt")
     formatSpec = (repmat([Float64], 18))
     QRSDataMatrix = GetQRSFromFile(QRSDataPath, formatSpec)
-    QRSClassIdVector = ones(size(QRSDataMatrix,1)) #GetQRSFromFile(QRSClassIdPath, Float64);
+    QRSClassIdVector = GetQRSFromFile(QRSClassIdPath, Float64); #ones(size(QRSDataMatrix,1))
     normalizedQRSComplexes = NormalizeMatrix(QRSDataMatrix);
 
 
