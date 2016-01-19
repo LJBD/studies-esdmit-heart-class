@@ -23,6 +23,7 @@ class GMeans(object):
         self.centroids = None
         self.k = 0
         self.centroids_to_be_deleted = []
+        self.k_was_the_same = False
 
     def cluster_data(self, qrs_complexes, max_k=50, alpha=0.0001):
         """
@@ -35,11 +36,12 @@ class GMeans(object):
                             are indices of clusters to which the data point belongs
         :rtype: (numpy.ndarray, numpy.ndarray)
         """
-        self.labels_dict = {}
         self.logger.debug('In clusterData')
         self.logger.info('Started G-means algorithm. Parameters: max_k = %f, alpha = %f' % (max_k, alpha))
+        self.labels_dict = {}
+        self.k_was_the_same = False
         self.qrs_data = self.qrs_conversion(qrs_complexes)
-        self.logger.info('Example part of input data: %s' % self.qrs_data[:2])
+        # self.logger.info('Example part of input data: %s' % self.qrs_data[:2])
         initial_centroid = self.calculate_mean(self.qrs_data)
         self.centroids = numpy.array([initial_centroid])
         self.k = len(self.centroids)
@@ -71,6 +73,12 @@ class GMeans(object):
                         self.update_after_centroid_addition(centroid_index, data_for_centroid, new_centroids,
                                                             new_labels_for_data)
             self.delete_centroids_with_no_data()
+            if self.k == len(self.centroids):
+                if self.k_was_the_same:
+                    self.logger.debug('K was the same during the 2 last iterations. Aborting the execution!')
+                    break
+                else:
+                    self.k_was_the_same = True
             self.k = len(self.centroids)
             if added_to_centroids_flag is False:
                 break
