@@ -62,7 +62,7 @@
 
 Tabela \ref{tabResults_gmeans} przedstawia wyniki działania algorytmu G-średnich w postaci liczby znalezionych klastrów dla każdej paczki danych. Co prosto zauważyć, kolumny dla języków Python i Julia są takie same (przyczyna jest przedstawiona w podrozdziale \ref{sub:klu_asp} Dodatku A). Wyniki otrzymane przy użyciu gotowej implementacji w języku Matlab znacząco się różnią. Jest to spowodowane innym sposobem obliczania wartości krytycznej testu Andersona - Darlinga.
 
-W języku Matlab jest ona bezpośrednio zależna od ilości wektorów cech, które algorytm ma przetworzyć. Konkretna zależność to: $|X| * 0.0005$, gdzie $|X|$ to liczność zbioru danych. Z kolei dla implementacji w języku Python został zastosowany polecany przez twórców algorytmu poziom czułości $\alpha = 0.0001$ i odpowiadająca mu wartość krytyczna $v_{kryt} = 1.8692$. Korzystając z formuły użytej w języku Matlab otrzymuje się znacznie mniejsze dopuszczalne wartości, co zwykle skutkuje zdecydowanie większą liczbą klastrów.
+W języku Matlab jest ona bezpośrednio zależna od ilości wektorów cech, które algorytm ma przetworzyć. Konkretna zależność to: $|X| * 0.0005$, gdzie $|X|$ to liczność zbioru danych. Z kolei dla implementacji w języku Python został zastosowany polecany przez twórców algorytmu poziom czułości $\alpha = 0.0001$ i odpowiadająca mu wartość krytyczna $v_{kryt} = 1.8692$. Korzystając z formuły użytej w języku Matlab otrzymuje się znacznie mniejsze dopuszczalne wartości, co zwykle skutkuje zdecydowanie większą liczbą klastrów. Nie udało się natomiast uzasadnić występowania tylko jednego klastra w niektórych przypadkach.
 
 
 \subsection{Funkcjonowanie algorytmu SVM}
