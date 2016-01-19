@@ -39,7 +39,7 @@ class GMeans(object):
         self.logger.debug('In clusterData')
         self.logger.info('Started G-means algorithm. Parameters: max_k = %f, alpha = %f' % (max_k, alpha))
         self.qrs_data = self.qrs_conversion(qrs_complexes)
-        self.logger.debug('Example part of input data: %s' % self.qrs_data[:2])
+        self.logger.info('Example part of input data: %s' % self.qrs_data[:2])
         initial_centroid = self.calculate_mean(self.qrs_data)
         self.centroids = numpy.array([initial_centroid])
         self.k = len(self.centroids)
