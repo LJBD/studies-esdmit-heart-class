@@ -7,7 +7,7 @@ Pomiary czasu wykonywania programów napisanych w poszczególnych językach dla 
 	\centering
 	\caption{Czasy wykonywania programu w poszczególnych językach dla różnych paczek danych. Wyniki wyrażone w sekundach}
 	\label{tabResults}
-	\begin{longtable}{|c|c|c|c|c|}
+	\begin{tabular}{|c|c|c|c|c|}
 		\hline
 		Nr paczki z MIT-BIH & C++ & Matlab & Python & Julia\\ \hline		
 		100 & & 1.9523 & 12.815439 & 5.901852174\\ \hline
@@ -47,7 +47,54 @@ Pomiary czasu wykonywania programów napisanych w poszczególnych językach dla 
 		232 & & 1.3707 & 10.32135  & 2.354562975\\ \hline
 		233 & & 2.5759 & 15.583746 & 3.477575961\\ \hline
 		234 & & 3.6223 & 16.492193 & 3.583639883\\ \hline
-	\end{longtable}
+	\end{tabular}
+\end{table}
+
+\begin{table}[!tp]
+	\centering
+	\caption{Liczby klas wyliczonych przez G-means}
+	\label{tabResults2}
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		Nr paczki z MIT-BIH & Matlab & Python & Julia\\ \hline		
+		100 & 16 &  & \\ \hline
+		101 & 14 &  & \\ \hline
+		102 & 14 &  & \\ \hline
+		103 & 27 &  & \\ \hline
+		104 & 29 &  & \\ \hline
+		105 &  1 &  & \\ \hline
+		106 & 35 &  & \\ \hline
+		107 & 31 &  & \\ \hline
+		108 & 32 &  & \\ \hline
+		109 &  1 &  & \\ \hline
+		111 & 22 &  & \\ \hline
+		112 & 15 &  & \\ \hline
+		113 & 13 &  & \\ \hline
+		114 &  1 &  & \\ \hline
+		115 & 15 &  & \\ \hline
+		116 &  1 &  & \\ \hline
+		117 & 23 &  & \\ \hline
+		119 & 33 &  & \\ \hline
+		121 & 27 &  & \\ \hline
+		122 & 29 &  & \\ \hline
+		123 &  1 &  & \\ \hline
+		124 & 30 &  & \\ \hline
+		200 & 32 &  & \\ \hline
+		201 & 56 &  & \\ \hline
+		202 & 29 &  & \\ \hline
+		203 &  1 &  & \\ \hline
+		205 &  1 &  & \\ \hline
+		208 & 36 &  & \\ \hline
+		209 & 21 &  & \\ \hline
+		221 & 33 &  & \\ \hline
+		222 &  1 &  & \\ \hline
+		223 &  1 &  & \\ \hline
+		230 & 15 &  & \\ \hline
+		231 & 39 &  & \\ \hline
+		232 & 28 &  & \\ \hline
+		233 & 42 &  & \\ \hline
+		234 & 27 &  & \\ \hline
+	\end{tabular}
 \end{table}
 
 Krótki czas wykonywania programu napisanego w Matlabie wynika głównie z wykorzystania biblioteki libsvm \cite{csie}, która jest napisana w C. Dla pozostałych języków zaimplementowano maszynę wektorów nośnych w oparciu o pliki źródłowe wspomnianej biblioteki.
