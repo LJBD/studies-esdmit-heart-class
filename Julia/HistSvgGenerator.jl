@@ -9,6 +9,6 @@ for i = 1:length(dataId)
     QRSClassIdVector = GetQRSFromFile(QRSClassIdPath, Float64);
     QRSClassIdVectorSorted = sort(union(QRSClassIdVector))
     clusterElements = counts(round(Int64,QRSClassIdVector), int(QRSClassIdVectorSorted[end]))
-    p = plot(x=clusterElements, Geom.histogram(bincount=size(clusterElements,1)))
+    p = plot(y = clusterElements)
     draw(SVG(string(dataId[i],".svg"), 4inch, 3inch), p)
 end
