@@ -114,6 +114,7 @@ W zdefiniowanym wzorami (\ref{eq:SVMOptProb}) oraz (\ref{eq:SVMOptProbCond}) pro
 	\item Sigmoida: $K\left(x_i,y_j\right)=\tanh{\left(\gamma x_i^Tx_j+r\right)}$
 \end{enumerate}
 
-W opisywanym module wykorzystana została funkcja RBF (ang. Radial Basis Function).
+W opisywanym module wykorzystana została funkcja RBF (ang. Radial Basis Function). 
+\newline
 
 Aby klasyfikator mógł działać wcześniej należy go wytrenować. Polega to na podaniu mu ciągu wektorów uczących. Opisywany klasyfikator został wytrenowany za pomocą bazy danych MIT-BIH Arrhythmia Database \cite{MITDB}. Gotowy model klasyfikatora wczytywany jest z pliku, w którym zapisane są różne parametry oraz zestaw wektorów nośnych, na których opiera się działanie metody SVM.

@@ -1,5 +1,77 @@
 \section{Rezultaty i wnioski}
 
+
+Pomiary czasu wykonywania programów napisanych w poszczególnych językach dla różnych paczek danych z bazy MIT-BIH zostały przedstawione w Tab.\ref{tabResults}.
+
+\begin{table}[!tp]
+	\centering
+	\caption{Czasy wykonywania programu w poszczególnych językach dla różnych paczek danych. Wyniki wyrażone w sekundach}
+	\label{tabResults}
+	\begin{longtable}{|c|c|c|c|c|}
+		\hline
+		Nr paczki z MIT-BIH & C++ & Matlab & Python & Julia\\ \hline		
+		100 & & 1.9523 & 12.815439 & \\ \hline
+		101 & & 1.4195 & 10.492137 & \\ \hline
+		102 & & 1.2609 & 12.242185 & \\ \hline
+		103 & & 2.3951 & 11.708208 & \\ \hline
+		104 & & 1.6457 & 11.895952 & \\ \hline
+		105 & & 1.3186 & 14.702323 & \\ \hline
+		106 & & 1.8217 & 10.365989 & \\ \hline
+		107 & & 1.5331 &  9.988119 & \\ \hline
+		108 & & 1.7391 &  8.503747 & \\ \hline
+		109 & & 1.2506 & 13.910034 & \\ \hline
+		111 & & 1.8369 & 11.575133 & \\ \hline
+		112 & & 2.2931 & 14.707609 & \\ \hline
+		113 & & 1.2857 & 10.2796   & \\ \hline
+		114 & & 0.5056 &  5.547578 & \\ \hline
+		115 & & 1.2325 & 11.059755 & \\ \hline
+		116 & & 1.242  & 13.344349 & \\ \hline
+		117 & & 1.506  &  8.462129 & \\ \hline
+		119 & & 1.5771 & 10.99204  & \\ \hline
+		121 & & 2.0902 & 10.279925 & \\ \hline
+		122 & & 2.0928 & 14.211312 & \\ \hline
+		123 & & 0.7942 &  8.39699  & \\ \hline
+		124 & & 1.6778 &  8.137572 & \\ \hline
+		200 & & 1.8849 & 11.517102 & \\ \hline
+		201 & & 1.8963 &  9.249272 & \\ \hline
+		202 & & 2.132  & 13.789148 & \\ \hline
+		203 & & 1.2565 & 14.579523 & \\ \hline
+		205 & & 1.3475 & 15.066897 & \\ \hline
+		208 & & 2.4411 & 15.573072 & \\ \hline
+		209 & & 2.139  & 17.397029 & \\ \hline
+		221 & & 1.7631 & 13.708571 & \\ \hline
+		222 & & 1.2655 & 14.3837   & \\ \hline
+		223 & & 1.2356 & 13.731657 & \\ \hline
+		230 & & 1.8286 & 14.19151  & \\ \hline
+		231 & & 1.4458 &  8.698872 & \\ \hline
+		232 & & 1.3707 & 10.32135  & \\ \hline
+		233 & & 2.5759 & 15.583746 & \\ \hline
+		234 & & 3.6223 & 16.492193 & \\ \hline
+	\end{longtable}
+\end{table}
+
+Krótki czas wykonywania programu napisanego w Matlabie wynika głównie z wykorzystania biblioteki libsvm \cite{csie}, która jest napisana w C. Dla pozostałych języków zaimplementowano maszynę wektorów nośnych w oparciu o pliki źródłowe wspomnianej biblioteki.
+
+Wykorzystanie metody SVM z szesnastoelementowym wektorem cech wydaje się złym rozwiązaniem, gdyż niemal zawsze wektor klasyfikowany jest do jednej klasy - patrz Rys.\ref{fig:hist1}. Poza zbyt licznym wektorem cech wpływ na to ma również fakt, że około 90\% zespołów QRS z bazy MIT-BIH reprezentują pobudzenia nadkomorowe. Rozwiązaniem problemu klasyfikacji może okazać się odpowiednie zmniejszenie liczności wykorzystywanego wektora cech.
+
+Przeprowadzono również testy, w których SVM korzystał z różnych modeli (wygenerowanych z różnych paczek danych). Zaobserwowano, że normalizacja wektorów uczących znacznie przyspiesza proces uczenia, czego potwierdzeniem jest Rys.\ref{fig:SVM}.
+
+\begin{figure}[!htp]
+	\centering
+	\includegraphics[width=15cm]{Grafika/101_2_3}
+	\caption{Histogramy klasyfikacji zespołów dla paczki danych o numerze 101}
+	\label{fig:hist1}
+\end{figure}
+
+\begin{figure}[!htp]
+	\centering
+	\includegraphics[width=16cm]{Grafika/SVMTrain}
+	\caption{Wpływ normalizacji na czas nauki SVM}
+	\label{fig:TrainNormSVM}
+\end{figure}
+
+<Coś o gmeans - że w C++ nie było, a tutaj jest>
+
 %\begin{table}[H]
 %\caption{Example table}
 %\centering
