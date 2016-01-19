@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.12.8)  19 JAN 2016 12:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.11.19)  19 JAN 2016 13:57
 entering extended mode
 **HeartClassReport.tex
 (HeartClassReport.tex
@@ -844,21 +844,21 @@ Underfull \hbox (badness 10000) in paragraph at lines 117--119
 Underfull \vbox (badness 10000) detected at line 31
  []
 
-<Grafika/101_2_3.png, id=163, 421.575pt x 316.18124pt>
+<Grafika/101_2_3.png, id=162, 421.575pt x 316.18124pt>
 File: Grafika/101_2_3.png Graphic file (type png)
 
 <use Grafika/101_2_3.png>
-Package pdftex.def Info: Grafika/101_2_3.png used on input line 62.
+Package pdftex.def Info: Grafika/101_2_3.png used on input line 61.
 (pdftex.def)             Requested size: 426.79134pt x 320.09798pt.
 
-<Grafika/SVMTrain.png, id=165, 793.46437pt x 469.00218pt>
+<Grafika/SVMTrain.png, id=163, 793.46437pt x 469.00218pt>
 File: Grafika/SVMTrain.png Graphic file (type png)
 
 <use Grafika/SVMTrain.png>
-Package pdftex.def Info: Grafika/SVMTrain.png used on input line 70.
+Package pdftex.def Info: Grafika/SVMTrain.png used on input line 68.
 (pdftex.def)             Requested size: 455.24408pt x 269.0945pt.
 
-Overfull \hbox (25.23946pt too wide) in paragraph at lines 70--71
+Overfull \hbox (25.23946pt too wide) in paragraph at lines 68--69
  [][] 
  []
 
@@ -886,7 +886,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 129.
  ) 
 Here is how much of TeX's memory you used:
  10702 strings out of 493673
- 159862 string characters out of 3141533
+ 159866 string characters out of 3141532
  397076 words of memory out of 3000000
  13516 multiletter control sequences out of 15000+200000
  66044 words of font info for 282 fonts, out of 3000000 for 9000
@@ -906,9 +906,9 @@ fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Program Files (x86)/MiKTeX 2
 .9/fonts/type1/urw/palatino/uplb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts
 /type1/urw/palatino/uplr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/u
 rw/palatino/uplri8a.pfb>
-Output written on HeartClassReport.pdf (11 pages, 364441 bytes).
+Output written on HeartClassReport.pdf (11 pages, 364018 bytes).
 PDF statistics:
- 293 PDF objects out of 1000 (max. 8388607)
+ 291 PDF objects out of 1000 (max. 8388607)
  69 named destinations out of 1000 (max. 500000)
  46682 words of extra memory for PDF output out of 51595 (max. 10000000)
 
