@@ -29,12 +29,7 @@ K = size(C,1);
 for i = 1:length(groups)
     c_idx = [c_idx;i *ones(size(groups{i},1),1)];
 end
-fp = fopen( 'Ciszq', 'w' );
-for i =1 : length(c_idx)
-    fprintf( fp, num2str(c_idx(i)));
-    fprintf( fp, '\n');
-end
-fclose(fp);
+
 if displayResults
     % Show results
     figure(1);
