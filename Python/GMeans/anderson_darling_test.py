@@ -34,7 +34,7 @@ def adstatistic(X):
         try:
             S += (j+j - 1)*log(p)+ (2 *(n-j)+1)* log(q)
         except ValueError:
-            print('VALUE ERROR: y = %f, p = %f, q = %f' % (y, p, q))
+            raise Exception('VALUE ERROR: y = %f, p = %f, q = %f' % (y, p, q))
     A2 -= S/n
 
     A2 *= (1.0 + 4.0/n - 25.0/n**2)

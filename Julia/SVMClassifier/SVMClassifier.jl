@@ -1,6 +1,6 @@
 include("svm.jl")
 include("QRSData.jl")
-
+using Logging
 
 type SVMClassifier
   model::svm_model
@@ -47,14 +47,14 @@ function TESTcreateSvmVector(SV)
 end
 
 function predict(svm, qrs_complexes)
-
+  info("Predicting in progress...")
   for i = 1:length(qrs_complexes)
     ##-- Convert data
+    debug(string("Creating svm vector for data with index: ", i))
     x = createSvmVector(qrs_complexes[i])
     ##-- Classify
     class_id = Int(svm_predict(svm.model, x))
     ##-- Save results
     qrs_complexes[i].class_id = class_id
-    println(class_id)
   end
 end

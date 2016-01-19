@@ -1,21 +1,27 @@
 ENV["PYTHONPATH"] = "../Python"
 using PyCall
+using Logging
 @pyimport QRSData as qrs
 @pyimport GMeans.anderson_darling_test as anderson_darling_test
 @pyimport GMeans.gmeans as gmeans_base
 
-function Gmeans(normalizedQRSComplexes)    
+function Gmeans(normalizedQRSComplexes)  
+    info("Starting Gmeans")
+    debug(normalizedQRSComplexes[:,1])
     qrs_vector =  qrs.QRSData(normalizedQRSComplexes[:,1])
     for i = 2: size(normalizedQRSComplexes,2)
         qrs_vector=[qrs_vector; qrs.QRSData(normalizedQRSComplexes[:,i])]
     end
-    qrs_vector
-    gMeans = gmeans_base.GMeans()
-    centroids, lables = gMeans[:cluster_data](qrs_vector)
+    debug("Converted QRS complexes to python QRS.")
+    gMeans = gmeans_base.GMeans("DEBUG")
+    centroids, labels = gMeans[:cluster_data](qrs_vector)
+    debug("Finished gmeans.")
+    info(string("Finished python gMeans centroids size: ", size(centroids), " labels size: ", length(labels)))
     c_idx = [];
-    numberOfGroups = length(lables)
+    numberOfGroups = length(labels)
     for i = 1:numberOfGroups
-        c_idx = [c_idx;lables[i-1]];
+        c_idx = [c_idx;labels[i-1]];
     end
+    debug("Converted labels dictionary to ordered array")
     return c_idx
 end
