@@ -5,11 +5,11 @@ path('libsvm-windows-dlls/', path);
 
 directory = fileparts(pwd);
 QRSDataPath = fullfile(directory, 'ReferencyjneDane' , folder , 'ConvertedQRSRawData.txt');
-%QRSClassIdPath = fullfile(directory, 'ReferencyjneDane' , folder , 'Class_IDs.txt');
+QRSClassIdPath = fullfile(directory, 'ReferencyjneDane' , folder , 'Class_IDs.txt');
 formatSpec = '%f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f';
 QRSSize = [18 inf];
 QRSDataMatrix = GetQRSFromFile(QRSDataPath, formatSpec, QRSSize);
-QRSClassIdVector = ones(size(QRSDataMatrix, 2)); %GetQRSFromFile(QRSClassIdPath, '%f', [inf]);
+QRSClassIdVector = GetQRSFromFile(QRSClassIdPath, '%f', [inf]);
 normalizedQRSComplexes = ConvertToNormalizedQRSComplexesWithId(QRSDataMatrix, QRSClassIdVector);
 
 % % create matrix of featrures X and vector of corresponding labels Y
