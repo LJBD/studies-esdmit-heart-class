@@ -11,7 +11,7 @@ license
 from scipy import stats
 from numpy import mean, var
 from math import sqrt, log
-from matplotlib import pyplot
+# from matplotlib import pyplot
 
 
 def adstatistic(X):
