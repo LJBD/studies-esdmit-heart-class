@@ -20,7 +20,7 @@ for i = 1:length(dataId)
   tic()
   classId, K = DataClassifierForPackage(dataId[i], referenceModel)
   time = toc()
-  write(fid, string(dataId[i]), "\t\t", string(time),"\t",string(K),"\n")
+  write(fid, string(dataId[i]), "\t\t", string(time),"\t",string(length(K)),"\n")
 end
 
 close(fid)

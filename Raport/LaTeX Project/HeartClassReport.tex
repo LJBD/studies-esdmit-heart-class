@@ -65,7 +65,7 @@
 \fancyfoot[RO,LE]{\thepage} % Custom footer text
 
 \usepackage[nottoc,numbib]{tocbibind}
-
+\usepackage[toc,page]{appendix}
 %----------------------------------------------------------------------------------------
 %	TITLE SECTION
 %----------------------------------------------------------------------------------------
@@ -122,6 +122,11 @@
 %----------------------------------------------------------------------------------------
 
 \input{literatura}
+
+\renewcommand\appendixpagename{Dodatek} %Troche bez sensu. Nie wiem jak to zrobic inaczej
+\begin{appendices}
+	\input{dodatekA}
+\end{appendices}
 
 %\end{multicols}
 
