@@ -62,7 +62,28 @@
 
 Tabela \ref{tabResults_gmeans} przedstawia wyniki działania algorytmu G-średnich w postaci liczby znalezionych klastrów dla każdej paczki danych. Co prosto zauważyć, kolumny dla języków Python i Julia są takie same (przyczyna jest przedstawiona w podrozdziale \ref{sub:klu_asp} Dodatku A). Wyniki otrzymane przy użyciu gotowej implementacji w języku Matlab znacząco się różnią. Jest to spowodowane innym sposobem obliczania wartości krytycznej testu Andersona - Darlinga.
 
-W języku Matlab jest ona bezpośrednio zależna od ilości wektorów cech, które algorytm ma przetworzyć. Konkretna zależność to: $|X| * 0.0005$, gdzie $|X|$ to liczność zbioru danych. Z kolei dla implementacji w języku Python został zastosowany polecany przez twórców algorytmu poziom czułości $\alpha = 0.0001$ i odpowiadająca mu wartość krytyczna $v_{kryt} = 1.8692$. Korzystając z formuły użytej w języku Matlab otrzymuje się znacznie mniejsze dopuszczalne wartości, co zwykle skutkuje zdecydowanie większą liczbą klastrów. Nie udało się natomiast uzasadnić występowania tylko jednego klastra w niektórych przypadkach.
+W języku Matlab jest ona bezpośrednio zależna od ilości wektorów cech, które algorytm ma przetworzyć. Konkretna zależność to: $|X| * 0.0005$, gdzie $|X|$ to liczność zbioru danych. Z kolei dla implementacji w języku Python został zastosowany polecany przez twórców algorytmu poziom czułości $\alpha = 0.0001$ i odpowiadająca mu wartość krytyczna $v_{kryt} = 1.8692$. Korzystając z formuły użytej w języku Matlab otrzymuje się znacznie mniejsze dopuszczalne wartości, co zwykle skutkuje zdecydowanie większą liczbą klastrów. Nie udało się natomiast uzasadnić występowania tylko jednego klastra w niektórych przypadkach. Rysunki \ref{fig:julia_gmeans_hist}, \ref{fig:matlab_gmeans_hist} oraz \ref{fig:python_gmeans_hist} przedstawiają wyniki klasteryzacji algorytmem G-średnich odpowiednio w językach Julia, Matlab oraz Python. Wyniki są przedstawione jako histogramy - prezentują liczbę wektorów danych należącą do każdego stworzonego klastra.
+
+\begin{figure}[!htp]
+	\centering
+	\includegraphics[width=10cm]{Grafika/JuliaAfterGmeans}
+	\caption{Liczność klastrów G-średnich - język Julia - paczka 101.}
+	\label{fig:julia_gmeans_hist}
+\end{figure}
+
+\begin{figure}[!htp]
+	\centering
+	\includegraphics[width=10cm]{Grafika/MatlabAfterGmeans}
+	\caption{Liczność klastrów G-średnich - język Matlab - paczka 101.}
+	\label{fig:matlab_gmeans_hist}
+\end{figure}
+
+\begin{figure}[!htp]
+	\centering
+	\includegraphics[width=10cm]{Grafika/PythonAfterGmeans}
+	\caption{Liczność klastrów G-średnich - język Python - paczka 101.}
+	\label{fig:python_gmeans_hist}
+\end{figure}
 
 
 \subsection{Funkcjonowanie algorytmu SVM}
@@ -70,7 +91,7 @@ W języku Matlab jest ona bezpośrednio zależna od ilości wektorów cech, któ
 \begin{figure}[!htp]
 	\centering
 	\includegraphics[width=15cm]{Grafika/101_2_3}
-	\caption{Histogramy klasyfikacji zespołów dla paczki danych o numerze 101}
+	\caption{Histogramy klasyfikacji zespołów dla paczki danych o numerze 101.}
 	\label{fig:hist1}
 \end{figure}
 
