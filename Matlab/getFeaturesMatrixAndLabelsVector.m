@@ -11,5 +11,5 @@ X = X(:,3:18) %without r_peak, r_peak_val
 
 Y = zeros(number_of_elements,1);
 for i = 1:number_of_elements
-    Y(i) = qrs(i).class_id; % to zawsze bedzie 2 !! Tak chyba nie powinno byæ , tutaj skrypt class2id powinien byc wywo³any
+    Y(i) = qrs(i).class_id; 
 end
