@@ -5,7 +5,7 @@
 \begin{table}[!tp]
 	\centering
 	\caption{Liczby klas wyliczonych przez G-means}
-	\label{tabResults2}
+	\label{tabResults_gmeans}
 	\begin{tabular}{|c|c|c|c|}
 		\hline
 		Nr paczki z MIT-BIH & Matlab & Python & Julia\\ \hline		
@@ -57,6 +57,12 @@
 	\end{tabular}
 \end{table}
 
+\qquad Użyto dwóch wersji algorytmu G-średnich. Pierwsza została znaleziona w internecie - jest to implementacja Laboratori d'Aplicacions Bioacustiques z Politechniki Katalońskiej w Barcelonie. Druga to własna implementacja oparta na oryginalnej koncepcji algorytmu, która jest zawarta w \cite{GMeans}.
+
+Tabela \ref{tabResults_gmeans} przedstawia wyniki działania algorytmu G-średnich w postaci liczby znalezionych klastrów dla każdej paczki danych. Co prosto zauważyć, kolumny dla języków Python i Julia są takie same (przyczyna jest przedstawiona w podrozdziale \ref{sub:klu_asp} Dodatku A). Wyniki otrzymane przy użyciu gotowej implementacji w języku Matlab znacząco się różnią. Jest to spowodowane innym sposobem obliczania wartości krytycznej testu Andersona - Darlinga.
+
+W języku Matlab jest ona bezpośrednio zależna od ilości wektorów cech, które algorytm ma przetworzyć. Konkretna zależność to: $|X| * 0.0005$, gdzie $|X|$ to liczność zbioru danych. Z kolei dla implementacji w języku Python został zastosowany polecany przez twórców algorytmu poziom czułości $\alpha = 0.0001$ i odpowiadająca mu wartość krytyczna $v_{kryt} = 1.8692$. Korzystając z formuły użytej w języku Matlab otrzymuje się znacznie mniejsze dopuszczalne wartości, co zwykle skutkuje zdecydowanie większą liczbą klastrów.
+
 
 \subsection{Funkcjonowanie algorytmu SVM}
 
@@ -67,7 +73,7 @@
 	\label{fig:hist1}
 \end{figure}
 
-W przypadku implementacji w Matlabie wykorzystano bibliotekę libsvm \cite{csie}. Istnieje również wersja tej biblioteki przeznaczona do wykorzystania w Pythonie, jednak po licznych, nieudanych próbach wykorzystania jej zdecydowano się zaimplementować własną maszynę wektorów nośnych w oparciu o pliki źródłowe biblioteki libsvm. Analogicznie postąpiono w przypadku implementacji w Julii. Efektem tego jest krótszy czas wykonywania się modułu napisanego w Matlabia (patrz Tab.\ref{tabResults}), a wynika to między innymi z braku doświadczenia związanego z optymalizacją kodu w wykorzystanych językach programowania.
+\qquad W przypadku implementacji w Matlabie wykorzystano bibliotekę libsvm \cite{csie}. Istnieje również wersja tej biblioteki przeznaczona do wykorzystania w Pythonie, jednak po licznych, nieudanych próbach wykorzystania jej zdecydowano się zaimplementować własną maszynę wektorów nośnych w oparciu o pliki źródłowe biblioteki libsvm. Analogicznie postąpiono w przypadku implementacji w Julii. Efektem tego jest krótszy czas wykonywania się modułu napisanego w Matlabia (patrz Tab.\ref{tabResults}), a wynika to między innymi z braku doświadczenia związanego z optymalizacją kodu w wykorzystanych językach programowania.
 
 \begin{table}[!tp]
 	\centering
@@ -128,7 +134,7 @@ W przypadku implementacji w Matlabie wykorzystano bibliotekę libsvm \cite{csie}
 
 \subsection{Wnioski}
 
-Krótki czas wykonywania programu napisanego w Matlabie wynika głównie z wykorzystania biblioteki libsvm, która jest napisana w C. Dla pozostałych języków zaimplementowano maszynę wektorów nośnych w oparciu o pliki źródłowe wspomnianej biblioteki.
+\qquad Krótki czas wykonywania programu napisanego w Matlabie wynika głównie z wykorzystania biblioteki libsvm, która jest napisana w C. Dla pozostałych języków zaimplementowano maszynę wektorów nośnych w oparciu o pliki źródłowe wspomnianej biblioteki.
 
 Wykorzystanie metody SVM z szesnastoelementowym wektorem cech wydaje się złym rozwiązaniem, gdyż niemal zawsze wektor klasyfikowany jest do jednej klasy - patrz Rys.\ref{fig:hist1}. Poza zbyt licznym wektorem cech wpływ na to ma również fakt, że około 90\% zespołów QRS z bazy MIT-BIH reprezentują pobudzenia nadkomorowe. Rozwiązaniem problemu klasyfikacji może okazać się odpowiednie zmniejszenie liczności wykorzystywanego wektora cech.
 
@@ -141,7 +147,4 @@ Przeprowadzono również testy, w których SVM korzystał z różnych modeli (wy
 	\label{fig:TrainNormSVM}
 \end{figure}
 
-
-
-<Coś o gmeans - że w C++ nie było, a tutaj jest>
-
+Podstawową różnicą względem projektu zeszłorocznego, jest obecność w tu opisywanym metody G-średnich używanej do klasteryzacji. Zostało to szerzej opisane w podrozdziale \ref{sub:roznice_c++} Dodatku A. W związku z tym ciężko jest porównywać funkcjonowanie obu modułów. Zaskakujący jest fakt, iż mimo używania takiego samego modelu SVM, implementacje tegoroczne klasyfikują zdecydowaną większość wektorów cech do jednej klasy.
