@@ -1,0 +1,12 @@
+--- projekt_oryg/src/HeartClass.h	2015-01-25 16:14:28.000000000 +0100
++++ projekt/src/HeartClass.h	2015-12-13 15:16:14.481479000 +0100
+@@ -33,6 +33,9 @@
+ 	std::vector<int>* group_sizes;
+ 
+ 	std::vector<QRS_DATA> convertDataToQrsClasses(ResultData*);
++	std::string toNamedString(QRS_DATA& record);
++	std::string toRawString(QRS_DATA& record);
++	void writeDataToFile(std::string fileName, std::vector<QRS_DATA>* data);
+ 	gsl_vector**  qrsToGslVectors(std::vector<QRS_DATA>*);
+ 	std::vector<std::string>  qrsToStrings(std::string,QRS_DATA,double);
+ 	void gslVectorsToQrs(gsl_vector** data, std::vector<QRS_DATA>*);
