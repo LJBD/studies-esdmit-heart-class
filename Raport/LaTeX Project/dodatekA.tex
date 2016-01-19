@@ -1,13 +1,16 @@
-\section{Zagadnienia Implementacyjne}
+\section*{Dodatek A: Opis opracowanych programówe}
+\addcontentsline{toc}{section}{Dodatek A: Opis opracowanych programów}
 
-Zasadę działania zaimplementowanego modułu można opisac w trzech następujących krokach:
-\begin{itemize}
-	\item Ekstrakcja cech
-	\item Klasteryzacja
-	\item Klasyfikacja
-\end{itemize}
+\qquad Pierwszym faktem, na który należy zwrócić uwagę na początku tego dodatku jest iż praca wykonana w ramach tego projektu miała na celu porównanie funkcjonowania algorytmów w różnych językach programowania. W związku z tym, że traktowano jako odniesienie ubiegłoroczny projekt napisany w języku C++, wejściem wszystkich utworzonych modułów są dane tekstowe pobrane z tamtego projektu. Dołączone na nośniku CD pliki z różnicami zawierają szczegóły zmian wprowadzonych w plikach C++ w celu dodania zapisywania danych w różnych momentach działania algorytmu.
 
-Wejściem modułu są wektory danych otrzymywanych z poprzednich modułów. Na etapie ekstrakcji cech wybierane są cechy, z których składać się będą wektory podlegajace klasyfikacji. !!!!!!!!DOPISAĆ ALBO OLAĆ!!!!!!!!!!!!
+\subsection{Kluczowe aspekty implementacji}
 
+\qquad W języku Matlab wykorzystano istniejącą implementację algorytmu G-średnich przygotowaną przez Laboratori d'Aplicacions Bioacustiques Politechniki Katalońskiej w Barcelonie. Ten program został poddany prostym testom, aby sprawdzić, jak się zachowuje w różnych przypadkach. Zakończyły się one pozytywnym wynikiem, stąd też decyzja o jego użyciu.
 
-<Podrozdziały: "Ciekawsze aspekty wykonanych implementacji", "Instrukcja uruchomienia", "Różnice względem kodu w C++>
+Podjęto próbę samodzielnego napisania tego algorytmu w języku Python w oparciu o opis koncepcyjny, dostępny w oryginalnej pracy twórców algorytmu \cite{GMeans}, a nie na wyżej wymienionym programie w języku Matlab. Próba zakończyła się sukcesem - powstała implementacja dobrze zachowująca się w przypadku różnych typów danych. W związku z tym, w języku Julia użyto modułu ,,PyCall'', aby bezpośrednio odwoływać się do programu w języku Python. Ta implementacja została poniżej szczegółowo omówiona.
+
+Program realizujący algorytm G-średnich został podzielony na dwa pliki. W pierwszym z nich znajduje się implementacja testu statystycznego Andersona - Darlinga przygotowana przez dr Ernesto Adorio \cite{ad-test-python}. W drugim jest umieszczona klasa \texttt{GMeans}, której metoda \texttt{cluster\_data} używa właśnie omawianego algorytmu. 
+
+\subsection{Instrukcja uruchomienia programów}
+
+\subsection{Różnice względem projektu w C++}
