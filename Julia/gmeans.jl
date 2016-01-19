@@ -13,7 +13,7 @@ function Gmeans(normalizedQRSComplexes)
         qrs_vector=[qrs_vector; qrs.QRSData(normalizedQRSComplexes[:,i])]
     end
     debug("Converted QRS complexes to python QRS.")
-    gMeans = gmeans_base.GMeans("DEBUG")
+    gMeans = gmeans_base.GMeans()
     centroids, labels = gMeans[:cluster_data](qrs_vector)
     debug("Finished gmeans.")
     info(string("Finished python gMeans centroids size: ", size(centroids), " labels size: ", length(labels)))
