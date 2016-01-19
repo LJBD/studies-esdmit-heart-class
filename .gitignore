@@ -9,8 +9,8 @@
 *.log
 
 # LaTeX compilation outputs
-*/*.aux
-*/*.toc
-*/*.out
-*/*.log
-*/*.synctex.gz
+*.aux
+*.toc
+*.out
+*.log
+*.synctex.gz
