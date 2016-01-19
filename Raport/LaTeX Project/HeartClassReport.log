@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.11.19)  19 JAN 2016 16:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.11.19)  19 JAN 2016 17:39
 entering extended mode
 **HeartClassReport.tex
 (HeartClassReport.tex
@@ -600,7 +600,13 @@ Package tocbibind Info: The document has section divisions on input line 50.
 
 Package tocbibind Note: Using section or other style headings.
 
-) (HeartClassReport.aux)
+) ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\appendix\appendix.sty"
+Package: appendix 2009/09/02 v1.2b extra appendix facilities
+\c@@pps=\count110
+\c@@ppsavesec=\count111
+\c@@ppsaveapp=\count112
+)
+(HeartClassReport.aux)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 86.
 LaTeX Font Info:    ... okay on input line 86.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 86.
@@ -683,7 +689,7 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty"
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count110
+\c@section@level=\count113
 )
 LaTeX Info: Redefining \ref on input line 86.
 LaTeX Info: Redefining \pageref on input line 86.
@@ -694,16 +700,16 @@ LaTeX Info: Redefining \nameref on input line 86.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count111
+\scratchcounter=\count114
 \scratchdimen=\dimen149
 \scratchbox=\box28
-\nofMPsegments=\count112
-\nofMParguments=\count113
+\nofMPsegments=\count115
+\nofMParguments=\count116
 \everyMPshowfont=\toks21
-\MPscratchCnt=\count114
+\MPscratchCnt=\count117
 \MPscratchDim=\dimen150
-\MPnumerator=\count115
-\makeMPintoPDFobject=\count116
+\MPnumerator=\count118
+\makeMPintoPDFobject=\count119
 \everyMPtoPDFconversion=\toks22
 )
 LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <24> not available
@@ -782,8 +788,10 @@ LaTeX Font Info:    Font shape `U/msb/m/n' will be
 (Font)              scaled to size 6.25204pt on input line 5.
 )
 \tf@toc=\write4
- (wstep.tex
-<Grafika/ZespolQRS.png, id=44, 587.19376pt x 455.7025pt>
+ (wstep.tex [1{C:/Users/user/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
+
+]
+<Grafika/ZespolQRS.png, id=64, 587.19376pt x 455.7025pt>
 File: Grafika/ZespolQRS.png Graphic file (type png)
 
 <use Grafika/ZespolQRS.png>
@@ -791,17 +799,16 @@ Package pdftex.def Info: Grafika/ZespolQRS.png used on input line 17.
 (pdftex.def)             Requested size: 258.00539pt x 200.22461pt.
 LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <9> not available
 (Font)              Font shape `T1/pplx/b/n' tried instead on input line 18.
- [1{C:/Users/user/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
-
-]) (koncepcja_rozwiazania.tex [2 <./Grafika/ZespolQRS.png>]
-[3] <Grafika/g-means-projection.png, id=107, 393.47pt x 316.382pt>
+) [2 <./Grafika/ZespolQRS.png>]
+(koncepcja_rozwiazania.tex [3] [4]
+<Grafika/g-means-projection.png, id=126, 393.47pt x 316.382pt>
 File: Grafika/g-means-projection.png Graphic file (type png)
 
 <use Grafika/g-means-projection.png>
 Package pdftex.def Info: Grafika/g-means-projection.png used on input line 54.
 (pdftex.def)             Requested size: 301.00192pt x 242.02661pt.
- [4] [5 <./Grafika/g-means-projection.png (PNG copy)>]
-<Grafika/Svm_max_sep_hyperplane_with_margin.png, id=136, 803.0pt x 865.2325pt>
+ [5 <./Grafika/g-means-projection.png (PNG copy)>]
+<Grafika/Svm_max_sep_hyperplane_with_margin.png, id=146, 803.0pt x 865.2325pt>
 File: Grafika/Svm_max_sep_hyperplane_with_margin.png Graphic file (type png)
 
 <use Grafika/Svm_max_sep_hyperplane_with_margin.png>
@@ -819,21 +826,21 @@ Underfull \hbox (badness 10000) in paragraph at lines 117--119
  []
 
 ) (rezultaty_i_wnioski.tex
-<Grafika/101_2_3.png, id=162, 421.575pt x 316.18124pt>
+<Grafika/101_2_3.png, id=171, 421.575pt x 316.18124pt>
 File: Grafika/101_2_3.png Graphic file (type png)
 
 <use Grafika/101_2_3.png>
-Package pdftex.def Info: Grafika/101_2_3.png used on input line 108.
+Package pdftex.def Info: Grafika/101_2_3.png used on input line 109.
 (pdftex.def)             Requested size: 426.79134pt x 320.09798pt.
 
-<Grafika/SVMTrain.png, id=163, 793.46437pt x 469.00218pt>
+<Grafika/SVMTrain.png, id=172, 793.46437pt x 469.00218pt>
 File: Grafika/SVMTrain.png Graphic file (type png)
 
 <use Grafika/SVMTrain.png>
-Package pdftex.def Info: Grafika/SVMTrain.png used on input line 115.
+Package pdftex.def Info: Grafika/SVMTrain.png used on input line 116.
 (pdftex.def)             Requested size: 455.24408pt x 269.0945pt.
 
-Overfull \hbox (25.23946pt too wide) in paragraph at lines 115--116
+Overfull \hbox (25.23946pt too wide) in paragraph at lines 116--117
  [][] 
  []
 
@@ -849,25 +856,41 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             See the microtype manual for details.
  [7] [8] [9]
 [10 <./Grafika/101_2_3.png (PNG copy)>] [11 <./Grafika/SVMTrain.png>])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 128.
- [12]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 128.
+LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <20.74> not available
+(Font)              Font shape `T1/pplx/b/n' tried instead on input line 127.
 
-(HeartClassReport.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 128.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 128.
+(dodatekA.tex
+LaTeX Font Info:    Try loading font information for OMS+pplx on input line 5.
+LaTeX Font Info:    No file OMSpplx.fd. on input line 5.
+
+
+LaTeX Font Warning: Font shape `OMS/pplx/m/n' undefined
+(Font)              using `OMS/cmsy/m/n' instead
+(Font)              for symbol `textbullet' on input line 5.
+
+)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 133.
+ [12]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 133.
+ (HeartClassReport.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 133.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 133.
 Package rerunfilecheck Info: File `HeartClassReport.out' has not changed.
-(rerunfilecheck)             Checksum: 9CC49867C5224676C8A7D6BE2ED221AC;453.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 128.
+(rerunfilecheck)             Checksum: 215B4D3E1BCDCA572396AEF30DFB7B57;566.
+
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 133.
  ) 
 Here is how much of TeX's memory you used:
- 10585 strings out of 493673
- 158216 string characters out of 3141532
- 397969 words of memory out of 3000000
- 13405 multiletter control sequences out of 15000+200000
- 66044 words of font info for 282 fonts, out of 3000000 for 9000
+ 10707 strings out of 493673
+ 159961 string characters out of 3141532
+ 400421 words of memory out of 3000000
+ 13510 multiletter control sequences out of 15000+200000
+ 70288 words of font info for 289 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 36i,10n,43p,1014b,506s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 36i,11n,43p,1014b,505s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\user\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\e
 ctt1000.pk>{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<
 C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:
@@ -882,9 +905,9 @@ fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Program Files (x86)/MiKTeX 2
 .9/fonts/type1/urw/palatino/uplb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts
 /type1/urw/palatino/uplr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/u
 rw/palatino/uplri8a.pfb>
-Output written on HeartClassReport.pdf (12 pages, 366751 bytes).
+Output written on HeartClassReport.pdf (12 pages, 369342 bytes).
 PDF statistics:
- 295 PDF objects out of 1000 (max. 8388607)
- 70 named destinations out of 1000 (max. 500000)
- 46682 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 305 PDF objects out of 1000 (max. 8388607)
+ 72 named destinations out of 1000 (max. 500000)
+ 47722 words of extra memory for PDF output out of 51595 (max. 10000000)
 
