@@ -56,5 +56,6 @@ function predict(svm, qrs_complexes)
     class_id = Int(svm_predict(svm.model, x))
     ##-- Save results
     qrs_complexes[i].class_id = class_id
+    return class_id
   end
 end

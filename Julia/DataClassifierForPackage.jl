@@ -10,26 +10,26 @@ function DataClassifierForPackage(dataId, referenceModel)
     #if Pkg.installed("Gadfly") == nothing
     #    Pkg.add("Gadfly")
     #    Pkg.update()
-    #end    
+    #end
     #GetNormalizedDataFromFile
-    
+
 
     #TODO TemporaryDate until modulw will be completed
     #dataId = 101
     #path = string(dirname(pwd()),"\\SVM_models\\model101")
     #referenceModel = loadSvmModel(path) #TODO Have problems in svm.jl line 197
     #
-    
+
     folder = string(dataId)
     directory = dirname(pwd())
     QRSDataPath = joinpath(directory, "ReferencyjneDane", folder, "ConvertedQRSRawData.txt")
-    QRSClassIdPath = joinpath(directory, "ReferencyjneDane" , folder , "Class_IDs.txt")
-    formatSpec = (repmat([Float64], 18)) 
+    #QRSClassIdPath = joinpath(directory, "ReferencyjneDane" , folder , "Class_IDs.txt")
+    formatSpec = (repmat([Float64], 18))
     QRSDataMatrix = GetQRSFromFile(QRSDataPath, formatSpec)
-    QRSClassIdVector = GetQRSFromFile(QRSClassIdPath, Float64);
+    QRSClassIdVector = ones(size(QRSDataMatrix,1)) #GetQRSFromFile(QRSClassIdPath, Float64);
     normalizedQRSComplexes = NormalizeMatrix(QRSDataMatrix);
 
-    
+
     debug("Creating Y, X matrixes")
     Y = QRSClassIdVector
     X = normalizedQRSComplexes[:,:]
@@ -44,8 +44,8 @@ function DataClassifierForPackage(dataId, referenceModel)
 
     svm = SVMClassifier()
     svm.model = referenceModel
-    predict(svm, qrs_vector)
-    
+    classId = predict(svm, qrs_vector)
+
     qrsIdAfterPrediction = []
     for i = 1: size(normalizedQRSComplexes,2)
         qrsIdAfterPrediction = [qrsIdAfterPrediction; qrs_vector[i].class_id]
@@ -55,4 +55,6 @@ function DataClassifierForPackage(dataId, referenceModel)
         x=qrsIdAfterPrediction,
         Geom.histogram(bincount = 1),
         Guide.title("Klasyfikacja zespołów QRS"))
+
+    return classId
 end
