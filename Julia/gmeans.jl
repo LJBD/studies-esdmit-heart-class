@@ -15,12 +15,8 @@ function Gmeans(normalizedQRSComplexes)
     debug("Converted QRS complexes to python QRS.")
     gMeans = gmeans_base.GMeans()
     centroids, labels = gMeans[:cluster_data](qrs_vector)
-<<<<<<< HEAD
-    info("Finished python gMeans centroids size: ", size(centroids), " labels size: ", size(labels))
-=======
     debug("Finished gmeans.")
     info(string("Finished python gMeans centroids size: ", size(centroids), " labels size: ", length(labels)))
->>>>>>> 00be76050f977deb8948663bdffaac94649cb48a
     c_idx = [];
     numberOfGroups = length(labels)
     for i = 1:numberOfGroups
