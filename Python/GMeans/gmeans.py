@@ -69,11 +69,11 @@ class GMeans(object):
             self.delete_centroids_with_no_data()
             self.k = len(self.centroids)
             if added_to_centroids_flag is False:
-                self.logger.info('GMEANS: I\'ve added nothing, so I\' stopping the algorithm. K = %d' % self.k)
                 break
             else:
                 pass
 
+        self.logger.info('Stopping G-means algorithm. K = %d' % self.k)
         return self.centroids, self.labels_dict
 
     def delete_centroids_with_no_data(self):
