@@ -1,15 +1,15 @@
-function [] = DataClassifierForPackage(dataId, referenceModel, displayResults)
+function [K] = DataClassifierForPackage(dataId, referenceModel, displayResults)
 
 folder = num2str(dataId);
 path('libsvm-windows-dlls/', path); 
 
 directory = fileparts(pwd);
 QRSDataPath = fullfile(directory, 'ReferencyjneDane' , folder , 'ConvertedQRSRawData.txt');
-QRSClassIdPath = fullfile(directory, 'ReferencyjneDane' , folder , 'Class_IDs.txt');
+%QRSClassIdPath = fullfile(directory, 'ReferencyjneDane' , folder , 'Class_IDs.txt');
 formatSpec = '%f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f';
 QRSSize = [18 inf];
 QRSDataMatrix = GetQRSFromFile(QRSDataPath, formatSpec, QRSSize);
-QRSClassIdVector = GetQRSFromFile(QRSClassIdPath, '%f', [inf]);
+QRSClassIdVector = ones(size(QRSDataMatrix, 2)); %GetQRSFromFile(QRSClassIdPath, '%f', [inf]);
 normalizedQRSComplexes = ConvertToNormalizedQRSComplexesWithId(QRSDataMatrix, QRSClassIdVector);
 
 % % create matrix of featrures X and vector of corresponding labels Y
@@ -27,7 +27,7 @@ end
 %% Grouping
 [groups, C, ad] = gmeans(X, length(X)*0.0005);
 c_idx = [];
-
+K = size(C,1);
 % Assign to group
 for i = 1:length(groups)
     c_idx = [c_idx;i *ones(size(groups{i},1),1)];
