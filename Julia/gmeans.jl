@@ -7,18 +7,20 @@ using Logging
 
 function Gmeans(normalizedQRSComplexes)  
     info("Starting Gmeans")
+    debug(normalizedQRSComplexes[:,1])
     qrs_vector =  qrs.QRSData(normalizedQRSComplexes[:,1])
     for i = 2: size(normalizedQRSComplexes,2)
         qrs_vector=[qrs_vector; qrs.QRSData(normalizedQRSComplexes[:,i])]
     end
     debug("Converted QRS complexes to python QRS.")
     gMeans = gmeans_base.GMeans("DEBUG")
-    centroids, lables = gMeans[:cluster_data](qrs_vector)
-    info(str("Finished python gMeans centroids size: ", size(centroids), " labels size: ", size(labels)))
+    centroids, labels = gMeans[:cluster_data](qrs_vector)
+    debug("Finished gmeans.")
+    info(string("Finished python gMeans centroids size: ", size(centroids), " labels size: ", length(labels)))
     c_idx = [];
-    numberOfGroups = length(lables)
+    numberOfGroups = length(labels)
     for i = 1:numberOfGroups
-        c_idx = [c_idx;lables[i-1]];
+        c_idx = [c_idx;labels[i-1]];
     end
     debug("Converted labels dictionary to ordered array")
     return c_idx
