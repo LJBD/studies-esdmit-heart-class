@@ -11,7 +11,6 @@ license
 from scipy import stats
 from numpy import mean, var
 from math import sqrt, log
-# from matplotlib import pyplot
 
 
 def adstatistic(X):
@@ -31,8 +30,10 @@ def adstatistic(X):
         j = i+1
         p = stats.norm.cdf(y)
         q = 1 - p
+        if q == 0:
+            q += 0.0001
         try:
-            S += (j+j - 1)*log(p)+ (2 *(n-j)+1)* log(q)
+            S += (j+j - 1)*log(p) + (2 * (n-j)+1) * log(q)
         except ValueError:
             raise Exception('VALUE ERROR: y = %f, p = %f, q = %f' % (y, p, q))
     A2 -= S/n
@@ -52,11 +53,11 @@ def AndersonDarlingTest(X, alpha=0.0001):
                 # print('Anderson-Darling test stat: %s, crit: %s' % (teststat, crit))
                 return teststat < crit
     except IndexError:
-        raise Exception("Significance level not in range. Got %s as alpha, type of alpha: %s." % (alpha, alpha.__class__.__name__))
-    return None
+        raise Exception("Significance level not in range.")
 
 
 if __name__ == "__main__":
+    from matplotlib import pyplot
     print(stats.norm.cdf(3.0))
     n = 10
     data_x = [stats.norm.rvs() for i in range(n)]

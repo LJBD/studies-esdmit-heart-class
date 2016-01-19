@@ -13,7 +13,7 @@ class GMeans(object):
         ch = logging.StreamHandler()
         ch.setLevel(log_level)
         ch.setFormatter(formatter)
-        fh = logging.FileHandler('gmeans-log.log')
+        fh = logging.FileHandler('log_from_g-means.log')
         fh.setLevel(log_level)
         fh.setFormatter(formatter)
         self.logger.addHandler(ch)
@@ -48,21 +48,25 @@ class GMeans(object):
             added_to_centroids_flag = False
             self.centroids, labels_for_data = kmeans2(self.qrs_data, k=numpy.array(self.centroids),
                                                       minit='matrix', iter=100)
-            self.logger.debug('k-means resulted in centroids: %s' % self.centroids)
+            self.k = len(self.centroids)
+            self.logger.debug('k-means (k = %f) resulted in centroids: %s' % (self.k, self.centroids))
             self.set_proper_labels(labels_for_data)
 
             for centroid_index, centroid in enumerate(self.centroids):
                 data_for_centroid = self.get_data_dict_for_centroid(centroid_index)
                 if len(list(data_for_centroid.values())) == 0:
                     # if a centroid does not have any points assigned to it, we have to mark it for deletion
+                    self.logger.debug('The centroid %f will be deleted as there is no data connected with it.'
+                                      % centroid_index)
                     self.centroids_to_be_deleted.append(centroid_index)
                 else:
                     test_outcome, new_centroids, new_labels_for_data = self.run_test(centroid, data_for_centroid, alpha)
                     if test_outcome:
-                        self.logger.debug('The test was positive: the old centroid stays.')
+                        self.logger.debug('The test was positive: the old centroid stays. Index: %f' % centroid_index)
                         pass
                     else:
-                        self.logger.debug('The test was negative: new centroids will be added.')
+                        self.logger.debug('The test was negative: new centroids will be added. Index: %f'
+                                          % centroid_index)
                         added_to_centroids_flag = True
                         self.update_after_centroid_addition(centroid_index, data_for_centroid, new_centroids,
                                                             new_labels_for_data)
