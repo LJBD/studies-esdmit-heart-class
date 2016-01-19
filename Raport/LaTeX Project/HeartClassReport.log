@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.11.19)  19 JAN 2016 13:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.11.19)  19 JAN 2016 15:53
 entering extended mode
 **HeartClassReport.tex
 (HeartClassReport.tex
@@ -887,7 +887,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 129.
 Here is how much of TeX's memory you used:
  10702 strings out of 493673
  159866 string characters out of 3141532
- 397076 words of memory out of 3000000
+ 397075 words of memory out of 3000000
  13516 multiletter control sequences out of 15000+200000
  66044 words of font info for 282 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
@@ -906,7 +906,7 @@ fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Program Files (x86)/MiKTeX 2
 .9/fonts/type1/urw/palatino/uplb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts
 /type1/urw/palatino/uplr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/u
 rw/palatino/uplri8a.pfb>
-Output written on HeartClassReport.pdf (11 pages, 364018 bytes).
+Output written on HeartClassReport.pdf (11 pages, 364417 bytes).
 PDF statistics:
  291 PDF objects out of 1000 (max. 8388607)
  69 named destinations out of 1000 (max. 500000)
