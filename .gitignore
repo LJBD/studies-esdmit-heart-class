@@ -6,3 +6,11 @@
 *.asv
 *.ipynb
 */*/__pycache__/
+*.log
+
+# LaTeX compilation outputs
+*.aux
+*.toc
+*.out
+*.log
+*.synctex.gz

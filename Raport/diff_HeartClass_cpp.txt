@@ -1,0 +1,167 @@
+--- projekt_oryg/src/HeartClass.cpp	2015-02-04 00:19:10.000000000 +0100
++++ projekt/src/HeartClass.cpp	2015-12-15 17:38:13.753094403 +0100
+@@ -1,5 +1,9 @@
+ #include <iostream>
+ #include "HeartClass.h"
++/* ------ dodane do czytania danych -----*/
++#include <iostream>
++#include <fstream>
++/* --------------------------------------*/
+ 
+ HeartClass::HeartClass() {
+ 
+@@ -35,21 +39,26 @@
+ 
+ 	//TODO:
+ 	if (result.isValid(3)) {
+-		//-- Convert data to qrs_complexes
++		//-- Convert data to qrs_complexes, writing inside
+ 		*this->qrs_complexes = this->convertDataToQrsClasses(&result);
+ 		this->setProgress(5);
+ 
++		
++
+ 		//-- Normalize
+ 		this->normalizeData(this->qrs_complexes, this->record_means, this->record_stds);
++		this->writeDataToFile("AfterNormalization.txt", this->qrs_complexes);
+ 		this->setProgress(10);
+ 
+ 		//-- Group data by GMeans
+ 		if(k < 1) k = 1;
+ 		this->qrs_centroids = gmeans->clusterData(this->qrs_complexes, k);
++		this->writeDataToFile("AfterClustering.txt", this->qrs_complexes);
+ 		this->setProgress(40);
+ 
+ 		//-- Classify data
+ 		svm->predict(this->qrs_complexes);
++		this->writeDataToFile("AfterPrediction.txt", this->qrs_complexes);
+ 		this->setProgress(80);
+ 
+ 		//-- Unnormalize
+@@ -94,6 +103,12 @@
+ 	unsigned int current_r_peak = 0;
+ 	unsigned int next_r_peak = 0;
+ 	unsigned int temp = 0;
++	ofstream foutConversionNamed;
++	foutConversionNamed.open("ConvertedQRSNamedData.txt");
++	ofstream foutConversionRaw;
++	foutConversionRaw.open("ConvertedQRSRawData.txt");
++
++
+ 
+ 	//TODO: Are we sure that the data from the R_PEAKS & WAVES will be in the correct order?
+ 	for (size_t i = 0; i < r_peak_data.size() - 1; ++i) {
+@@ -113,6 +128,7 @@
+ 		new_qrs.p_onset_val = (double) ecg_data.at(temp);
+ 
+ 		temp = p_peak_data.at(i);
++		std::cout << "P Peak data: " << temp << std::endl;
+ 		new_qrs.p_peak = (double) temp - current_r_peak;
+ 		new_qrs.p_peak_val = (double) ecg_data.at(temp);
+ 
+@@ -129,20 +145,85 @@
+ 		new_qrs.qrs_end_val = (double) ecg_data.at(temp);
+ 
+ 		temp = t_peak_data.at(i);
++		std::cout << "T Peak data: " << temp << std::endl;
+ 		new_qrs.t_peak = (double) temp - current_r_peak;
+ 		new_qrs.t_peak_val = (double) ecg_data.at(temp);
+ 
+ 		temp = t_end_data.at(i);
+ 		new_qrs.t_end = (double) temp - current_r_peak;
+ 		new_qrs.t_end_val = (double) ecg_data.at(temp);
+-
++		
++		std::string namedQrs = toNamedString(new_qrs);
++		foutConversionNamed << namedQrs <<std::endl;
++		std::string rawQrs= toRawString(new_qrs);
++		foutConversionRaw << rawQrs <<std::endl;
++		
++		  
+ 		qrs_data_vector.push_back(new_qrs);
+ 		previous_r_peak = current_r_peak;
+ 	}
+-
++        foutConversionNamed.close();
++        foutConversionRaw.close();
+ 	return qrs_data_vector;
+ }
+ 
++void HeartClass::writeDataToFile(std::string fileName, std::vector<QRS_DATA>* data)
++{
++  	const int count = qrs_complexes->size();
++	ofstream fwriter;
++	fwriter.open(fileName);
++
++	for (int i = 0; i < count; ++i) {
++		std::string rawData = toRawString(data->at(i));
++		fwriter << rawData <<std::endl;
++	}
++        fwriter.close();
++}
++
++std::string HeartClass::toNamedString(QRS_DATA& record) {
++		return " r_peak" + std::to_string(record.r_peak)+
++		" r_peak_value" + std::to_string(record.r_peak_value)+
++		" rr_pre_interval" + std::to_string(record.rr_pre_interval)+
++		" rr_post_interval" + std::to_string(record.rr_post_interval)+
++		" p_onset" + std::to_string(record.p_onset)+
++		" p_onset_val" + std::to_string(record.p_onset_val)+
++		" p_peak" + std::to_string(record.p_peak)+
++		" p_peak_val" + std::to_string(record.p_peak_val)+
++		" p_end" + std::to_string(record.p_end)+
++		" p_end_val" + std::to_string(record.p_end_val)+
++		" qrs_onset" + std::to_string(record.qrs_onset)+
++		" qrs_onset_val" + std::to_string(record.qrs_onset_val)+
++		" qrs_end" + std::to_string(record.qrs_end)+
++		" qrs_end_val" + std::to_string(record.qrs_end_val)+
++		" t_peak" + std::to_string(record.t_peak)+
++		" t_peak_val" + std::to_string(record.t_peak_val)+
++		" t_end" + std::to_string(record.t_end)+
++		" t_end_val" + std::to_string(record.t_end_val);
++		
++	}
++	
++std::string HeartClass::toRawString(QRS_DATA& record) {
++		return " " + std::to_string(record.r_peak)+
++		" " + std::to_string(record.r_peak_value)+
++		" " + std::to_string(record.rr_pre_interval)+
++		" " + std::to_string(record.rr_post_interval)+
++		" " + std::to_string(record.p_onset)+
++		" " + std::to_string(record.p_onset_val)+
++		" " + std::to_string(record.p_peak)+
++		" " + std::to_string(record.p_peak_val)+
++		" " + std::to_string(record.p_end)+
++		" " + std::to_string(record.p_end_val)+
++		" " + std::to_string(record.qrs_onset)+
++		" " + std::to_string(record.qrs_onset_val)+
++		" " + std::to_string(record.qrs_end)+
++		" " + std::to_string(record.qrs_end_val)+
++		" " + std::to_string(record.t_peak)+
++		" " + std::to_string(record.t_peak_val)+
++		" " + std::to_string(record.t_end)+
++		" " + std::to_string(record.t_end_val);
++		
++	}
++
+ void HeartClass::normalizeData(std::vector<QRS_DATA>* qrs_complexes, QRS_DATA* record_means, QRS_DATA* record_stds) {
+ 	std::cout << "normalizeData()\n";
+ 	const int n = qrs_complexes->size();
+@@ -348,10 +429,16 @@
+ 	std::map<double, int> qrs_classes;
+ 	vector<double> record_means;
+ 	vector<double> record_stds;
+-
++	
++	ofstream fwriter;
+ 	for (size_t i = 0; i < this->qrs_complexes->size(); ++i) {
+ 		double r_peak = qrs_complexes->at(i).r_peak;
+ 		int qrs_class_id = qrs_complexes->at(i).class_id - 1;
++		
++		fwriter.open("Class_IDs.txt", ios::app);
++		fwriter << qrs_class_id+1 <<std::endl;
++		fwriter.close();
++
+ 		group_sizes.at(qrs_class_id) = group_sizes.at(qrs_class_id) + 1;
+ 		qrs_classes.insert(std::pair<double, int>(r_peak, qrs_class_id));
+ 	}
