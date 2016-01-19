@@ -6,3 +6,4 @@
 *.asv
 *.ipynb
 */*/__pycache__/
+*.log
