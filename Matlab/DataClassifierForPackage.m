@@ -13,7 +13,7 @@ QRSClassIdVector = GetQRSFromFile(QRSClassIdPath, '%f', [inf]);
 normalizedQRSComplexes = ConvertToNormalizedQRSComplexesWithId(QRSDataMatrix, QRSClassIdVector);
 
 % % create matrix of featrures X and vector of corresponding labels Y
-% [X,Y] = getFeaturesMatrixAndLabelsVector(normalizedQRSComplexes);
+[X,Y] = getFeaturesMatrixAndLabelsVector(normalizedQRSComplexes);
 Y = zeros(length(normalizedQRSComplexes),1);
 
 X = zeros(length(normalizedQRSComplexes),16);
@@ -21,8 +21,6 @@ for i = 1:length(normalizedQRSComplexes)
 Y(i) = normalizedQRSComplexes(i).class_id;
 X(i,:) = FromRecordToData(normalizedQRSComplexes(i));
 end
-
-% Load svm model - REMEMBER TO CREATE APPROPRIATE MODEL
 
 %% Grouping
 [groups, C, ad] = gmeans(X, length(X)*0.0005);
