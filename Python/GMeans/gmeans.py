@@ -9,9 +9,15 @@ class GMeans(object):
     def __init__(self, log_level='INFO'):
         self.logger = logging.getLogger(__name__)
         self.logger.setLevel(log_level)
+        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
         ch = logging.StreamHandler()
         ch.setLevel(log_level)
+        ch.setFormatter(formatter)
+        fh = logging.FileHandler('gmeans-log.log')
+        fh.setLevel(log_level)
+        fh.setFormatter(formatter)
         self.logger.addHandler(ch)
+        self.logger.addHandler(fh)
         self.labels_dict = {}
         self.qrs_data = None
         self.centroids = None
@@ -33,6 +39,7 @@ class GMeans(object):
         self.logger.debug('In clusterData')
         self.logger.info('Started G-means algorithm. Parameters: max_k = %f, alpha = %f' % (max_k, alpha))
         self.qrs_data = self.qrs_conversion(qrs_complexes)
+        self.logger.debug('Example part of input data: %s' % self.qrs_data[:2])
         initial_centroid = self.calculate_mean(self.qrs_data)
         self.centroids = numpy.array([initial_centroid])
         self.k = len(self.centroids)
@@ -195,7 +202,7 @@ def main():
     #     y = [item[1] for item in d]
     #     axis.plot(x, y, 'o')
     # pyplot.show()
-    g_means = GMeans(log_level='INFO')
+    g_means = GMeans(log_level='DEBUG')
     t1 = datetime.datetime.now()
     centroids, labels = g_means.cluster_data(data, max_k=30, alpha=0.01)
     t2 = datetime.datetime.now()
