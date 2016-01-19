@@ -18,5 +18,50 @@ Program realizujący algorytm G-średnich został podzielony na dwa pliki. W pie
 \subsection{Instrukcja uruchomienia programów}
 \label{sub:instrukcja}
 
+\qquad Poniżej zamieszczone są krótkie instrukcje uruchomienia plików projektowych w każdym z języków programowania.
+\begin{enumerate}
+	\item \textbf{Julia}
+	\begin{enumerate}
+		\item Należy posiadać zainstalowany interpreter języka Julia (oprogramowanie było pisane w wersji 0.4.x) oraz następujące paczki:
+		\begin{enumerate}
+			\item Gadfly
+			\item Logging
+			\item PyCall
+			\item StatsBase
+		\end{enumerate}
+		\item Projekt można uruchomić na dwa sposoby. Pierwszy to uruchomienie skryptu \texttt{main.jl}. To uruchomi tylko algorytmy.
+		\item Drugi sposób wygeneruje dla każdej paczki danych histogram w formacie SVG. Należy w tym celu uruchomić skrypt \texttt{HistSvgGenerator.jl}.
+	\end{enumerate}
+	\item \textbf{Matlab}
+	\begin{enumerate}
+		\item Programy były uruchamiane przy pomocy Matlaba R2014b oraz R2015a.
+		\item Jedyną zewnętrzną biblioteką, jaka jest wykorzystywana to LIBSVM. Należy ją skompilować, aby można było wykorzystywać jej artefakty w Matlabie.
+		\item Na dołączonym do niniejszego raportu nośniku CD znajdują się skompilowane obiekty w środowisku Windows.
+		\item W celu użycia LIBSVM na innym systemie operacyjnym, należy pobrać jej kod źródłowy z oficjalnej strony - \texttt{https://www.csie.ntu.edu.tw/\textasciitilde cjlin/libsvm/} - i postępować według instrukcji w pliku README. Odsyła ona do drugiego pliku README wewnątrz katalogu \texttt{matlab}, gdzie znajduje się opis kilku prostych kroków, które należy wykonać, aby skompilować tą bibliotekę.
+		\item Włączanie programu projektowego odbywa się przez uruchomienie skryptu \texttt{main.m}.
+		\item Dostępny jest również program testujący algorytm G-średnich - ma nazwę \texttt{gmeans\_testbench.m}.
+	\end{enumerate}
+	\item \textbf{Python}
+	\begin{enumerate}
+		\item Programy były uruchamiane przy pomocy interpreterów języka Python w wersjach 2.7.x oraz 3.4.x.
+		\item Należy posiadać zainstalowany interpreter (najlepiej w wersji 3.x) oraz następujące biblioteki:
+		\begin{enumerate}
+			\item numpy
+			\item scipy
+			\item matplotlib
+			\item scikit-learn (znane również jako sklearn)
+			\item biblioteki wbudowane (math, logging, datetime, os)
+		\end{enumerate}
+		\item Aby włączyć program, należy uruchomić skrypt \texttt{HeartBeatClassifier.py}.
+		\item Dodatkowo, skrypty \texttt{gmeans.py} oraz \texttt{anderson\_darling\_test.py} mają zaimplementowane testowanie metod w nich zapisanych. Wykonanie procedury testowej odbywa się przez uruchomienie odpowiedniego skryptu.
+	\end{enumerate}
+\end{enumerate}
+
 \subsection{Różnice względem projektu w C++}
 \label{sub:roznice_c++}
+
+\qquad Podstawową różnicą względem ubiegłorocznego projektu w języku C++ jest obecność algorytmu G-średnich we wszystkich trzech tegorocznych implementacjach. Nieznane są przyczyny takiego stanu rzeczy. Poprzednia implementacja wykorzystywała do klasteryzacji tylko algorytm k-średnich. Jest on z oczywistych względów nieakceptowalnym rozwiązaniem, gdy nie znamy struktury danych wejściowych, co ma miejsce w przypadku badania grup QRS.
+
+Poza tym, procedura normalizacji cech w ubiegłorocznym projekcie obejmuje wszystkie cechy, nawet te, które są indeksami początków, środków lub końców kolejnych załamków. Wprawdzie literatura nic na ten temat nie mówi, jednak podjęto decyzję, aby nie normalizować tych indeksów - sensowność takiego działania jest wątpliwa. 
+
+Wszystkie zmiany, jakie zostały wprowadzone do ubiegłorocznego projektu (ze względu na chęć wypisywania odpowiednich danych) są podsumowane w dwóch plikach tekstowych, \texttt{diff\_HeartClass\_cpp.txt} oraz \texttt{diff\_HeartClass\_h.txt}, które odpowiednio zawierają zmiany w pliku \texttt{HeartClass.cpp} oraz \texttt{HeartClass.h} ubiegłorocznego projektu. Zostały one umieszczone w katalogu \texttt{Raport} w repozytorium projektowym oraz na nośniku CD dołączonym do niniejszego raportu.
