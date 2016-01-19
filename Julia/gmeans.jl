@@ -1,6 +1,7 @@
 ENV["PYTHONPATH"] = "../Python"
 using PyCall
 using Logging
+using StatsBase
 @pyimport QRSData as qrs
 @pyimport GMeans.anderson_darling_test as anderson_darling_test
 @pyimport GMeans.gmeans as gmeans_base
@@ -18,5 +19,9 @@ function Gmeans(normalizedQRSComplexes)
     info(string("Finished python gMeans centroids size: ", size(centroids), " labels size: ", length(labels)))
     numberOfClasses = sort(union(values(labels)))
     debug(string("Converted labels dictionary to ordered array: ", numberOfClasses))
-    return numberOfClasses
+    allValues = [labels[key] for key in keys(labels)]
+    valuesRounded = round(Int64,allValues)
+    numberOfElements = counts(valuesRounded, 1:length(numberOfClasses))
+    info(string("Number of elements in each cluster", numberOfElements))
+    return numberOfElements
 end

@@ -56,5 +56,5 @@ function DataClassifierForPackage(dataId, referenceModel)
         Geom.histogram(bincount = 1),
         Guide.title("Klasyfikacja zespołów QRS"))
 
-    return classId
+    return classId, lablesOrdered
 end
