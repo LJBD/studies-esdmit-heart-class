@@ -1,4 +1,5 @@
 \section{Rezultaty i wnioski}
+\label{sec:rezultaty}
 
 \subsection{Funkcjonowanie algorytmu G-średnich}
 
@@ -133,12 +134,13 @@ W języku Matlab jest ona bezpośrednio zależna od ilości wektorów cech, któ
 \end{table}
 
 \subsection{Wnioski}
+\label{sub:wnioski}
 
 \qquad Krótki czas wykonywania programu napisanego w Matlabie wynika głównie z wykorzystania biblioteki libsvm, która jest napisana w C. Dla pozostałych języków zaimplementowano maszynę wektorów nośnych w oparciu o pliki źródłowe wspomnianej biblioteki.
 
 Wykorzystanie metody SVM z szesnastoelementowym wektorem cech wydaje się złym rozwiązaniem, gdyż niemal zawsze wektor klasyfikowany jest do jednej klasy - patrz Rys.\ref{fig:hist1}. Poza zbyt licznym wektorem cech wpływ na to ma również fakt, że około 90\% zespołów QRS z bazy MIT-BIH reprezentują pobudzenia nadkomorowe. Rozwiązaniem problemu klasyfikacji może okazać się odpowiednie zmniejszenie liczności wykorzystywanego wektora cech.
 
-Przeprowadzono również testy, w których SVM korzystał z różnych modeli (wygenerowanych z różnych paczek danych). Zaobserwowano, że normalizacja wektorów uczących znacznie przyspiesza proces uczenia, czego potwierdzeniem jest Rys.\ref{fig:SVM}.
+Przeprowadzono również testy, w których SVM korzystał z różnych modeli (wygenerowanych z różnych paczek danych). Zaobserwowano, że normalizacja wektorów uczących znacznie przyspiesza proces uczenia, czego potwierdzeniem jest Rys.\ref{fig:SVM}. Wątpliwa natomiast jest skuteczność tej metody - niezależnie od tego, czy klasyfikacji poddawane były całe klastry czy tylko ich reprezentanci, wyniki nie różniły się specjalnie od siebie, a więc przytłaczająca większość wektorów cech była przypisywana do jednej klasy. W bazach PhysioBank są dostępne adnotacje lekarzy co do przynależności wybranych kompleksów QRS do rzeczywistych klas pobudzeń. W celu przetestowania metody SVM (lub dowolnego innego algorytmu klasyfikacji), należałoby potraktować obecne tam dane jako punkt odniesienia. Niestety, taka próba nie została podjęta w ramach tego projektu. 
 
 \begin{figure}[!htp]
 	\centering
