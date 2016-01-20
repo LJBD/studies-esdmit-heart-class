@@ -51,7 +51,7 @@ include("QRSData.jl")
   svm = SVMClassifier()
 
   #Read model
-  svm.model = loadSvmModel("..\\..\\SVM_models\\model111")
+  svm.model = loadSvmModel("../../SVM_models/model111")
 
   #Random data
   qrs_vector  = createRandomQRSVector(10)

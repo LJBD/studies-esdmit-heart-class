@@ -53,7 +53,7 @@ function predict(svm, qrs_complexes)
     debug(string("Creating svm vector for data with index: ", i))
     x = createSvmVector(qrs_complexes[i])
     ##-- Classify
-    class_id = Int(svm_predict(svm.model, x))
+    class_id = int(svm_predict(svm.model, x))
     ##-- Save results
     qrs_complexes[i].class_id = class_id
   end
